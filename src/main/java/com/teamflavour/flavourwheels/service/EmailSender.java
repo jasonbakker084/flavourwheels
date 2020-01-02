@@ -9,8 +9,8 @@ import java.util.Properties;
 public class EmailSender {
     public static void main(String[] args) {
         String recipient = "recipient@gmail.com";
-        String sender = "coffeeflavourwheel@gmail.com";
-        String host = "https://coffeeflavourwheel.herokuapp.com";
+        String sender = "flavourwheelsapp@gmail.com";
+        String host = "https://flavourwheels.herokuapp.com";
 
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
