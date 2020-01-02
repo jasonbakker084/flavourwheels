@@ -1,7 +1,7 @@
 package com.teamflavour.flavourwheels.controller;
 
 
-//import com.teamflavour.flavourwheels.service.EmailSenderService;
+import com.teamflavour.flavourwheels.service.EmailSenderService;
 import com.teamflavour.flavourwheels.model.ConfirmationToken;
 import com.teamflavour.flavourwheels.model.User;
 import com.teamflavour.flavourwheels.repository.ConfirmationTokenRepository;
@@ -27,8 +27,8 @@ public class UserAccountController {
     @Autowired
     private ConfirmationTokenRepository confirmationTokenRepository;
 
-//    @Autowired
-//    private EmailSenderService emailSenderService;
+    @Autowired
+    private EmailSenderService emailSenderService;
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
@@ -40,40 +40,41 @@ public class UserAccountController {
         return modelAndView;
     }
 
-//    @RequestMapping(value="/register2", method=RequestMethod.POST)
-//    public ModelAndView registerUser(ModelAndView modelAndView, User user)
-//    {
-//
-//        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
-//        if(existingUser != null)
-//        {
-//            modelAndView.addObject("message","This email already exists!");
-//            modelAndView.setViewName("error");
-//        }
-//        else
-//        {
-//            userRepository.save(user);
-//
-//            ConfirmationToken confirmationToken = new ConfirmationToken(user);
-//
-//            confirmationTokenRepository.save(confirmationToken);
-//
-//            SimpleMailMessage mailMessage = new SimpleMailMessage();
-//            mailMessage.setTo(user.getEmail());
-//            mailMessage.setSubject("Complete Registration!");
-//            mailMessage.setFrom("flavourwheelsapp@gmail.com");
-//            mailMessage.setText("To confirm your account, please click here : "
+    @RequestMapping(value="/register2", method=RequestMethod.POST)
+    public ModelAndView registerUser(ModelAndView modelAndView, User user)
+    {
+
+        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+        if(existingUser != null)
+        {
+            modelAndView.addObject("message","This email already exists!");
+            modelAndView.setViewName("error");
+        }
+        else
+        {
+            userRepository.save(user);
+
+            ConfirmationToken confirmationToken = new ConfirmationToken(user);
+
+            confirmationTokenRepository.save(confirmationToken);
+
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(user.getEmail());
+            mailMessage.setSubject("Complete Registration!");
+            mailMessage.setFrom("flavourwheelsapp@gmail.com");
+            mailMessage.setText("To confirm your account, please click here : "
 //                    +"https://flavourwheels.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
-//
-//            emailSenderService.sendEmail(mailMessage);
-//
-//            modelAndView.addObject("emailId", user.getEmail());
-//
-//            modelAndView.setViewName("successfulRegisteration");
-//        }
-//
-//        return modelAndView;
-//    }
+            + "http://localhost:8080/confirm-reset?token="+confirmationToken.getConfirmationToken());
+
+            emailSenderService.sendEmail(mailMessage);
+
+            modelAndView.addObject("emailId", user.getEmail());
+
+            modelAndView.setViewName("successfulRegisteration");
+        }
+
+        return modelAndView;
+    }
 
 
 
@@ -114,13 +115,13 @@ public class UserAccountController {
         this.confirmationTokenRepository = confirmationTokenRepository;
     }
 
-//    public EmailSenderService getEmailSenderService() {
-//        return emailSenderService;
-//    }
-//
-//    public void setEmailSenderService(EmailSenderService emailSenderService) {
-//        this.emailSenderService = emailSenderService;
-//    }
+    public EmailSenderService getEmailSenderService() {
+        return emailSenderService;
+    }
+
+    public void setEmailSenderService(EmailSenderService emailSenderService) {
+        this.emailSenderService = emailSenderService;
+    }
 
     // Display the form
     @RequestMapping(value="/forgot-password", method=RequestMethod.GET)
@@ -131,36 +132,37 @@ public class UserAccountController {
     }
 
     // Receive the address and send an email
-//    @RequestMapping(value="/forgot-password", method=RequestMethod.POST)
-//    public ModelAndView forgotUserPassword(ModelAndView modelAndView, User user) {
-//        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
-//        if (existingUser != null) {
-//            // Create token
-//            ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
-//
-//            // Save it
-//            confirmationTokenRepository.save(confirmationToken);
-//
-//            // Create the email
-//            SimpleMailMessage mailMessage = new SimpleMailMessage();
-//            mailMessage.setTo(existingUser.getEmail());
-//            mailMessage.setSubject("Complete Password Reset!");
-//            mailMessage.setFrom("flavourwheelsapp@gmail.com");
-//            mailMessage.setText("To complete the password reset process, please click here: "
+    @RequestMapping(value="/forgot-password", method=RequestMethod.POST)
+    public ModelAndView forgotUserPassword(ModelAndView modelAndView, User user) {
+        User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
+        if (existingUser != null) {
+            // Create token
+            ConfirmationToken confirmationToken = new ConfirmationToken(existingUser);
+
+            // Save it
+            confirmationTokenRepository.save(confirmationToken);
+
+            // Create the email
+            SimpleMailMessage mailMessage = new SimpleMailMessage();
+            mailMessage.setTo(existingUser.getEmail());
+            mailMessage.setSubject("Complete Password Reset!");
+            mailMessage.setFrom("flavourwheelsapp@gmail.com");
+            mailMessage.setText("To complete the password reset process, please click here: "
 //                    + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
-//
-//            // Send the email
-//            emailSenderService.sendEmail(mailMessage);
-//
-//            modelAndView.addObject("message", "Request to reset password received. Check your inbox for the reset link.");
-//            modelAndView.setViewName("successForgotPassword");
-//
-//        } else {
-//            modelAndView.addObject("message", "This email address does not exist!");
-//            modelAndView.setViewName("error");
-//        }
-//        return modelAndView;
-//    }
+            + "http://localhost:8080/confirm-reset?token="+confirmationToken.getConfirmationToken());
+
+            // Send the email
+            emailSenderService.sendEmail(mailMessage);
+
+            modelAndView.addObject("message", "Request to reset password received. Check your inbox for the reset link.");
+            modelAndView.setViewName("successForgotPassword");
+
+        } else {
+            modelAndView.addObject("message", "This email address does not exist!");
+            modelAndView.setViewName("error");
+        }
+        return modelAndView;
+    }
 
     // Endpoint to confirm the token
     @RequestMapping(value="/confirm-reset", method= {RequestMethod.GET, RequestMethod.POST})

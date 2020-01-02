@@ -10,7 +10,9 @@ public class EmailSender {
     public static void main(String[] args) {
         String recipient = "recipient@gmail.com";
         String sender = "flavourwheelsapp@gmail.com";
-        String host = "https://flavourwheels.herokuapp.com";
+//        String host = "https://flavourwheels.herokuapp.com";
+        String host = "http://localhost:8080/";
+
 
         Properties properties = System.getProperties();
         properties.setProperty("mail.smtp.host", host);
