@@ -1,0 +1,18 @@
+svg {
+    font-family: arial;
+    font-size: 5.3px;
+    font-weight: 500;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-image: url(../images/winegrapes.png);
+    background-repeat: no-repeat;
+    /*background-size: 100% 50%;*/
+    background-position: center;
+    background-attachment: fixed;
+
+}

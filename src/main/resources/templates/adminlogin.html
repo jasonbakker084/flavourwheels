@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">SpringBoot
+        Thymeleaf</title>
+    <meta
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+            name="viewport" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar sticky-top navbar-light bg-light">
+        <a class="navbar-brand mb-0 h1" href="/"><img
+                th:src="@{./images/transp_android-chrome-192x192.png}" width="30" height="30"
+                class="d-inline-block align-top" alt="">Coffee Flavour Wheel
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="library.html" th:href="@{/coffeelibrary}">My Coffees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div layout:fragment="content">
+
+        <p sec:authorize="isAnonymous()"><a th:href="@{/login}">Login</a></p>
+        <p><a th:href="@{/home}">User Home</a></p>
+        <p><a th:href="@{/admin/home}">Admin Home</a></p>
+        <p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
+
+    </div>
+</div>
+
+<script th:src="@{'/assets/js/jquery-2.1.4.min.js'}"></script>
+<script th:src="@{'/assets/bootstrap/js/bootstrap.min.js'}"></script>
+
+
+
+</body>
+</html>

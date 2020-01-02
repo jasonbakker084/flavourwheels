@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" th:href="@{//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css}">
+    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-3.4.1.slim.min.js}"
+            integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js}"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js}"
+            integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+            crossorigin="anonymous"></script>
+    <script type="text/javascript" th:src="@{//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js}"></script>
+    <script type="text/javascript" th:src="@{//cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js}"></script>
+    <script type="text/javascript"
+            th:src="@{//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js}"></script>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css}"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{https://use.fontawesome.com/releases/v5.4.1/css/all.css}"
+          integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css}"/>
+    <link rel="stylesheet" type="text/css"
+          th:href="@{https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{css/coffeelibrary.css}"/>
+    <link rel="apple-touch-icon" sizes="180x180" th:src="@{images/apple-touch-icon.png}">
+    <link rel="icon" type="image/png" sizes="32x32" th:src="@{images/favicon-32x32.png}">
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+
+        gtag('js', new Date());
+
+        gtag('config', 'UA-152601123-1');
+    </script>
+    <title>My Coffees</title>
+</head>
+<body>
+<div th:fragment="navbar">
+    <nav class="navbar sticky-top navbar-expand-sm navbar-light bg-light">
+        <a class="navbar-brand mb-0 h1" href="/"><img th:src="@{./images/transp_android-chrome-192x192.png}"
+                                                      width="30" height="30" class="d-inline-block align-top" alt="">Flavour
+            Wheels
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Flavour Wheels
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="coffeewheel.html" th:href="@{/coffeewheel}">Coffee</a>
+                        <a class="dropdown-item" href="winewheel.html" th:href="@{/winewheel}">Wine</a>
+                        <a class="dropdown-item" href="whiskeywheel.html" th:href="@{/whiskeywheel}">Whiskey</a>
+<!--                        <div class="dropdown-divider"></div>-->
+<!--                        <a class="dropdown-item" href="#">Something else here</a>-->
+                    </div>
+                </li>
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="coffeewheel.html" th:href="@{/coffeewheel}">Coffee</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link" href="winewheel.html" th:href="@{/winewheel}">Wine</a>-->
+<!--                </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="library.html" th:href="@{/library}">My library</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div>
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2>My Coffees</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mh-80 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="coffee_table" class="display compact dt-responsive nowrap"
+                           style="width:100%; display: none">
+                        <thead>
+                        <tr>
+                            <th class="all" data-priority="1">Name</th>
+                            <th>Date</th>
+                            <th>Roaster</th>
+                            <th>Roast date</th>
+                            <th>Roast color</th>
+                            <th>Bean type</th>
+                            <th>Process method</th>
+                            <th class="none">Taste method</th>
+                            <th class="all" data-priority="1" id="deleteHeader">Delete</th>
+                            <th class="none">Flavours</th>
+                            <th class="none">Notes</th>
+                            <th class="none"></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="coffee : ${coffees}">
+                            <!--/*@thymesVar id="date" type=""*/-->
+                            <td th:text="${coffee.coffeeName}"></td>
+                            <td th:text="${coffee.date}"></td>
+                            <td th:text="${coffee.roaster}"></td>
+                            <td th:text="${coffee.roastDate}"></td>
+                            <td th:text="${coffee.roastColor}"></td>
+                            <td th:text="${coffee.beanType}"></td>
+                            <td th:text="${coffee.processingMethod}"></td>
+                            <td th:text="${coffee.tastingMethod}"></td>
+                            <td id="deleteButton"><a th:href="@{/coffeelib/delete/{id}(id=${coffee.id})}"
+                                                     class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                            <!--TODO: details in nieuw scherm met edit mogelijkheden-->
+
+                            <td th:text="${coffee.getFlavorString()}"></td>
+                            <td th:text="${coffee.userNotes}"></td>
+                            <td>
+                                <div class="coffeephotowrapper">
+                                    <img th:src="${coffee.getImageString()}"/>
+
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2>My Wines</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mh-80 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="wine_table" class="display compact dt-responsive nowrap"
+                           style="width:100%; display: none">
+                        <thead>
+                        <tr>
+                            <th class="all" data-priority="1">Name</th>
+                            <th>Date</th>
+                            <th>House</th>
+                            <th>Wine Year</th>
+                            <th>Wine color</th>
+                            <th>Grape type</th>
+                            <th>Process method</th>
+                            <th class="none">Taste method</th>
+                            <th class="all" data-priority="1" id="deleteHeader">Delete</th>
+                            <th class="none">Flavours</th>
+                            <th class="none">Notes</th>
+                            <th class="none"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="wine : ${wines}">
+                            <!--/*@thymesVar id="date" type=""*/-->
+                            <td th:text="${wine.wineName}"></td>
+                            <td th:text="${wine.date}"></td>
+                            <td th:text="${wine.wineHouse}"></td>
+                            <td th:text="${wine.wineYear}"></td>
+                            <td th:text="${wine.wineColor}"></td>
+                            <td th:text="${wine.grapeType}"></td>
+                            <td th:text="${wine.processingMethod}"></td>
+                            <td th:text="${wine.tastingMethod}"></td>
+                            <td id="deleteButton"><a th:href="@{/winelib/delete/{id}(id=${wine.id})}"
+                                                     class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                            <!--TODO: details in nieuw scherm met edit mogelijkheden-->
+
+                            <td th:text="${wine.getFlavorString()}"></td>
+                            <td th:text="${wine.userNotes}"></td>
+                            <td>
+                                <div class="coffeephotowrapper">
+                                    <img th:src="${wine.getImageString()}"/>
+
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2>My Whiskeys</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mh-80 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="whiskey_table" class="display compact dt-responsive nowrap"
+                           style="width:100%; display: none">
+                        <thead>
+                        <tr>
+                            <th class="all" data-priority="1">Name</th>
+                            <th>Date</th>
+                            <th>Whiskey House</th>
+                            <th>Whiskey Year</th>
+                            <th>Whiskey color</th>
+                            <th>Grape type</th>
+                            <th>Process method</th>
+                            <th class="none">Taste method</th>
+                            <th class="all" data-priority="1" id="deleteHeader">Delete</th>
+                            <th class="none">Flavours</th>
+                            <th class="none">Notes</th>
+                            <th class="none"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="whiskey : ${whiskeys}">
+                            <!--/*@thymesVar id="date" type=""*/-->
+                            <td th:text="${whiskey.whiskeyName}"></td>
+                            <td th:text="${whiskey.date}"></td>
+                            <td th:text="${whiskey.whiskeyHouse}"></td>
+                            <td th:text="${whiskey.whiskeyYear}"></td>
+                            <td th:text="${whiskey.whiskeyColor}"></td>
+                            <td th:text="${whiskey.grapeType}"></td>
+                            <td th:text="${whiskey.processingMethod}"></td>
+                            <td th:text="${whiskey.tastingMethod}"></td>
+                            <td id="deleteButton"><a th:href="@{/whiskeylib/delete/{id}(id=${whiskey.id})}"
+                                                     class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                            <!--TODO: details in nieuw scherm met edit mogelijkheden-->
+
+                            <td th:text="${whiskey.getFlavorString()}"></td>
+                            <td th:text="${whiskey.userNotes}"></td>
+                            <td>
+                                <div class="coffeephotowrapper">
+                                    <img th:src="${whiskey.getImageString()}"/>
+
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(document).ready(function () {
+        $('#coffee_table').DataTable({
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return data[0];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                }
+            }
+        });
+        $('#coffee_table').show(); // laat de tabel pas zien als ie gerenderd is.
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#wine_table').DataTable({
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return data[0];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                }
+            }
+        });
+        $('#wine_table').show(); // laat de tabel pas zien als ie gerenderd is.
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#whiskey_table').DataTable({
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return data[0];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                }
+            }
+        });
+        $('#whiskey_table').show(); // laat de tabel pas zien als ie gerenderd is.
+    });
+</script>
+
+</body>
+</html>

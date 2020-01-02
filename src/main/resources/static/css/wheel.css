@@ -1,0 +1,17 @@
+svg {
+    font-family: arial;
+    font-size: 7px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-image: url(../images/coffeebeans.png);
+    background-repeat: no-repeat;
+    /*background-size: 50% 20%;*/
+    background-position: right center;
+    background-attachment: fixed;
+
+}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5 ">
+<head>
+</head>
+<body>
+<div th:fragment="navbar">
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand mb-0 h1 nav-link" href="/"><img th:src="@{./images/transp_android-chrome-192x192.png}" width="30" height="30" class="d-inline-block align-top" alt="">Coffee Flavour Wheel
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="library.html" th:href="@{/coffeelibrary}">My tasted Coffees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html" th:href="@{home.html}">User Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                    </li>
+                </ul>
+                <!-- <form class="nav-item">
+                    <a class="nav-link">Welcome <span sec:authentication="principal.username">User</span></a>
+                </form> -->
+            </div>
+        </nav>
+    </div>
+</div>
+</body>
+</html>

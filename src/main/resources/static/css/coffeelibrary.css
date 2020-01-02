@@ -1,0 +1,53 @@
+.coffeephotowrapper{
+    height: 50vmin;
+}
+.coffeephotowrapper img{
+    height: 100%;
+    display: block;
+    border: 1px solid #aaaaaa;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25), 6px 6px 20px 0 rgba(0, 0, 0, 0.30);
+}
+
+h2 {
+    margin: auto;
+}
+
+div.dtr-modal div.dtr-modal-display {
+    width: 85%;         /*popup tabeldetails grootte */
+    height: 85%;        /*popup tabeldetails grootte */
+    margin-top: 70px;
+}
+div.dtr-modal div.dtr-modal-content {
+    line-height: 1.2;         /* meer ruimte tussen letter pop-up */
+}
+
+/*Voor de plusjes in de tabel */
+table.dataTable.dtr-inline.collapsed.compact>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed.compact>tbody>tr>th:first-child:before {
+    top: 5px;
+    left: 4px;
+    height: 20px;
+    width: 20px;
+    border-radius: 14px;
+    line-height: 20px;
+    text-indent: 3px;
+}
+
+table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+    top: 12px;
+    left: 4px;
+    height: 20px;
+    width: 20px;
+    display: block;
+    position: absolute;
+    color: white;
+    border: 1px solid white;
+    border-radius: 14px;
+    box-shadow: 0 0 3px #444;
+    box-sizing: content-box;
+    text-align: center;
+    text-indent: 0 !important;
+    font-family: 'Courier New', Courier, monospace;
+    line-height: 20px;
+    content: '+';
+    background-color: #02d804;
+}

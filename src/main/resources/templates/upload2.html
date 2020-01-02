@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">SpringBoot
+        Thymeleaf</title>
+    <meta
+            content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+            name="viewport" />
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet"
+          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+    <style>
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: black;
+            color: white;
+            height: 100px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span> <span
+                    class="icon-bar"></span> <span class="icon-bar"></span> <span
+                    class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">SpringBoot
+                Thymeleaf</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div layout:fragment="content">
+        <!-- Your Page Content Here -->
+        <noscript>
+            <h2>Sorry! Your browser doesn't support Javascript</h2>
+        </noscript>
+        <div class="upload-container">
+            <div class="upload-header">
+                <h2>Spring Boot File Upload / Download Rest API Example</h2>
+            </div>
+            <div class="upload-content">
+                <div class="single-upload">
+                    <h3>Upload Single File</h3>
+                    <form th:id="singleUploadForm" name="singleUploadForm" action="/uploadFile" th:action="@{/uploadFile}" th:method="post" enctype="multipart/form-data">
+                        <input th:id="singleFileUploadInput" type="file" name="file" class="file-input" required />
+                        <button type="submit" class="primary submit-btn">Submit</button>
+                    </form>
+                    <div class="upload-response">
+                        <div th:id="singleFileUploadError"></div>
+                        <div th:id="singleFileUploadSuccess"></div>
+                    </div>
+                </div>
+                <div class="multiple-upload">
+                    <h3>Upload Multiple Files</h3>
+                    <form id="multipleUploadForm" name="multipleUploadForm">
+                        <input id="multipleFileUploadInput" type="file" name="files" class="file-input" multiple required />
+                        <button type="submit" class="primary submit-btn">Submit</button>
+                    </form>
+                    <div class="upload-response">
+                        <div id="multipleFileUploadError"></div>
+                        <div id="multipleFileUploadSuccess"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--        <script th:src="@{/static/js/main.js}" ></script>-->
+    </div>
+</div>
+<script>
+    var singleUploadForm = document.querySelector('#singleUploadForm');
+    var singleFileUploadInput = document.querySelector('#singleFileUploadInput');
+    var singleFileUploadError = document.querySelector('#singleFileUploadError');
+    var singleFileUploadSuccess = document.querySelector('#singleFileUploadSuccess');
+
+    var multipleUploadForm = document.querySelector('#multipleUploadForm');
+    var multipleFileUploadInput = document.querySelector('#multipleFileUploadInput');
+    var multipleFileUploadError = document.querySelector('#multipleFileUploadError');
+    var multipleFileUploadSuccess = document.querySelector('#multipleFileUploadSuccess');
+
+    function uploadSingleFile(file) {
+        var formData = new FormData();
+        formData.append("file", file);
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/uploadFile");
+
+        xhr.onload = function() {
+            console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+            if(xhr.status === 200) {
+                singleFileUploadError.style.display = "none";
+                singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>DownloadUrl : <a th:href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
+                singleFileUploadSuccess.style.display = "block";
+            } else {
+                singleFileUploadSuccess.style.display = "none";
+                singleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+            }
+        }
+
+        xhr.send(formData);
+    }
+
+    function uploadMultipleFiles(files) {
+        var formData = new FormData();
+        for(var index = 0; index < files.length; index++) {
+            formData.append("files", files[index]);
+        }
+
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/uploadMultipleFiles");
+
+        xhr.onload = function() {
+            console.log(xhr.responseText);
+            var response = JSON.parse(xhr.responseText);
+            if(xhr.status === 200) {
+                multipleFileUploadError.style.display = "none";
+                var content = "<p>All Files Uploaded Successfully</p>";
+                for(var i = 0; i < response.length; i++) {
+                    content += "<p>DownloadUrl : <a th:href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
+                }
+                multipleFileUploadSuccess.innerHTML = content;
+                multipleFileUploadSuccess.style.display = "block";
+            } else {
+                multipleFileUploadSuccess.style.display = "none";
+                multipleFileUploadError.innerHTML = (response && response.message) || "Some Error Occurred";
+            }
+        }
+
+        xhr.send(formData);
+    }
+
+    singleUploadForm.addEventListener('submit', function(event){
+        var files = singleFileUploadInput.files;
+        if(files.length === 0) {
+            singleFileUploadError.innerHTML = "Please select a file";
+            singleFileUploadError.style.display = "block";
+        }
+        uploadSingleFile(files[0]);
+        event.preventDefault();
+    }, true);
+
+
+    multipleUploadForm.addEventListener('submit', function(event){
+        var files = multipleFileUploadInput.files;
+        if(files.length === 0) {
+            multipleFileUploadError.innerHTML = "Please select at least one file";
+            multipleFileUploadError.style.display = "block";
+        }
+        uploadMultipleFiles(files);
+        event.preventDefault();
+    }, true);
+
+
+
+</script>
+<script th:src="@{/assets/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+
+<div class="footer">
+    <h1>
+        <a href="http://www.javaguides.net/p/spring-boot-tutorial.html">
+            Spring Boot Tutorial</a>
+    </h1>
+</div>
+
+</body>
+</html>
