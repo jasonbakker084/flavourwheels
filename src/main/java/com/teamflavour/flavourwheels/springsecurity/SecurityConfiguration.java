@@ -110,8 +110,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin()
                     .loginPage("/login")
                     .defaultSuccessUrl("/coffeewheel")
-                    .defaultSuccessUrl("/winewheel")
-                    .defaultSuccessUrl("/whiskeywheel")
                     .failureUrl("/login?error")
 //                .successHandler(myAuthenticationSuccessHandler)
 //                .failureHandler(authenticationFailureHandler)
