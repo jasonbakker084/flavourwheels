@@ -44,7 +44,7 @@
 	</nav>
 </div>
 <div layout:fragment="content">
-	<p>Welcome Administrator(<span sec:authentication="principal.username">Admin</span>)</p>
+	<p>Welcome Administrator(<span sec:authentication="principal.userName">Admin</span>)</p>
 	<p sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></p>
 </div>
 <h1>This is admin home page</h1>
