@@ -2,6 +2,11 @@ package com.teamflavour.flavourwheels;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+import java.util.Properties;
 
 @SpringBootApplication
 public class FlavourwheelsApplication {
@@ -10,15 +15,22 @@ public class FlavourwheelsApplication {
         SpringApplication.run(FlavourwheelsApplication.class, args);
     }
 
-//    private static Connection getConnection() throws URISyntaxException, SQLException {
-//        URI jdbUri = new URI(System.getenv("JAWSDB_URL"));
-//
-//        String username = jdbUri.getUserInfo().split(":")[0];
-//        String password = jdbUri.getUserInfo().split(":")[1];
-//        String port = String.valueOf(jdbUri.getPort());
-//        String jdbUrl = "jdbc:mysql://" + jdbUri.getHost() + ":" + port + jdbUri.getPath();
-//
-//        return DriverManager.getConnection(jdbUrl, username, password);
-//    }
+    @Bean
+    public JavaMailSender getJavaMailSender() {
+        JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+        mailSender.setHost("smtp.gmail.com");
+        mailSender.setPort(587);
+
+        mailSender.setUsername("flavourwheels@gmail.com");
+        mailSender.setPassword("FlavourJason2020");
+
+        Properties props = mailSender.getJavaMailProperties();
+        props.put("mail.transport.protocol", "smtp");
+        props.put("mail.smtp.auth", "true");
+        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.debug", "true");
+
+        return mailSender;
+    }
 
 }
