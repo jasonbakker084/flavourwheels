@@ -23,7 +23,7 @@ public class FaviconConfiguration {
         SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setOrder(Integer.MIN_VALUE);
         mapping.setUrlMap(Collections.singletonMap(
-                "/favicon.ico", faviconRequestHandler()));
+                "resources/favicon.ico", faviconRequestHandler()));
         return mapping;
     }
 
@@ -32,18 +32,18 @@ public class FaviconConfiguration {
         ResourceHttpRequestHandler requestHandler
                 = new ResourceHttpRequestHandler();
         ClassPathResource classPathResource
-                = new ClassPathResource("com/teamflavour/flavourwheels/resources/images");
+                = new ClassPathResource("/");
         List<Resource> locations = Arrays.asList(classPathResource);
         requestHandler.setLocations(locations);
         return requestHandler;
     }
 
-     @Controller
-    static class FaviconController {
-
-        @RequestMapping(value = "favicon.ico", method = RequestMethod.GET)
-        @ResponseBody
-        void favicon() {
-        }
-    }
+//     @Controller
+//    static class FaviconController {
+//
+//        @RequestMapping(value = "favicon.ico", method = RequestMethod.GET)
+//        @ResponseBody
+//        void favicon() {
+//        }
+//    }
 }
