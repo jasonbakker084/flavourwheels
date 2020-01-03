@@ -11,7 +11,7 @@ public class EmailSender {
         String recipient = "recipient@gmail.com";
         String sender = "flavourwheelsapp@gmail.com";
 //        String host = "https://flavourwheels.herokuapp.com";
-        String host = "http://localhost:8080/";
+        String host = "https://flavourwheels.herokuapp.com/";
 
 
         Properties properties = System.getProperties();

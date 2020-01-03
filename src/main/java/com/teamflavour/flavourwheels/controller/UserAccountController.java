@@ -64,7 +64,7 @@ public class UserAccountController {
             mailMessage.setFrom("flavourwheelsapp@gmail.com");
             mailMessage.setText("To confirm your account, please click here : "
 //                    +"https://flavourwheels.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
-            + "http://localhost:8080/confirm-reset?token="+confirmationToken.getConfirmationToken());
+            + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
 
             emailSenderService.sendEmail(mailMessage);
 
@@ -149,7 +149,7 @@ public class UserAccountController {
             mailMessage.setFrom("flavourwheelsapp@gmail.com");
             mailMessage.setText("To complete the password reset process, please click here: "
 //                    + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
-            + "http://localhost:8080/confirm-reset?token="+confirmationToken.getConfirmationToken());
+            + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
 
             // Send the email
             emailSenderService.sendEmail(mailMessage);
