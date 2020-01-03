@@ -301,8 +301,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         addFlavorWineIfNotFound("Cocoa", "#F1C192", 1165, 142);
         addFlavorWineIfNotFound("Leather", "#F1C192", 1166, 142);
         addFlavorWineIfNotFound("TCA (Corked)", "#B36D5F", 143, 13);
-        addFlavorWineIfNotFound("Musty Cardboard", "#E4BDB1", 1167, 24);
-        addFlavorWineIfNotFound("Wet Dog", "#E4BDB1", 1168, 24);
+        addFlavorWineIfNotFound("Musty Cardboard", "#E4BDB1", 1167, 143);
+        addFlavorWineIfNotFound("Wet Dog", "#E4BDB1", 1168, 143);
         addFlavorWineIfNotFound("Sulfid & Mercaptans", "#BA5B33", 144, 13);
         addFlavorWineIfNotFound("Cured Meat", "#E6B396", 1169, 144);
         addFlavorWineIfNotFound("Boiled Eggs", "#E6B396", 1170, 144);
