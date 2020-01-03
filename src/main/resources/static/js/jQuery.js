@@ -1,439 +1,439 @@
 $(document).ready(function () {
     $(".outer-1-honey").hover(function () {
-        $(".descripters .honey p").css("font-weight", "800");
-    },
+            $(".descripters .honey p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .honey p").css("font-weight", "normal");
         });
     $(".outer-1-caramelized").hover(function () {
-        $(".descripters .caramelized p").css("font-weight", "800");
-    },
+            $(".descripters .caramelized p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .caramelized p").css("font-weight", "normal");
         });
     $(".outer-1-mapleSyrup").hover(function () {
-        $(".descripters .mapleSyrup p").css("font-weight", "800");
-    },
+            $(".descripters .mapleSyrup p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .mapleSyrup p").css("font-weight", "normal");
         });
     $(".outer-1-molasses").hover(function () {
-        $(".descripters .molasses p").css("font-weight", "800");
-    },
+            $(".descripters .molasses p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .molasses p").css("font-weight", "normal");
         });
     $(".outer-1-darkChocolate").hover(function () {
-        $(".descripters .darkChocolate p").css("font-weight", "800");
-    },
+            $(".descripters .darkChocolate p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .darkChocolate p").css("font-weight", "normal");
         });
     $(".outer-1-chocolate").hover(function () {
-        $(".descripters .chocolate p").css("font-weight", "800");
-    },
+            $(".descripters .chocolate p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .chocolate p").css("font-weight", "normal");
         });
     $(".outer-1-almond").hover(function () {
-        $(".descripters .almond p").css("font-weight", "800");
-    },
+            $(".descripters .almond p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .almond p").css("font-weight", "normal");
         });
     $(".outer-1-hazelnut").hover(function () {
-        $(".descripters .hazelnut p").css("font-weight", "800");
-    },
+            $(".descripters .hazelnut p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .hazelnut p").css("font-weight", "normal");
         });
     $(".outer-1-peanuts").hover(function () {
-        $(".descripters .peanuts p").css("font-weight", "800");
-    },
+            $(".descripters .peanuts p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .peanuts p").css("font-weight", "normal");
         });
     $(".outer-1-clove").hover(function () {
-        $(".descripters .clove p").css("font-weight", "800");
-    },
+            $(".descripters .clove p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .clove p").css("font-weight", "normal");
         });
     $(".outer-1-cinnamon").hover(function () {
-        $(".descripters .cinnamon p").css("font-weight", "800");
-    },
+            $(".descripters .cinnamon p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .cinnamon p").css("font-weight", "normal");
         });
     $(".outer-1-nutmeg").hover(function () {
-        $(".descripters .nutmeg p").css("font-weight", "800");
-    },
+            $(".descripters .nutmeg p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .nutmeg p").css("font-weight", "normal");
         });
     $(".outer-1-anise").hover(function () {
-        $(".descripters .anise p").css("font-weight", "800");
-    },
+            $(".descripters .anise p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .anise p").css("font-weight", "normal");
         });
     $(".outer-1-malt").hover(function () {
-        $(".descripters .malt p").css("font-weight", "800");
-    },
+            $(".descripters .malt p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .malt p").css("font-weight", "normal");
         });
     $(".outer-1-grain").hover(function () {
-        $(".descripters .grain p").css("font-weight", "800");
-    },
+            $(".descripters .grain p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .grain p").css("font-weight", "normal");
         });
     $(".outer-1-brownRoast").hover(function () {
-        $(".descripters .brownRoast p").css("font-weight", "800");
-    },
+            $(".descripters .brownRoast p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .brownRoast p").css("font-weight", "normal");
         });
     $(".outer-1-smoky").hover(function () {
-        $(".descripters .smoky p").css("font-weight", "800");
-    },
+            $(".descripters .smoky p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .smoky p").css("font-weight", "normal");
         });
     $(".outer-1-ashy").hover(function () {
-        $(".descripters .ashy p").css("font-weight", "800");
-    },
+            $(".descripters .ashy p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .ashy p").css("font-weight", "normal");
         });
     $(".outer-1-acrid").hover(function () {
-        $(".descripters .acrid p").css("font-weight", "800");
-    },
+            $(".descripters .acrid p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .acrid p").css("font-weight", "normal");
         });
     $(".outer-1-rubber").hover(function () {
-        $(".descripters .rubber p").css("font-weight", "800");
-    },
+            $(".descripters .rubber p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .rubber p").css("font-weight", "normal");
         });
     $(".outer-1-skunky").hover(function () {
-        $(".descripters .skunky p").css("font-weight", "800");
-    },
+            $(".descripters .skunky p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .skunky p").css("font-weight", "normal");
         });
     $(".outer-1-petroleum").hover(function () {
-        $(".descripters .petroleum p").css("font-weight", "800");
-    },
+            $(".descripters .petroleum p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .petroleum p").css("font-weight", "normal");
         });
     $(".outer-1-medicinal").hover(function () {
-        $(".descripters .medicinal p").css("font-weight", "800");
-    },
+            $(".descripters .medicinal p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .medicinal p").css("font-weight", "normal");
         });
     $(".outer-1-salty").hover(function () {
-        $(".descripters .salty p").css("font-weight", "800");
-    },
+            $(".descripters .salty p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .salty p").css("font-weight", "normal");
         });
     $(".outer-1-bitter").hover(function () {
-        $(".descripters .bitter p").css("font-weight", "800");
-    },
+            $(".descripters .bitter p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .bitter p").css("font-weight", "normal");
         });
     $(".outer-1-phenolic").hover(function () {
-        $(".descripters .phenolic p").css("font-weight", "800");
-    },
+            $(".descripters .phenolic p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .phenolic p").css("font-weight", "normal");
         });
     $(".outer-1-meatyBrothy").hover(function () {
-        $(".descripters .meatyBrothy p").css("font-weight", "800");
-    },
+            $(".descripters .meatyBrothy p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .meatyBrothy p").css("font-weight", "normal");
         });
     $(".outer-1-animalic").hover(function () {
-        $(".descripters .animalic p").css("font-weight", "800");
-    },
+            $(".descripters .animalic p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .animalic p").css("font-weight", "normal");
         });
     $(".outer-1-mustyEarthy").hover(function () {
-        $(".descripters .mustyEarthy p").css("font-weight", "800");
-    },
+            $(".descripters .mustyEarthy p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .mustyEarthy p").css("font-weight", "normal");
         });
     $(".outer-1-mustyDusty").hover(function () {
-        $(".descripters .mustyDusty p").css("font-weight", "800");
-    },
+            $(".descripters .mustyDusty p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .mustyDusty p").css("font-weight", "normal");
         });
     $(".outer-1-moldyDamp").hover(function () {
-        $(".descripters .moldyDamp p").css("font-weight", "800");
-    },
+            $(".descripters .moldyDamp p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .moldyDamp p").css("font-weight", "normal");
         });
     $(".outer-1-woody").hover(function () {
-        $(".descripters .woody p").css("font-weight", "800");
-    },
+            $(".descripters .woody p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .woody p").css("font-weight", "normal");
         });
     $(".outer-1-papery").hover(function () {
-        $(".descripters .papery p").css("font-weight", "800");
-    },
+            $(".descripters .papery p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .papery p").css("font-weight", "normal");
         });
     $(".outer-1-cardboard").hover(function () {
-        $(".descripters .cardboard p").css("font-weight", "800");
-    },
+            $(".descripters .cardboard p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .cardboard p").css("font-weight", "normal");
         });
     $(".outer-1-stale").hover(function () {
-        $(".descripters .stale p").css("font-weight", "800");
-    },
+            $(".descripters .stale p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .stale p").css("font-weight", "normal");
         });
     $(".outer-1-herbLike").hover(function () {
-        $(".descripters .herbLike p").css("font-weight", "800");
-    },
+            $(".descripters .herbLike p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .herbLike p").css("font-weight", "normal");
         });
     $(".outer-1-hayLike").hover(function () {
-        $(".descripters .hayLike p").css("font-weight", "800");
-    },
+            $(".descripters .hayLike p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .hayLike p").css("font-weight", "normal");
         });
     $(".outer-1-vegetative").hover(function () {
-        $(".descripters .vegetative p").css("font-weight", "800");
-    },
+            $(".descripters .vegetative p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .vegetative p").css("font-weight", "normal");
         });
     $(".outer-1-darkGreen").hover(function () {
-        $(".descripters .darkGreen p").css("font-weight", "800");
-    },
+            $(".descripters .darkGreen p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .darkGreen p").css("font-weight", "normal");
         });
     $(".outer-1-fresh").hover(function () {
-        $(".descripters .fresh p").css("font-weight", "800");
-    },
+            $(".descripters .fresh p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .fresh p").css("font-weight", "normal");
         });
     $(".outer-1-peaPod").hover(function () {
-        $(".descripters .peapod p").css("font-weight", "800");
-    },
+            $(".descripters .peapod p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .peapod p").css("font-weight", "normal");
         });
     $(".outer-1-underRipe").hover(function () {
-        $(".descripters .underripe p").css("font-weight", "800");
-    },
+            $(".descripters .underripe p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .underripe p").css("font-weight", "normal");
         });
     $(".outer-1-overRipe").hover(function () {
-        $(".descripters .overripe p").css("font-weight", "800");
-    },
+            $(".descripters .overripe p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .overripe p").css("font-weight", "normal");
         });
     $(".outer-1-fermented").hover(function () {
-        $(".descripters .fermented p").css("font-weight", "800");
-    },
+            $(".descripters .fermented p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .fermented p").css("font-weight", "normal");
         });
     $(".outer-1-whiskey").hover(function () {
-        $(".descripters .whiskey p").css("font-weight", "800");
-    },
+            $(".descripters .whiskey p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .whiskey p").css("font-weight", "normal");
         });
     $(".outer-1-winey").hover(function () {
-        $(".descripters .winey p").css("font-weight", "800");
-    },
+            $(".descripters .winey p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .winey p").css("font-weight", "normal");
         });
     $(".outer-1-malicAcid").hover(function () {
-        $(".descripters .malicAcid p").css("font-weight", "800");
-    },
+            $(".descripters .malicAcid p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .malicAcid p").css("font-weight", "normal");
         });
     $(".outer-1-citricAcid").hover(function () {
-        $(".descripters .citricAcid p").css("font-weight", "800");
-    },
+            $(".descripters .citricAcid p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .citricAcid p").css("font-weight", "normal");
         });
     $(".outer-1-isovalericAcid").hover(function () {
-        $(".descripters .isovalericAcid p").css("font-weight", "800");
-    },
+            $(".descripters .isovalericAcid p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .isovalericAcid p").css("font-weight", "normal");
         });
     $(".outer-1-butyricAcid").hover(function () {
-        $(".descripters .butyricAcid p").css("font-weight", "800");
-    },
+            $(".descripters .butyricAcid p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .butyricAcid p").css("font-weight", "normal");
         });
     $(".outer-1-aceticAcid").hover(function () {
-        $(".descripters .aceticAcid p").css("font-weight", "800");
-    },
+            $(".descripters .aceticAcid p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .aceticAcid p").css("font-weight", "normal");
         });
     $(".outer-1-sourAromatics").hover(function () {
-        $(".descripters .sourAromatics p").css("font-weight", "800");
-    },
+            $(".descripters .sourAromatics p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .sourAromatics p").css("font-weight", "normal");
         });
     $(".outer-1-lime").hover(function () {
-        $(".descripters .lime p").css("font-weight", "800");
-    },
+            $(".descripters .lime p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .lime p").css("font-weight", "normal");
         });
     $(".outer-1-lemon").hover(function () {
-        $(".descripters .lemon p").css("font-weight", "800");
-    },
+            $(".descripters .lemon p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .lemon p").css("font-weight", "normal");
         });
     $(".outer-1-orange").hover(function () {
-        $(".descripters .orange p").css("font-weight", "800");
-    },
+            $(".descripters .orange p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .orange p").css("font-weight", "normal");
         });
     $(".outer-1-grapeFruit").hover(function () {
-        $(".descripters .grapefruit p").css("font-weight", "800");
-    },
+            $(".descripters .grapefruit p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .grapefruit p").css("font-weight", "normal");
         });
     $(".outer-1-pear").hover(function () {
-        $(".descripters .pear p").css("font-weight", "800");
-    },
+            $(".descripters .pear p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .pear p").css("font-weight", "normal");
         });
     $(".outer-1-peach").hover(function () {
-        $(".descripters .peach p").css("font-weight", "800");
-    },
+            $(".descripters .peach p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .peach p").css("font-weight", "normal");
         });
     $(".outer-1-apple").hover(function () {
-        $(".descripters .apple p").css("font-weight", "800");
-    },
+            $(".descripters .apple p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .apple p").css("font-weight", "normal");
         });
     $(".outer-1-grape").hover(function () {
-        $(".descripters .grape p").css("font-weight", "800");
-    },
+            $(".descripters .grape p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .grape p").css("font-weight", "normal");
         });
     $(".outer-1-pineApple").hover(function () {
-        $(".descripters .pineapple p").css("font-weight", "800");
-    },
+            $(".descripters .pineapple p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .pineapple p").css("font-weight", "normal");
         });
     $(".outer-1-pomegranate").hover(function () {
-        $(".descripters .pomegranate p").css("font-weight", "800");
-    },
+            $(".descripters .pomegranate p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .pomegranate p").css("font-weight", "normal");
         });
     $(".outer-1-cherry").hover(function () {
-        $(".descripters .cherry p").css("font-weight", "800");
-    },
+            $(".descripters .cherry p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .cherry p").css("font-weight", "normal");
         });
     $(".outer-1-coconut").hover(function () {
-        $(".descripters .coconut p").css("font-weight", "800");
-    },
+            $(".descripters .coconut p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .coconut p").css("font-weight", "normal");
         });
     $(".outer-1-prune").hover(function () {
-        $(".descripters .prune p").css("font-weight", "800");
-    },
+            $(".descripters .prune p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .prune p").css("font-weight", "normal");
         });
     $(".outer-1-raisin").hover(function () {
-        $(".descripters .raisin p").css("font-weight", "800");
-    },
+            $(".descripters .raisin p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .raisin p").css("font-weight", "normal");
         });
     $(".outer-1-strawBerry").hover(function () {
-        $(".descripters .strawberry p").css("font-weight", "800");
-    },
+            $(".descripters .strawberry p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .strawberry p").css("font-weight", "normal");
         });
     $(".outer-1-blueBerry").hover(function () {
-        $(".descripters .blueberry p").css("font-weight", "800");
-    },
+            $(".descripters .blueberry p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .blueberry p").css("font-weight", "normal");
         });
     $(".outer-1-raspBerry").hover(function () {
-        $(".descripters .raspberry p").css("font-weight", "800");
-    },
+            $(".descripters .raspberry p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .raspberry p").css("font-weight", "normal");
         });
     $(".outer-1-blackBerry").hover(function () {
-        $(".descripters .blackberry p").css("font-weight", "800");
-    },
+            $(".descripters .blackberry p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .blackberry p").css("font-weight", "normal");
         });
     $(".outer-1-jasmine").hover(function () {
-        $(".descripters .jasmine p").css("font-weight", "800");
-    },
+            $(".descripters .jasmine p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .jasmine p").css("font-weight", "normal");
         });
     $(".outer-1-rose").hover(function () {
-        $(".descripters .rose p").css("font-weight", "800");
-    },
+            $(".descripters .rose p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .rose p").css("font-weight", "normal");
         });
     $(".outer-1-chamomile").hover(function () {
-        $(".descripters .chamomile p").css("font-weight", "800");
-    },
+            $(".descripters .chamomile p").css("font-weight", "800");
+        },
         function () {
             $(".descripters .chamomile p").css("font-weight", "normal");
         });

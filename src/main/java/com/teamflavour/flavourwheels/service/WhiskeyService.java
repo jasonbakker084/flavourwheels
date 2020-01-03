@@ -19,12 +19,12 @@ public class WhiskeyService implements IWhiskeylibService {
     private WhiskeyRepository whiskeyRepository;
 
     @Override
-    public List<Whiskey> getWhiskeysByName (String whiskeyName){
+    public List<Whiskey> getWhiskeysByName(String whiskeyName) {
         return whiskeyRepository.findByWhiskeyName(whiskeyName);
     }
 
     @Override
-    public Optional<Whiskey> getWhiskeyById(long id){
+    public Optional<Whiskey> getWhiskeyById(long id) {
         return whiskeyRepository.findById(id);
     }
 
@@ -35,16 +35,17 @@ public class WhiskeyService implements IWhiskeylibService {
 
     @Override
     public void addWhiskey(Date date, String whiskeyName, String whiskeyHouse, String whiskeyColor, String whiskeyYear, String processingMethod, String tastingMethod, String grapeType, String userNotes, Boolean flag,
-                        Blob file){
+                           Blob file) {
         whiskeyRepository.save(new Whiskey(date, whiskeyName, whiskeyHouse, whiskeyColor, whiskeyYear, grapeType, processingMethod, tastingMethod, userNotes, flag, file));
     }
 
     @Override
     public void deleteWhiskey(long id) {
         Optional<Whiskey> whiskeyLib = whiskeyRepository.findById(id);
-        if(whiskeyLib.isPresent()){
+        if (whiskeyLib.isPresent()) {
             whiskeyRepository.delete(whiskeyLib.get());
-        };
+        }
+        ;
     }
 
     @Override

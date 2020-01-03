@@ -9,21 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class MessageController
-{
+public class MessageController {
     @Autowired
     private MessageRepository messageRepository;
 
     @GetMapping("/home")
-    public String home(Model model)
-    {
+    public String home(Model model) {
         model.addAttribute("msgs", messageRepository.findAll());
         return "userhome";
     }
 
     @PostMapping("/messages")
-    public String saveMessage(Message message)
-    {
+    public String saveMessage(Message message) {
         messageRepository.save(message);
         return "redirect:/home";
     }

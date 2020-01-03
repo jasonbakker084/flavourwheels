@@ -4,18 +4,18 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">SpringBoot
         Thymeleaf</title>
     <meta
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-            name="viewport" />
+            name="viewport"/>
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet"
-          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
-    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
     <style>
         .footer {
             position: fixed;
@@ -55,14 +55,14 @@
     <div layout:fragment="content">
         <!-- Your Page Content Here -->
         <form method="POST" th:action="@{uploadFile2}" enctype="multipart/form-data">
-            File to upload: <input type="file" name="file"><br />
-            Coffee Name: <input type="text" name="coffeeName"><br /> <br />
-            Roaster: <input type="text" name="roaster"><br /> <br />
-            Roast Color: <input type="text" name="roastColor"><br /> <br />
-            Processing Method: <input type="text" name="processingMethod"><br /> <br />
-            Tasting Method: <input type="text" name="tastingMethod"><br /> <br />
-            Bean Type: <input type="text" name="beanType"><br /> <br />
-            User Notes: <input type="text" name="userNotes"><br /> <br />
+            File to upload: <input type="file" name="file"><br/>
+            Coffee Name: <input type="text" name="coffeeName"><br/> <br/>
+            Roaster: <input type="text" name="roaster"><br/> <br/>
+            Roast Color: <input type="text" name="roastColor"><br/> <br/>
+            Processing Method: <input type="text" name="processingMethod"><br/> <br/>
+            Tasting Method: <input type="text" name="tastingMethod"><br/> <br/>
+            Bean Type: <input type="text" name="beanType"><br/> <br/>
+            User Notes: <input type="text" name="userNotes"><br/> <br/>
             <input type="submit" value="Upload"> Press here to upload the file!
         </form>
     </div>

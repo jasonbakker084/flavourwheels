@@ -16,8 +16,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 @Configuration
 @EnableWebMvc
-public class WebConfig implements WebMvcConfigurer
-{
+public class WebConfig implements WebMvcConfigurer {
 
     @Autowired
     private MessageSource messageSource;
@@ -63,8 +62,7 @@ public class WebConfig implements WebMvcConfigurer
 // The web application is based on Spring MVC. Here’s a configuration class for configuring Spring MVC in the application.
 
     @Override
-    public void addViewControllers(ViewControllerRegistry registry)
-    {
+    public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:/coffeewheel");
 //        registry.addViewController("/winewheel").setViewName("forward:/winewheel");
 //        registry.addViewController("/whiskeywheel").setViewName("forward:/whiskeywheel");

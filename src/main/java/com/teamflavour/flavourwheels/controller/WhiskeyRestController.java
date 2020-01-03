@@ -42,7 +42,6 @@ public class WhiskeyRestController {
     }
 
 
-
     @GetMapping(path = {"/whiskeylib/{id}"})
     public ResponseEntity<Whiskey> findById(@PathVariable long id) {
         return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
@@ -58,8 +57,6 @@ public class WhiskeyRestController {
     public Whiskey create(@RequestBody Whiskey whiskey) {
         return repository.save(whiskey);
     }
-
-
 
 
 //    @PostMapping("/api/upload/multi/model")

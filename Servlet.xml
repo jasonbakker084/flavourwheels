@@ -10,22 +10,22 @@
                            http://www.springframework.org/schema/context
                            http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-<!--https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html-->
+    <!--https://www.thymeleaf.org/doc/tutorials/2.1/thymeleafspring.html-->
 
     <!-- **************************************************************** -->
     <!--  RESOURCE FOLDERS CONFIGURATION                                  -->
     <!--  Dispatcher configuration for serving static resources           -->
     <!-- **************************************************************** -->
-    <mvc:resources location="/images/" mapping="/images/**" />
-    <mvc:resources location="/css/" mapping="/css/**" />
-    <mvc:resources location="/js/" mapping="/js/**" />
+    <mvc:resources location="/images/" mapping="/images/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
 
 
     <!-- **************************************************************** -->
     <!--  SPRING ANNOTATION PROCESSING                                    -->
     <!-- **************************************************************** -->
-    <mvc:annotation-driven conversion-service="conversionService" />
-    <context:component-scan base-package="thymeleafexamples.stsm" />
+    <mvc:annotation-driven conversion-service="conversionService"/>
+    <context:component-scan base-package="thymeleafexamples.stsm"/>
 
 
     <!-- **************************************************************** -->
@@ -33,7 +33,7 @@
     <!--  Standard Spring MessageSource implementation                    -->
     <!-- **************************************************************** -->
     <bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
-        <property name="basename" value="Messages" />
+        <property name="basename" value="Messages"/>
     </bean>
 
 
@@ -45,8 +45,8 @@
           class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="formatters">
             <set>
-                <bean class="thymeleafexamples.stsm.web.conversion.VarietyFormatter" />
-                <bean class="thymeleafexamples.stsm.web.conversion.DateFormatter" />
+                <bean class="thymeleafexamples.stsm.web.conversion.VarietyFormatter"/>
+                <bean class="thymeleafexamples.stsm.web.conversion.DateFormatter"/>
             </set>
         </property>
     </bean>
@@ -60,18 +60,18 @@
     <bean id="templateResolver"
           class="org.thymeleaf.templateresolver.ServletContextTemplateResolver">
         <constructor-arg ref="servletContext"/>
-        <property name="prefix" value="/WEB-INF/templates/" />
-        <property name="suffix" value=".html" />
-        <property name="templateMode" value="HTML5" />
+        <property name="prefix" value="/WEB-INF/templates/"/>
+        <property name="suffix" value=".html"/>
+        <property name="templateMode" value="HTML5"/>
     </bean>
 
     <bean id="templateEngine"
           class="org.thymeleaf.spring5.SpringTemplateEngine">
-        <property name="templateResolver" ref="templateResolver" />
+        <property name="templateResolver" ref="templateResolver"/>
     </bean>
 
     <bean class="org.thymeleaf.spring5.view.ThymeleafViewResolver">
-        <property name="templateEngine" ref="templateEngine" />
+        <property name="templateEngine" ref="templateEngine"/>
     </bean>
 
 

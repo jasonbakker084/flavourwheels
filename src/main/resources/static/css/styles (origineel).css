@@ -29,9 +29,11 @@ section {
     /*    box-shadow: 0 0 0 3px black;*/
 }
 
-@media screen and (min-width: 321px) and (max-width: 374px) {}
+@media screen and (min-width: 321px) and (max-width: 374px) {
+}
 
-@media screen and (min-width: 502px) and (max-width: 574px) {}
+@media screen and (min-width: 502px) and (max-width: 574px) {
+}
 
 
 .descripters .outer-1 .outer-1-chamomile {
@@ -55,10 +57,10 @@ section {
 .descripters .chamomile p {
     color: #FFAC50;
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     transform: rotate(-80deg);
     display: block;
     font-size: 6px;
@@ -114,10 +116,10 @@ section {
         left: 391px;
         transform: rotate(-80deg);
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
     }
 }
 
@@ -142,10 +144,10 @@ section {
 
 .descripters .rose p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(255, 80, 168);
     transform: rotate(-76deg);
     display: block;
@@ -202,10 +204,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .rose p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 18px;
         left: 431px;
         transform: rotate(-72deg);
@@ -1592,10 +1594,10 @@ section {
 
 .descripters .lemon p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(251, 225, 12);
     transform: rotate(-3deg);
     display: block;
@@ -1652,10 +1654,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .lemon p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 300px;
         left: 653px;
         transform: rotate(-3deg);
@@ -1682,10 +1684,10 @@ section {
 
 .descripters .lime p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(107, 167, 43);
     transform: rotate(-1deg);
     display: block;
@@ -1742,10 +1744,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .lime p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 310px;
         left: 653px;
         transform: rotate(-1deg);
@@ -1772,10 +1774,10 @@ section {
 
 .descripters .honey p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(206, 71, 24);
     display: block;
     font-size: 6px;
@@ -1832,10 +1834,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .honey p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 84px;
         left: 139px;
         transform: rotate(61deg);
@@ -1862,10 +1864,10 @@ section {
 
 .descripters .caramelized p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(199, 115, 28);
     display: block;
     font-size: 6px;
@@ -1932,10 +1934,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .caramelized p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 76px;
         left: 112px;
         transform: rotate(60deg);
@@ -1962,10 +1964,10 @@ section {
 
 .descripters .mapleSyrup p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(155, 34, 25);
     display: block;
     font-size: 6px;
@@ -2022,10 +2024,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .mapleSyrup p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 97px;
         left: 92px;
         transform: rotate(56deg);
@@ -2052,10 +2054,10 @@ section {
 
 .descripters .molasses p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(84, 31, 21);
     display: block;
     font-size: 6px;
@@ -2112,10 +2114,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .molasses p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 101px;
         left: 88px;
         transform: rotate(52deg);
@@ -2142,10 +2144,10 @@ section {
 
 .descripters .sourAromatics p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(138, 155, 20);
     transform: rotate(1deg);
     display: block;
@@ -2203,10 +2205,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .sourAromatics p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 326.5px;
         left: 651px;
         transform: rotate(1deg);
@@ -5434,10 +5436,10 @@ section {
 
 .descripters .cinnamon p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(218, 98, 35);
     display: block;
     font-size: 6px;
@@ -5494,10 +5496,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .cinnamon p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 216px;
         left: -5.5px;
         transform: rotate(27deg);
@@ -5524,10 +5526,10 @@ section {
 
 .descripters .clove p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(114, 89, 73);
     display: block;
     font-size: 6px;
@@ -5584,10 +5586,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .clove p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 197px;
         left: 17px;
         transform: rotate(32deg);
@@ -5614,10 +5616,10 @@ section {
 
 .descripters .peanuts p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(199, 160, 19);
     display: block;
     font-size: 6px;
@@ -5674,10 +5676,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .peanuts p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 173px;
         left: 21px;
         transform: rotate(39deg);
@@ -5704,10 +5706,10 @@ section {
 
 .descripters .hazelnut p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(136, 66, 39);
     display: block;
     font-size: 6px;
@@ -5764,10 +5766,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .hazelnut p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 157px;
         left: 31px;
         transform: rotate(43deg);
@@ -5794,10 +5796,10 @@ section {
 
 .descripters .almond p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(186, 141, 112);
     display: block;
     font-size: 6px;
@@ -5854,10 +5856,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .almond p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 145px;
         left: 43px;
         transform: rotate(48deg);
@@ -5884,10 +5886,10 @@ section {
 
 .descripters .chocolate p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     color: rgb(84, 31, 21);
     display: block;
     font-size: 6px;
@@ -5944,10 +5946,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .chocolate p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 127px;
         left: 54px;
         transform: rotate(50deg);
@@ -6030,10 +6032,10 @@ section {
 @media (min-width: 1200px) {
     .descripters .darkChocolate p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 117px;
         left: 41px;
         transform: rotate(54deg);
@@ -6079,10 +6081,10 @@ section {
 
 .outer-1 .inner-1-blackTea p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     display: block;
     color: white;
     font-size: 6px;
@@ -6106,7 +6108,8 @@ section {
 
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
-    .outer-1 .inner-1-blackTea p {}
+    .outer-1 .inner-1-blackTea p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -6123,10 +6126,10 @@ section {
 @media screen and (min-width: 413.99px) and (max-width: 414.4px) {
     .outer-1 .inner-1-blackTea p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         display: block;
         color: white;
         font-size: 7px;
@@ -6163,10 +6166,10 @@ section {
 @media (min-width: 1200px) {
     .outer-1 .inner-1-blackTea p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: -25%;
         -webkit-top: -25%;
         left: -3.3%;
@@ -6985,7 +6988,8 @@ section {
 
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
-    .outer-1 .inner-1-berry p {}
+    .outer-1 .inner-1-berry p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -7090,7 +7094,8 @@ section {
 
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
-    .outer-1 .inner-1-driedFruit p {}
+    .outer-1 .inner-1-driedFruit p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -7192,7 +7197,8 @@ section {
 
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
-    .outer-1 .inner-1-otherFruit p {}
+    .outer-1 .inner-1-otherFruit p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -7488,7 +7494,8 @@ section {
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
 
-    .inner-2 .inner-2-nuttyCocoa p {}
+    .inner-2 .inner-2-nuttyCocoa p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -7773,7 +7780,8 @@ section {
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
 
-    .inner-2 .inner-2-spices p {}
+    .inner-2 .inner-2-spices p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -9335,7 +9343,8 @@ section {
 /* // iPhoneSE */
 @media screen and (min-width: 319.98px) and (max-width: 320px) {
 
-    .inner-2 .inner-2-roasted p {}
+    .inner-2 .inner-2-roasted p {
+    }
 }
 
 /* // iPhone 6/7/8 */
@@ -9593,10 +9602,10 @@ section {
 
 .outer-1 .inner-1-burnt p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     display: block;
     color: white;
     font-size: 6px;
@@ -9656,10 +9665,10 @@ section {
 @media (min-width: 1200px) {
     .outer-1 .inner-1-burnt p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 16%;
         left: 25%;
         transform: rotate(-26deg);
@@ -9690,10 +9699,10 @@ section {
 
 .outer-1 .inner-1-cereal p {
     font-family: 'Segoe UI',
-        Tahoma,
-        Geneva,
-        Verdana,
-        sans-serif;
+    Tahoma,
+    Geneva,
+    Verdana,
+    sans-serif;
     display: block;
     color: white;
     font-size: 6px;
@@ -9753,10 +9762,10 @@ section {
 @media (min-width: 1200px) {
     .outer-1 .inner-1-cereal p {
         font-family: 'Segoe UI',
-            Tahoma,
-            Geneva,
-            Verdana,
-            sans-serif;
+        Tahoma,
+        Geneva,
+        Verdana,
+        sans-serif;
         top: 4%;
         left: 12%;
         transform: rotate(0deg);
@@ -9869,10 +9878,6 @@ section {
         display: block;
     }
 }
-
-
-
-
 
 
 /* ########### MEDIA QUERIES ################ */

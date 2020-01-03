@@ -16,7 +16,7 @@ public interface IWhiskeylibService {
     void updateWhiskey(Whiskey whiskey);
 
     void addWhiskey(Date date, String whiskeyName, String whiskeyHouse, String whiskeyColor, String whiskeyYear, String processingMethod, String tastingMethod, String beanType, String userNotes, Boolean flag,
-                   Blob file);
+                    Blob file);
 
     void deleteWhiskey(long id);
 

@@ -1,4 +1,4 @@
-function calendarExtender (theInput) {
+function calendarExtender(theInput) {
 
     var self = this;
 
@@ -46,9 +46,15 @@ function calendarExtender (theInput) {
         this.createMonthTable();
 
         //open the calendar when the input get focus, also on various click events to capture it in all corner cases
-        this.theInput.addEventListener('focus', function () { self.theCalDiv.style.display = ''; });
-        this.theInput.addEventListener('mouseup', function () { self.theCalDiv.style.display = ''; });
-        this.theInput.addEventListener('mousedown', function () { self.theCalDiv.style.display = ''; });
+        this.theInput.addEventListener('focus', function () {
+            self.theCalDiv.style.display = '';
+        });
+        this.theInput.addEventListener('mouseup', function () {
+            self.theCalDiv.style.display = '';
+        });
+        this.theInput.addEventListener('mousedown', function () {
+            self.theCalDiv.style.display = '';
+        });
 
         //update the calendar if the date changed manually in the input
         this.theInput.addEventListener('keyup', function () {
@@ -96,7 +102,7 @@ function calendarExtender (theInput) {
 
     //update the year and month selects with the right selected value (if date changed externally)
     this.updateSelecteds = function () {
-        this.theCalDiv.querySelector('.yearSelect').value  = this.selectedDate.getFullYear();
+        this.theCalDiv.querySelector('.yearSelect').value = this.selectedDate.getFullYear();
         this.theCalDiv.querySelector('.monthSelect').value = this.selectedDate.getMonth();
         this.createMonthTable();
     };
@@ -199,7 +205,8 @@ function calendarExtender (theInput) {
             if (curNum === selected) {
                 aOption.selected = true;
             }
-        };
+        }
+        ;
 
         return theSelect;
     }
@@ -208,9 +215,9 @@ function calendarExtender (theInput) {
 }
 
 //return false if the browser dont support input[type=date]
-function checkDateInputSupport () {
+function checkDateInputSupport() {
     var input = document.createElement('input');
-    input.setAttribute('type','date');
+    input.setAttribute('type', 'date');
 
     var notADateValue = 'not-a-date';
     input.setAttribute('value', notADateValue);
@@ -219,7 +226,7 @@ function checkDateInputSupport () {
 }
 
 //will add the calendarExtender to all inputs in the page
-function addcalendarExtenderToDateInputs () {
+function addcalendarExtenderToDateInputs() {
     //get and loop all the input[type=date]s in the page that dont have "haveCal" class yet
     var dateInputs = document.querySelectorAll('input[type=date]:not(.haveCal)');
     [].forEach.call(dateInputs, function (dateInput) {

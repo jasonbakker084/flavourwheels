@@ -17,12 +17,12 @@ public class WineService implements IWinelibService {
     private WineRepository wineRepository;
 
     @Override
-    public List<Wine> getWinesByName (String wineName){
+    public List<Wine> getWinesByName(String wineName) {
         return wineRepository.findByWineName(wineName);
     }
 
     @Override
-    public Optional<Wine> getWineById(long id){
+    public Optional<Wine> getWineById(long id) {
         return wineRepository.findById(id);
     }
 
@@ -33,16 +33,17 @@ public class WineService implements IWinelibService {
 
     @Override
     public void addWine(Date date, String wineName, String wineHouse, String wineColor, String wineYear, String processingMethod, String tastingMethod, String grapeType, String userNotes, Boolean flag,
-                          Blob file){
+                        Blob file) {
         wineRepository.save(new Wine(date, wineName, wineHouse, wineColor, wineYear, grapeType, processingMethod, tastingMethod, userNotes, flag, file));
     }
 
     @Override
     public void deleteWine(long id) {
         Optional<Wine> wineLib = wineRepository.findById(id);
-        if(wineLib.isPresent()){
+        if (wineLib.isPresent()) {
             wineRepository.delete(wineLib.get());
-        };
+        }
+        ;
     }
 
     @Override

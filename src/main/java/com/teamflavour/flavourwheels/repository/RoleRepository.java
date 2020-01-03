@@ -8,7 +8,6 @@ public interface RoleRepository extends JpaRepository<Role, Long> {
     Role findFirstByName(String name);
 
 
-
     @Override
     void delete(Role role);
 

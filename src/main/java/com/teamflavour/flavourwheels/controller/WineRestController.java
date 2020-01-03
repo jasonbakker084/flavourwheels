@@ -40,7 +40,6 @@ public class WineRestController {
     }
 
 
-
     @GetMapping(path = {"/winelib/{id}"})
     public ResponseEntity<Wine> findById(@PathVariable long id) {
         return repository.findById(id).map(record -> ResponseEntity.ok().body(record))

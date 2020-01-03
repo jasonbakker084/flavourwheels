@@ -15,7 +15,7 @@ import java.util.Objects;
 public class User implements UserDetails {
 
 
-//    @GeneratedValue(generator = "uuid")
+    //    @GeneratedValue(generator = "uuid")
 //    @GenericGenerator(name = "uuid", strategy = "uuid2")
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -53,7 +53,7 @@ public class User implements UserDetails {
 
 //    private Collection<Coffee> coffeeLibs;
 
-    private Collection< Role > roles;
+    private Collection<Role> roles;
 
     public User() {
         super();
@@ -71,7 +71,7 @@ public class User implements UserDetails {
         this.password = password;
     }
 
-    public User(String firstName, String lastName, String userType, String email, String password, Collection < Role > roles) {
+    public User(String firstName, String lastName, String userType, String email, String password, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userType = userType;
@@ -80,7 +80,9 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -90,33 +92,61 @@ public class User implements UserDetails {
         return firstName;
     }
 
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-    public String getLastName() { return lastName; }
+    public String getLastName() {
+        return lastName;
+    }
 
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-    public String getEmail() { return email; }
+    public String getEmail() {
+        return email;
+    }
 
-    public void setEmail(String email) { this.email = email; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public String getUserType() { return userType; }
+    public String getUserType() {
+        return userType;
+    }
 
-    public void setUserType(String userType) { this.userType = userType; }
+    public void setUserType(String userType) {
+        this.userType = userType;
+    }
 
-    public String getCity() { return city; }
+    public String getCity() {
+        return city;
+    }
 
-    public void setCity(String city) { this.city = city; }
+    public void setCity(String city) {
+        this.city = city;
+    }
 
-    public String getCountry() { return country; }
+    public String getCountry() {
+        return country;
+    }
 
-    public void setCountry(String country) { this.country = country; }
+    public void setCountry(String country) {
+        this.country = country;
+    }
 
-    public void setEnabled(boolean enabled) { this.enabled = enabled; }
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
 
-    public boolean isUsing2FA() { return isUsing2FA; }
+    public boolean isUsing2FA() {
+        return isUsing2FA;
+    }
 
-    public void setUsing2FA(boolean using2FA) { isUsing2FA = using2FA; }
+    public void setUsing2FA(boolean using2FA) {
+        isUsing2FA = using2FA;
+    }
 
     public String getSecret() {
         return secret;
@@ -127,30 +157,50 @@ public class User implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() { return null; }
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
-    public String getPassword() { return password; }
-
-    @Override
-    public String getUsername() { return null; }
-
-    @Override
-    public boolean isAccountNonExpired() { return false; }
+    public String getPassword() {
+        return password;
+    }
 
     @Override
-    public boolean isAccountNonLocked() { return false; }
+    public String getUsername() {
+        return null;
+    }
 
     @Override
-    public boolean isCredentialsNonExpired() { return false; }
+    public boolean isAccountNonExpired() {
+        return false;
+    }
 
     @Override
-    public boolean isEnabled() { return false; }
+    public boolean isAccountNonLocked() {
+        return false;
+    }
 
-    public void setPassword(String password) { this.password = password; }
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
 
-    public Collection<Role> getRoles() { return roles; }
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }
 
-    public void setRoles(Collection<Role> roles) { this.roles = roles; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
 
     @Override
     public boolean equals(Object o) {

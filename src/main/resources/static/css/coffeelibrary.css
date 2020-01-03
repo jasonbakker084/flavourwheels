@@ -1,7 +1,8 @@
-.coffeephotowrapper{
+.coffeephotowrapper {
     height: 50vmin;
 }
-.coffeephotowrapper img{
+
+.coffeephotowrapper img {
     height: 100%;
     display: block;
     border: 1px solid #aaaaaa;
@@ -13,16 +14,17 @@ h2 {
 }
 
 div.dtr-modal div.dtr-modal-display {
-    width: 85%;         /*popup tabeldetails grootte */
-    height: 85%;        /*popup tabeldetails grootte */
+    width: 85%; /*popup tabeldetails grootte */
+    height: 85%; /*popup tabeldetails grootte */
     margin-top: 70px;
 }
+
 div.dtr-modal div.dtr-modal-content {
-    line-height: 1.2;         /* meer ruimte tussen letter pop-up */
+    line-height: 1.2; /* meer ruimte tussen letter pop-up */
 }
 
 /*Voor de plusjes in de tabel */
-table.dataTable.dtr-inline.collapsed.compact>tbody>tr>td:first-child:before, table.dataTable.dtr-inline.collapsed.compact>tbody>tr>th:first-child:before {
+table.dataTable.dtr-inline.collapsed.compact > tbody > tr > td:first-child:before, table.dataTable.dtr-inline.collapsed.compact > tbody > tr > th:first-child:before {
     top: 5px;
     left: 4px;
     height: 20px;
@@ -32,7 +34,7 @@ table.dataTable.dtr-inline.collapsed.compact>tbody>tr>td:first-child:before, tab
     text-indent: 3px;
 }
 
-table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>td:first-child:before, table.dataTable.dtr-inline.collapsed>tbody>tr[role="row"]>th:first-child:before {
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child:before, table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child:before {
     top: 12px;
     left: 4px;
     height: 20px;

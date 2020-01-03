@@ -109,7 +109,9 @@ public class WhiskeyController {
         Whiskey w = new Whiskey();
         w.setFlag(false);
         w.setDate(new Date());
-        if (whiskeyName == null) { whiskeyName = "Unnamed Whiskey";}
+        if (whiskeyName == null) {
+            whiskeyName = "Unnamed Whiskey";
+        }
         w.setWhiskeyName(whiskeyName);
         w.setWhiskeyHouse(whiskeyHouse);
         w.setWhiskeyColor(whiskeyColor);

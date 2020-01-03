@@ -25,7 +25,7 @@ public class LoginController {
     //}
 
     // Geeft loginscherm
-    @RequestMapping(value="/login", method=RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView displayLogin(ModelAndView modelAndView, User user) {
         modelAndView.addObject("user", user);
         modelAndView.setViewName("login");
@@ -33,14 +33,14 @@ public class LoginController {
     }
 
     //
-    @RequestMapping(value="/login", method= RequestMethod.POST)
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView loginUser(ModelAndView modelAndView, User user) {
 
         User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
-        if(existingUser != null) {
+        if (existingUser != null) {
             // use encoder.matches to compare raw password with encrypted password
 
-            if (encoder.matches(user.getPassword(), existingUser.getPassword())){
+            if (encoder.matches(user.getPassword(), existingUser.getPassword())) {
                 // successfully logged in
                 modelAndView.addObject("message", "Successfully logged in!");
                 modelAndView.setViewName("successLogin");

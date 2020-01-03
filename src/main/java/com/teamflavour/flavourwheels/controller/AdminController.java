@@ -15,27 +15,27 @@ import javax.validation.Valid;
 @RequestMapping("/admin/home")
 public class AdminController {
 
-        @Autowired
-        private UserService userService;
+    @Autowired
+    private UserService userService;
 
-        @Autowired
-        private UserRepository repository;
+    @Autowired
+    private UserRepository repository;
 
-        @Autowired
-        public AdminController(UserRepository userRepository) {
-            this.repository = userRepository;
-        }
+    @Autowired
+    public AdminController(UserRepository userRepository) {
+        this.repository = userRepository;
+    }
 
-        @GetMapping("signup")
-        public String showSignUpForm(User user) {
-            return "add-user";
-        }
+    @GetMapping("signup")
+    public String showSignUpForm(User user) {
+        return "add-user";
+    }
 
-        @GetMapping("")
-        public String showUpdateForm(Model model) {
-            model.addAttribute("users", repository.findAll());
-            return "adminhome";
-        }
+    @GetMapping("")
+    public String showUpdateForm(Model model) {
+        model.addAttribute("users", repository.findAll());
+        return "adminhome";
+    }
 
 //        @PostMapping("add")
 //        public String addUser(@Valid User user, BindingResult result, Model model) {
@@ -47,34 +47,34 @@ public class AdminController {
 //            return "redirect:list";
 //        }
 
-        @GetMapping("edit/{id}")
-        public String showUpdateForm(@PathVariable("id") long id, Model model) {
-            User user = repository.findById(id)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-            model.addAttribute("user", user);
+    @GetMapping("edit/{id}")
+    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        model.addAttribute("user", user);
+        return "update-user";
+    }
+
+    @PostMapping("update/{id}")
+    public String updateUser(@PathVariable("id") long id, @Valid User user, BindingResult result,
+                             Model model) {
+        if (result.hasErrors()) {
+            user.setId(id);
             return "update-user";
         }
 
-        @PostMapping("update/{id}")
-        public String updateUser(@PathVariable("id") long id, @Valid User user, BindingResult result,
-                                 Model model) {
-            if (result.hasErrors()) {
-                user.setId(id);
-                return "update-user";
-            }
-
-            repository.save(user);
-            model.addAttribute("users", repository.findAll());
-            return "adminhome";
-        }
-
-        @GetMapping("delete/{id}")
-        public String deleteUser(@PathVariable("id") long id, Model model) {
-            User user = repository.findById(id)
-                    .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
-            repository.delete(user);
-            model.addAttribute("users", repository.findAll());
-            return "adminhome";
-        }
+        repository.save(user);
+        model.addAttribute("users", repository.findAll());
+        return "adminhome";
     }
+
+    @GetMapping("delete/{id}")
+    public String deleteUser(@PathVariable("id") long id, Model model) {
+        User user = repository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+        repository.delete(user);
+        model.addAttribute("users", repository.findAll());
+        return "adminhome";
+    }
+}
 

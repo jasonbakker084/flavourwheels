@@ -26,7 +26,9 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public List<User> allUsers() { return repository.findAll(); }
+    public List<User> allUsers() {
+        return repository.findAll();
+    }
 
     @GetMapping(path = {"/users/{id}"})
     public ResponseEntity<User> findById(@PathVariable long id) {
@@ -35,7 +37,9 @@ public class UserController {
     }
 
     @GetMapping("/users/count")
-    public Long count() { return repository.count(); }
+    public Long count() {
+        return repository.count();
+    }
 
     @PostMapping(value = "/add/user")
     public User create(@RequestBody User user) {

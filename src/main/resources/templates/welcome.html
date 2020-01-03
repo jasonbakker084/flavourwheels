@@ -4,13 +4,13 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">SpringBoot
         Thymeleaf</title>
     <meta
             content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
-            name="viewport" />
+            name="viewport"/>
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" th:href="@{css/wheel.css}">
@@ -20,8 +20,8 @@
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css}"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet"
-          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}" />
-    <link rel="stylesheet" th:href="@{/assets/css/styles.css}" />
+          th:href="@{/assets/font-awesome-4.5.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}"/>
     <style>
         .footer {
             position: fixed;
@@ -36,42 +36,43 @@
     </style>
 </head>
 <body>
-    <div layout:fragment="content">
-        <!-- Your Page Content Here -->
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand mb-0 h1"><img th:src="@{./images/transp_android-chrome-192x192.png}" width="30" height="30" class="d-inline-block align-top" alt="">Coffee Flavour Wheel
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
-                        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="login.html" th:href="@{login.html}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
-                        </li>
-                            <form th:action="@{/user}" th:object="${user}" method="get">
-                    <span>Forgot password? <a href="/" th:href="@{/forgot-password}" >Click
+<div layout:fragment="content">
+    <!-- Your Page Content Here -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand mb-0 h1"><img th:src="@{./images/transp_android-chrome-192x192.png}" width="30"
+                                                 height="30" class="d-inline-block align-top" alt="">Coffee Flavour
+                Wheel
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html" th:href="@{login.html}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>
+                    </li>
+                    <form th:action="@{/user}" th:object="${user}" method="get">
+                    <span>Forgot password? <a href="/" th:href="@{/forgot-password}">Click
                         here</a></span>
-                            </form>
+                    </form>
 
-                    </ul>
-                    <!--                <form class="nav-item">-->
-                    <!--                    <a class="nav-link">Welcome <span sec:authentication="principal.username">User</span></a>-->
-                    <!--                </form>-->
-                </div>
-            </nav>
-        </div>
-
-        <h1>WELCOME to the Coffee flavour Wheel App!</h1>
+                </ul>
+                <!--                <form class="nav-item">-->
+                <!--                    <a class="nav-link">Welcome <span sec:authentication="principal.username">User</span></a>-->
+                <!--                </form>-->
+            </div>
+        </nav>
     </div>
 
+    <h1>WELCOME to the Coffee flavour Wheel App!</h1>
+</div>
 
 
 <div class="footer">
@@ -92,9 +93,9 @@
 <script th:src="@{http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js}"></script>
 <script type="text/javascript" src="js/object.js"></script>
 <script th:src="@{js/jQuery.js}"></script>
-    <script type="text/javascript"
-            th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-    <script type="text/javascript"
-            th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+<script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 </body>
 </html>

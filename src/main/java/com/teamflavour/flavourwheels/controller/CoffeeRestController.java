@@ -38,7 +38,6 @@ public class CoffeeRestController {
     }
 
 
-
     @GetMapping(path = {"/coffeelib/{id}"})
     public ResponseEntity<Coffee> findById(@PathVariable long id) {
         return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
@@ -54,8 +53,6 @@ public class CoffeeRestController {
     public Coffee create(@RequestBody Coffee coffee) {
         return repository.save(coffee);
     }
-
-
 
 
 //    @PostMapping("/api/upload/multi/model")

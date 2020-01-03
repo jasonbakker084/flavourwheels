@@ -17,7 +17,7 @@ public interface IWinelibService {
     void updateWine(Wine wine);
 
     void addWine(Date date, String wineName, String wineHouse, String wineColor, String wineYear, String processingMethod, String tastingMethod, String grapeType, String userNotes, Boolean flag,
-                   Blob file);
+                 Blob file);
 
     void deleteWine(long id);
 

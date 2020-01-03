@@ -17,12 +17,12 @@ public class CoffeeService implements ICoffeelibService {
     private CoffeeRepository coffeeRepository;
 
     @Override
-    public List<Coffee> getCoffeesByName (String coffeeName){
+    public List<Coffee> getCoffeesByName(String coffeeName) {
         return coffeeRepository.findByCoffeeName(coffeeName);
     }
 
     @Override
-    public Optional<Coffee> getCoffeeById(long id){
+    public Optional<Coffee> getCoffeeById(long id) {
         return coffeeRepository.findById(id);
     }
 
@@ -33,21 +33,22 @@ public class CoffeeService implements ICoffeelibService {
 
     @Override
     public void addCoffee(Date date, String coffeeName, String roaster, String roastColor, String roastDate, String processingMethod, String tastingMethod, String beanType, String userNotes, Boolean flag,
-                          Blob file){
+                          Blob file) {
         coffeeRepository.save(new Coffee(date, coffeeName, roaster, roastColor, roastDate, beanType, processingMethod, tastingMethod, userNotes, flag, file));
     }
 
     @Override
     public void deleteCoffee(long id) {
         Optional<Coffee> coffeeLib = coffeeRepository.findById(id);
-        if(coffeeLib.isPresent()){
-    coffeeRepository.delete(coffeeLib.get());
-        };
+        if (coffeeLib.isPresent()) {
+            coffeeRepository.delete(coffeeLib.get());
+        }
+        ;
     }
 
     @Override
     public void saveCoffee(Coffee coffee) {
-    coffeeRepository.save(coffee);
+        coffeeRepository.save(coffee);
     }
 
 

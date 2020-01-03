@@ -112,7 +112,9 @@ public class WineController {
         Wine w = new Wine();
         w.setFlag(false);
         w.setDate(new Date());
-        if (wineName == null) { wineName = "Unnamed Wine";}
+        if (wineName == null) {
+            wineName = "Unnamed Wine";
+        }
         w.setWineName(wineName);
         w.setWineHouse(wineHouse);
         w.setWineColor(wineColor);

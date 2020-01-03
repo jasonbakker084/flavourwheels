@@ -36,7 +36,11 @@ public class FlavorCoffee {
 
     }
 
-    public FlavorCoffee() {super();};
+    public FlavorCoffee() {
+        super();
+    }
+
+    ;
 
     public String getName() {
         return name;

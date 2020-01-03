@@ -36,7 +36,9 @@ public class FlavorWine {
 
     }
 
-    public FlavorWine() { super(); }
+    public FlavorWine() {
+        super();
+    }
 
     public String getName() {
         return name;

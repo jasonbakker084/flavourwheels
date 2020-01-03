@@ -36,7 +36,11 @@ public class FlavorWhiskey {
 
     }
 
-    public FlavorWhiskey() {super();};
+    public FlavorWhiskey() {
+        super();
+    }
+
+    ;
 
     public String getName() {
         return name;

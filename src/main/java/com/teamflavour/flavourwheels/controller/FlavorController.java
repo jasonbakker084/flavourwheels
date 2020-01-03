@@ -22,20 +22,19 @@ public class FlavorController {
     private FlavorWineRepository repositoryWine;
 
 
-
     @GetMapping("/api/flavorlistCoffee")
     public List<FlavorCoffee> allFlavorsCoffee() {
-           return (List<FlavorCoffee>) repositoryCoffee.findAll();
-     }
+        return (List<FlavorCoffee>) repositoryCoffee.findAll();
+    }
 
     @GetMapping("/api/flavorlistWine")
     public List<FlavorWine> allFlavorsWine() {
         return (List<FlavorWine>) repositoryWine.findAll();
     }
 
- //   @GetMapping(path = {"/api/flavor/{id}"})
-  //  public ResponseEntity<FlavorCoffee> findById(@PathVariable int id) {
- //       return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
- //               .orElse(ResponseEntity.notFound().build());
-  //  }
+    //   @GetMapping(path = {"/api/flavor/{id}"})
+    //  public ResponseEntity<FlavorCoffee> findById(@PathVariable int id) {
+    //       return repository.findById(id).map(record -> ResponseEntity.ok().body(record))
+    //               .orElse(ResponseEntity.notFound().build());
+    //  }
 }

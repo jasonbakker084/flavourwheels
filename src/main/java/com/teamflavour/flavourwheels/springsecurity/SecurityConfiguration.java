@@ -66,40 +66,40 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .frameOptions().sameOrigin()
                 .and()
                 .authorizeRequests()
-                    .antMatchers(
-                            "/successForgotPassword",
-                            "/confirm-reset",
-                            "/reset-password",
-                            "/resetPassword",
-                            "/login",
-                            "/register",
-                            "/successResetPassword",
-                            "/assets/**",
-                            "templates/**",
-                            "/confirm",
-                            "/resources/**",
-                            "/registration**",
-                            "/js/**",
-                            "/css/**",
-                            "/images/**",
-                            "/favicon.ico",
-                            "/webjars/**",
-                            "/forgot-password").permitAll()
-                    .antMatchers(
-                            "/home/coffeelib/posts",
-                            "/api/**",
-                            "/coffeewheel/**",
-                            "/winewheel/**",
-                            "/whiskeywheel/**",
-                            "/library/**").hasAnyRole("ADMIN","USER")
+                .antMatchers(
+                        "/successForgotPassword",
+                        "/confirm-reset",
+                        "/reset-password",
+                        "/resetPassword",
+                        "/login",
+                        "/register",
+                        "/successResetPassword",
+                        "/assets/**",
+                        "templates/**",
+                        "/confirm",
+                        "/resources/**",
+                        "/registration**",
+                        "/js/**",
+                        "/css/**",
+                        "/images/**",
+                        "/favicon.ico",
+                        "/webjars/**",
+                        "/forgot-password").permitAll()
+                .antMatchers(
+                        "/home/coffeelib/posts",
+                        "/api/**",
+                        "/coffeewheel/**",
+                        "/winewheel/**",
+                        "/whiskeywheel/**",
+                        "/library/**").hasAnyRole("ADMIN", "USER")
 
-                    .antMatchers("/admin/**").hasRole("ADMIN")
+                .antMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .defaultSuccessUrl("/coffeewheel")
-                    .failureUrl("/login?error")
+                .loginPage("/login")
+                .defaultSuccessUrl("/coffeewheel")
+                .failureUrl("/login?error")
 //                .successHandler(myAuthenticationSuccessHandler)
 //                .failureHandler(authenticationFailureHandler)
                 .permitAll()
@@ -148,7 +148,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 // The abstraction used by PersistentTokenBasedRememberMeServices to store the persistent login tokens for a user.
 
-    PersistentTokenRepository persistentTokenRepository(){
+    PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl tokenRepositoryImpl = new JdbcTokenRepositoryImpl();
         tokenRepositoryImpl.setDataSource(dataSource);
         return tokenRepositoryImpl;

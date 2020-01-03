@@ -1,6 +1,9 @@
 package com.teamflavour.flavourwheels.service;
 
-import javax.mail.*;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Session;
+import javax.mail.Transport;
 import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -10,7 +13,6 @@ public class EmailSender {
     public static void main(String[] args) {
         String recipient = "recipient@gmail.com";
         String sender = "flavourwheelsapp@gmail.com";
-//        String host = "https://flavourwheels.herokuapp.com";
         String host = "https://flavourwheels.herokuapp.com/";
 
 

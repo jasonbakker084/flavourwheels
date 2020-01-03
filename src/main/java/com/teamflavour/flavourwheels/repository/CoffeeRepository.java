@@ -8,7 +8,9 @@ import java.util.List;
 
 @Repository
 public interface CoffeeRepository extends JpaRepository<Coffee, Long> {
-    List<Coffee>findByCoffeeName(String coffeeName);
+    List<Coffee> findByCoffeeName(String coffeeName);
+
     List<Coffee> findByUserEmail(String UserName);
+
     List<Coffee> findByIdAndUserEmail(Long id, String UserName);
 }

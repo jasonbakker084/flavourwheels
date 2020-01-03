@@ -72,7 +72,7 @@ public class CoffeeController {
         List<Coffee> coffees = coffeerepository.findByIdAndUserEmail(id, getCurrentUserName());
         List<Wine> wines = winerepository.findByIdAndUserEmail(id, getCurrentUserName());
         List<Whiskey> whiskeys = whiskeyRepository.findByIdAndUserEmail(id, getCurrentUserName());
-        if (coffees.size()> 0) {
+        if (coffees.size() > 0) {
             Blob blob = coffees.get(0).getFile();
             if (blob != null) {
                 String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
@@ -81,7 +81,7 @@ public class CoffeeController {
                 model.addAttribute("filetype", fileType);
             }
         }
-        if (wines.size()> 0) {
+        if (wines.size() > 0) {
             Blob blob = wines.get(0).getFile();
             if (blob != null) {
                 String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
@@ -90,7 +90,7 @@ public class CoffeeController {
                 model.addAttribute("filetype", fileType);
             }
         }
-        if (whiskeys.size()> 0) {
+        if (whiskeys.size() > 0) {
             Blob blob = whiskeys.get(0).getFile();
             if (blob != null) {
                 String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
@@ -140,7 +140,9 @@ public class CoffeeController {
 
         c.setFlag(false);
         c.setDate(new Date());
-        if (coffeeName == null) { coffeeName = "Unnamed Coffee";}
+        if (coffeeName == null) {
+            coffeeName = "Unnamed Coffee";
+        }
         c.setCoffeeName(coffeeName);
         c.setRoaster(roaster);
         c.setRoastColor(roastColor);

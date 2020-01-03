@@ -22,6 +22,7 @@
         function gtag() {
             dataLayer.push(arguments);
         }
+
         gtag('js', new Date());
 
         gtag('config', 'UA-152601123-1');
@@ -32,8 +33,9 @@
 <body>
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand mb-0 h1" href="/templates/upload2.htmlload2.html"><img src="/static/images/transp_android-chrome-192x192.png"
-                                                                                      width="30" height="30" class="d-inline-block align-top" alt="">Coffee Flavour Wheel
+        <a class="navbar-brand mb-0 h1" href="/templates/upload2.htmlload2.html"><img
+                src="/static/images/transp_android-chrome-192x192.png"
+                width="30" height="30" class="d-inline-block align-top" alt="">Coffee Flavour Wheel
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -78,7 +80,8 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-12">
-                            <form action="/home/coffeelib/posts" method="POST" onSubmit={handleSubmit} ref={formData} id="singleUploadForm" name="singleUploadForm">
+                            <form action="/home/coffeelib/posts" method="POST" onSubmit={handleSubmit} ref={formData}
+                                  id="singleUploadForm" name="singleUploadForm">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Coffee Name:</label>
                                     <input type="text" name="coffeeName" class="form-control" id="coffeeName">
@@ -107,11 +110,11 @@
                                             <option>Cupping</option>
                                         </select>
                                     </div>
-<!--                                     <div class=" col-6 form-group">-->
-<!--                                        <label for="formGroupExampleInput2">Roast Date:</label>-->
-<!--                                        <input type="date" name="roastDate" class="form-control"-->
-<!--                                            id="formGroupExampleInput3">-->
-<!--                                    </div>-->
+                                    <!--                                     <div class=" col-6 form-group">-->
+                                    <!--                                        <label for="formGroupExampleInput2">Roast Date:</label>-->
+                                    <!--                                        <input type="date" name="roastDate" class="form-control"-->
+                                    <!--                                            id="formGroupExampleInput3">-->
+                                    <!--                                    </div>-->
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
@@ -132,15 +135,15 @@
                                             <option>Honey</option>
                                         </select>
                                     </div>
-<!--                                    <div class="col-md-6 form-group">-->
-<!--                                        <label for="exampleSelect2">Bean:</label>-->
-<!--                                        <select class="form-control" name="BeanType2" id="exampleSelect2">-->
-<!--                                            <option>Single Estate</option>-->
-<!--                                            <option>Single Origin</option>-->
-<!--                                            <option>Single Variety</option>-->
-<!--                                            <option>Blend</option>-->
-<!--                                        </select>-->
-<!--                                    </div>-->
+                                    <!--                                    <div class="col-md-6 form-group">-->
+                                    <!--                                        <label for="exampleSelect2">Bean:</label>-->
+                                    <!--                                        <select class="form-control" name="BeanType2" id="exampleSelect2">-->
+                                    <!--                                            <option>Single Estate</option>-->
+                                    <!--                                            <option>Single Origin</option>-->
+                                    <!--                                            <option>Single Variety</option>-->
+                                    <!--                                            <option>Blend</option>-->
+                                    <!--                                        </select>-->
+                                    <!--                                    </div>-->
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleTextarea">Extra info:</label>
@@ -158,10 +161,10 @@
                                         line.</small>
                                 </div>
                                 <button type="submit" value="Submit" class="btn btn-primary">Save Coffee</button>
-<!--                                <div class="upload-response">-->
-<!--                                    <div id="singleFileUploadError"></div>-->
-<!--                                    <div id="singleFileUploadSuccess"></div>-->
-<!--                                </div>-->
+                                <!--                                <div class="upload-response">-->
+                                <!--                                    <div id="singleFileUploadError"></div>-->
+                                <!--                                    <div id="singleFileUploadSuccess"></div>-->
+                                <!--                                </div>-->
                             </form>
                         </div>
                     </div>
@@ -172,7 +175,7 @@
                 <svg id="svgC" width="100%" viewBox="0 0 460 460">
                     <defs>
                         <pattern id="center1" patternUnits="userSpaceOnUse" x="-23" y="-23" width="102" height="102">
-                            <image href="./images/coffeebeans.png" x="-55" y="-55" width="212" height="212" />
+                            <image href="./images/coffeebeans.png" x="-55" y="-55" width="212" height="212"/>
                         </pattern>
                         <!-- <pattern id="center2" patternUnits="userSpaceOnUse" x="-11" y="-11" width="95" height="95">
                             <image xlink:href="/images/cup02.gif" x="-1" y="0" width="100" height="100" />
@@ -181,23 +184,23 @@
                             <image xlink:href="/images/cup03.gif" x="-25" y="-5" width="140" height="140" />
                         </pattern> -->
                         <filter id="shade" x="0" y="0" width="200%" height="200%">
-                            <feOffset result="offOut" in="SourceGraphic" dx="1" dy="20" />
+                            <feOffset result="offOut" in="SourceGraphic" dx="1" dy="20"/>
                             <feColorMatrix result="matrixOut" in="offOut" type="matrix"
-                                           values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0" />
-                            <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="10" />
-                            <feBlend in="SourceGraphic" in2="blurOut" mode="normal" />
+                                           values="0.2 0 0 0 0 0 0.2 0 0 0 0 0 0.2 0 0 0 0 0 1 0"/>
+                            <feGaussianBlur result="blurOut" in="matrixOut" stdDeviation="10"/>
+                            <feBlend in="SourceGraphic" in2="blurOut" mode="normal"/>
                         </filter>
                         <filter id="dropshadow" width="160%" height="160%">
-                            <feGaussianBlur in="SourceAlpha" stdDeviation="3" />
-                            <feOffset dx="4" dy="4" result="offsetblur" />
+                            <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                            <feOffset dx="4" dy="4" result="offsetblur"/>
                             <feMerge>
-                                <feMergeNode />
-                                <feMergeNode in="SourceGraphic" />
+                                <feMergeNode/>
+                                <feMergeNode in="SourceGraphic"/>
                             </feMerge>
                         </filter>
                     </defs>
                     <circle onclick="resetWheel()" id="test" cx="230" cy="230" r="50" stroke="#000000"
-                            stroke-width="0" fill="url(#center1)" />
+                            stroke-width="0" fill="url(#center1)"/>
                 </svg>
                 <div class="container">
                     <div class="row">
@@ -286,10 +289,10 @@
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/uploadFile");
 
-        xhr.onload = function() {
+        xhr.onload = function () {
             console.log(xhr.responseText);
             var response = JSON.parse(xhr.responseText);
-            if(xhr.status == 200) {
+            if (xhr.status == 200) {
                 singleFileUploadError.style.display = "none";
                 singleFileUploadSuccess.innerHTML = "<p>File Uploaded Successfully.</p><p>DownloadUrl : <a href='" + response.fileDownloadUri + "' target='_blank'>" + response.fileDownloadUri + "</a></p>";
                 singleFileUploadSuccess.style.display = "block";
@@ -304,20 +307,20 @@
 
     function uploadMultipleFiles(files) {
         var formData = new FormData();
-        for(var index = 0; index < files.length; index++) {
+        for (var index = 0; index < files.length; index++) {
             formData.append("files", files[index]);
         }
 
         var xhr = new XMLHttpRequest();
         xhr.open("POST", "/uploadMultipleFiles");
 
-        xhr.onload = function() {
+        xhr.onload = function () {
             console.log(xhr.responseText);
             var response = JSON.parse(xhr.responseText);
-            if(xhr.status == 200) {
+            if (xhr.status == 200) {
                 multipleFileUploadError.style.display = "none";
                 var content = "<p>All Files Uploaded Successfully</p>";
-                for(var i = 0; i < response.length; i++) {
+                for (var i = 0; i < response.length; i++) {
                     content += "<p>DownloadUrl : <a href='" + response[i].fileDownloadUri + "' target='_blank'>" + response[i].fileDownloadUri + "</a></p>";
                 }
                 multipleFileUploadSuccess.innerHTML = content;
@@ -331,9 +334,9 @@
         xhr.send(formData);
     }
 
-    singleUploadForm.addEventListener('submit', function(event){
+    singleUploadForm.addEventListener('submit', function (event) {
         var files = singleFileUploadInput.files;
-        if(files.length === 0) {
+        if (files.length === 0) {
             singleFileUploadError.innerHTML = "Please select a file";
             singleFileUploadError.style.display = "block";
         }
@@ -342,9 +345,9 @@
     }, true);
 
 
-    multipleUploadForm.addEventListener('submit', function(event){
+    multipleUploadForm.addEventListener('submit', function (event) {
         var files = multipleFileUploadInput.files;
-        if(files.length === 0) {
+        if (files.length === 0) {
             multipleFileUploadError.innerHTML = "Please select at least one file";
             multipleFileUploadError.style.display = "block";
         }

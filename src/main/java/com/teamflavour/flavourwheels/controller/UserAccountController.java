@@ -32,26 +32,21 @@ public class UserAccountController {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(12);
 
-    @RequestMapping(value="/register2", method=RequestMethod.GET)
-    public ModelAndView displayRegistration(ModelAndView modelAndView, User user)
-    {
+    @RequestMapping(value = "/register2", method = RequestMethod.GET)
+    public ModelAndView displayRegistration(ModelAndView modelAndView, User user) {
         modelAndView.addObject("user", user);
         modelAndView.setViewName("register");
         return modelAndView;
     }
 
-    @RequestMapping(value="/register2", method=RequestMethod.POST)
-    public ModelAndView registerUser(ModelAndView modelAndView, User user)
-    {
+    @RequestMapping(value = "/register2", method = RequestMethod.POST)
+    public ModelAndView registerUser(ModelAndView modelAndView, User user) {
 
         User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
-        if(existingUser != null)
-        {
-            modelAndView.addObject("message","This email already exists!");
+        if (existingUser != null) {
+            modelAndView.addObject("message", "This email already exists!");
             modelAndView.setViewName("error");
-        }
-        else
-        {
+        } else {
             userRepository.save(user);
 
             ConfirmationToken confirmationToken = new ConfirmationToken(user);
@@ -63,8 +58,7 @@ public class UserAccountController {
             mailMessage.setSubject("Complete Registration!");
             mailMessage.setFrom("flavourwheelsapp@gmail.com");
             mailMessage.setText("To confirm your account, please click here : "
-//                    +"https://flavourwheels.herokuapp.com/confirm-account?token="+confirmationToken.getConfirmationToken());
-            + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
+                    + "https://flavourwheels.herokuapp.com/confirm-reset?token=" + confirmationToken.getConfirmationToken());
 
             emailSenderService.sendEmail(mailMessage);
 
@@ -76,55 +70,25 @@ public class UserAccountController {
         return modelAndView;
     }
 
-
-
-    @RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
-    {
+    @RequestMapping(value = "/confirm-account", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 
-        if(token != null)
-        {
+        if (token != null) {
             User user = userRepository.findByEmailIgnoreCase(token.getUser().getEmail());
             user.setEnabled(true);
             userRepository.save(user);
             modelAndView.setViewName("accountVerified");
-        }
-        else
-        {
-            modelAndView.addObject("message","The link is invalid or broken!");
+        } else {
+            modelAndView.addObject("message", "The link is invalid or broken!");
             modelAndView.setViewName("error");
         }
 
         return modelAndView;
     }
 
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public ConfirmationTokenRepository getConfirmationTokenRepository() {
-        return confirmationTokenRepository;
-    }
-
-    public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
-        this.confirmationTokenRepository = confirmationTokenRepository;
-    }
-
-    public EmailSenderService getEmailSenderService() {
-        return emailSenderService;
-    }
-
-    public void setEmailSenderService(EmailSenderService emailSenderService) {
-        this.emailSenderService = emailSenderService;
-    }
-
     // Display the form
-    @RequestMapping(value="/forgot-password", method=RequestMethod.GET)
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
     public ModelAndView displayResetPassword(ModelAndView modelAndView, User user) {
         modelAndView.addObject("user", user);
         modelAndView.setViewName("forgotPassword");
@@ -132,7 +96,7 @@ public class UserAccountController {
     }
 
     // Receive the address and send an email
-    @RequestMapping(value="/forgot-password", method=RequestMethod.POST)
+    @RequestMapping(value = "/forgot-password", method = RequestMethod.POST)
     public ModelAndView forgotUserPassword(ModelAndView modelAndView, User user) {
         User existingUser = userRepository.findByEmailIgnoreCase(user.getEmail());
         if (existingUser != null) {
@@ -148,8 +112,7 @@ public class UserAccountController {
             mailMessage.setSubject("Complete Password Reset!");
             mailMessage.setFrom("flavourwheelsapp@gmail.com");
             mailMessage.setText("To complete the password reset process, please click here: "
-//                    + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
-            + "https://flavourwheels.herokuapp.com/confirm-reset?token="+confirmationToken.getConfirmationToken());
+                    + "https://flavourwheels.herokuapp.com/confirm-reset?token=" + confirmationToken.getConfirmationToken());
 
             // Send the email
             emailSenderService.sendEmail(mailMessage);
@@ -165,8 +128,8 @@ public class UserAccountController {
     }
 
     // Endpoint to confirm the token
-    @RequestMapping(value="/confirm-reset", method= {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token")String confirmationToken) {
+    @RequestMapping(value = "/confirm-reset", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView validateResetToken(ModelAndView modelAndView, @RequestParam("token") String confirmationToken) {
         ConfirmationToken token = confirmationTokenRepository.findByConfirmationToken(confirmationToken);
 
         if (token != null) {
@@ -194,9 +157,33 @@ public class UserAccountController {
             modelAndView.addObject("message", "Password successfully reset. You can now log in with the new credentials.");
             modelAndView.setViewName("successResetPassword");
         } else {
-            modelAndView.addObject("message","The link is invalid or broken!");
+            modelAndView.addObject("message", "The link is invalid or broken!");
             modelAndView.setViewName("error");
         }
         return modelAndView;
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public ConfirmationTokenRepository getConfirmationTokenRepository() {
+        return confirmationTokenRepository;
+    }
+
+    public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
+        this.confirmationTokenRepository = confirmationTokenRepository;
+    }
+
+    public EmailSenderService getEmailSenderService() {
+        return emailSenderService;
+    }
+
+    public void setEmailSenderService(EmailSenderService emailSenderService) {
+        this.emailSenderService = emailSenderService;
     }
 }
