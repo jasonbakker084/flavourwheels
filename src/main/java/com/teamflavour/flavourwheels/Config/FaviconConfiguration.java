@@ -1,9 +1,10 @@
-package Config;
+package com.teamflavour.flavourwheels.Config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,13 +32,13 @@ public class FaviconConfiguration {
         ResourceHttpRequestHandler requestHandler
                 = new ResourceHttpRequestHandler();
         ClassPathResource classPathResource
-                = new ClassPathResource("images");
+                = new ClassPathResource("com/teamflavour/flavourwheels/resources/images");
         List<Resource> locations = Arrays.asList(classPathResource);
         requestHandler.setLocations(locations);
         return requestHandler;
     }
 
-    // @Controller
+     @Controller
     static class FaviconController {
 
         @RequestMapping(value = "favicon.ico", method = RequestMethod.GET)
