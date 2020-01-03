@@ -74,6 +74,7 @@ public class WebConfig implements WebMvcConfigurer {
 //        registry.addViewController("/coffeewheel").setViewName("/coffeewheel/?successcoffee");
         registry.addViewController("/resetPassword").setViewName("resetPassword");
         registry.addViewController("/coffeewheel").setViewName("coffeewheel");
+        registry.addViewController("/teawheel").setViewName("teawheel");
         registry.addViewController("/whiskeywheel").setViewName("whiskeywheel");
         registry.addViewController("/winewheel").setViewName("winewheel");
         registry.addViewController("/login").setViewName("login");

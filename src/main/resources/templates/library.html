@@ -72,6 +72,7 @@
                         <a class="dropdown-item" href="coffeewheel.html" th:href="@{/coffeewheel}">Coffee</a>
                         <a class="dropdown-item" href="winewheel.html" th:href="@{/winewheel}">Wine</a>
                         <a class="dropdown-item" href="whiskeywheel.html" th:href="@{/whiskeywheel}">Whiskey</a>
+                        <a class="dropdown-item" href="teawheel.html" th:href="@{/teawheel}">Tea</a>
                         <!--                        <div class="dropdown-divider"></div>-->
                         <!--                        <a class="dropdown-item" href="#">Something else here</a>-->
                     </div>
@@ -277,6 +278,68 @@
         </div>
     </div>
 </div>
+<br>
+<br>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <h2>My Teas</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="mh-80 col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <table id="tea_table" class="display compact dt-responsive nowrap"
+                           style="width:100%; display: none">
+                        <thead>
+                        <tr>
+                            <th class="all" data-priority="1">Name</th>
+                            <th>Date</th>
+                            <th>Tea House</th>
+                            <th>Tea Date</th>
+                            <th>Tea color</th>
+                            <th>Leave type</th>
+                            <th>Process method</th>
+                            <th class="none">Taste method</th>
+                            <th class="all" data-priority="1" id="deleteHeader">Delete</th>
+                            <th class="none">Flavours</th>
+                            <th class="none">Notes</th>
+                            <th class="none"></th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="tea : ${teas}">
+                            <!--/*@thymesVar id="date" type=""*/-->
+                            <td th:text="${tea.teaName}"></td>
+                            <td th:text="${tea.date}"></td>
+                            <td th:text="${tea.teaHouse}"></td>
+                            <td th:text="${tea.teaDate}"></td>
+                            <td th:text="${tea.teaColor}"></td>
+                            <td th:text="${tea.leaveType}"></td>
+                            <td th:text="${tea.processingMethod}"></td>
+                            <td th:text="${tea.tastingMethod}"></td>
+                            <td id="deleteButton"><a th:href="@{/tealib/delete/{id}(id=${tea.id})}"
+                                                     class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+                            <!--TODO: details in nieuw scherm met edit mogelijkheden-->
+
+                            <td th:text="${tea.getFlavorString()}"></td>
+                            <td th:text="${tea.userNotes}"></td>
+                            <td>
+                                <div class="coffeephotowrapper">
+                                    <img th:src="${tea.getImageString()}"/>
+
+                                </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     $(document).ready(function () {
         $('#coffee_table').DataTable({
@@ -329,6 +392,24 @@
             }
         });
         $('#whiskey_table').show(); // laat de tabel pas zien als ie gerenderd is.
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#tea_table').DataTable({
+            responsive: {
+                details: {
+                    display: $.fn.dataTable.Responsive.display.modal({
+                        header: function (row) {
+                            var data = row.data();
+                            return data[0];
+                        }
+                    }),
+                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()
+                }
+            }
+        });
+        $('#tea_table').show(); // laat de tabel pas zien als ie gerenderd is.
     });
 </script>
 

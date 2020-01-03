@@ -1,0 +1,19 @@
+svg {
+    font-family: 'Times New Roman', Times, serif;
+    letter-spacing: 0.2px;
+    font-size: 7px;
+    font-weight: 500;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-image: url(../images/tealeaves.png);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: bottom right;
+    background-attachment: fixed;
+
+}

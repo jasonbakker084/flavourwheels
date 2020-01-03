@@ -40,17 +40,20 @@ public class CoffeeController {
 
     private WhiskeyRepository whiskeyRepository;
 
+    private TeaRepository teaRepository;
+
     private UserRepository userRepository;
 
     private FlavorCoffeeRepository flavorCoffeeRepository;
 
     @Autowired
-    public CoffeeController(CoffeeRepository coffeerepository, WineRepository winerepository, WhiskeyRepository whiskeyRepository, UserRepository userRepository, FlavorCoffeeRepository flavorCoffeeRepository) {
+    public CoffeeController(CoffeeRepository coffeerepository, TeaRepository teaRepository, WineRepository winerepository, WhiskeyRepository whiskeyRepository, UserRepository userRepository, FlavorCoffeeRepository flavorCoffeeRepository) {
         this.coffeerepository = coffeerepository;
         this.userRepository = userRepository;
         this.flavorCoffeeRepository = flavorCoffeeRepository;
         this.winerepository = winerepository;
         this.whiskeyRepository = whiskeyRepository;
+        this.teaRepository = teaRepository;
     }
 
     @InitBinder
@@ -72,6 +75,7 @@ public class CoffeeController {
         List<Coffee> coffees = coffeerepository.findByIdAndUserEmail(id, getCurrentUserName());
         List<Wine> wines = winerepository.findByIdAndUserEmail(id, getCurrentUserName());
         List<Whiskey> whiskeys = whiskeyRepository.findByIdAndUserEmail(id, getCurrentUserName());
+        List<Tea> teas = teaRepository.findByIdAndUserEmail(id, getCurrentUserName());
         if (coffees.size() > 0) {
             Blob blob = coffees.get(0).getFile();
             if (blob != null) {
@@ -99,9 +103,19 @@ public class CoffeeController {
                 model.addAttribute("filetype", fileType);
             }
         }
+        if (teas.size() > 0) {
+            Blob blob = teas.get(0).getFile();
+            if (blob != null) {
+                String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
+                String fileType = teas.get(0).getFileType();
+                model.addAttribute("image", image);
+                model.addAttribute("filetype", fileType);
+            }
+        }
         model.addAttribute("wines", wines);
         model.addAttribute("coffees", coffees);
         model.addAttribute("whiskeys", whiskeys);
+        model.addAttribute("teas", teas);
         return "library";
     }
 
@@ -111,6 +125,7 @@ public class CoffeeController {
         model.addAttribute("coffees", coffeerepository.findByUserEmail(getCurrentUserName()));
         model.addAttribute("wines", winerepository.findByUserEmail(getCurrentUserName()));
         model.addAttribute("whiskeys", whiskeyRepository.findByUserEmail(getCurrentUserName()));
+        model.addAttribute("teas", teaRepository.findByUserEmail(getCurrentUserName()));
         return "library";
     }
 

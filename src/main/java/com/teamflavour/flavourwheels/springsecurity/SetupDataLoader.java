@@ -41,6 +41,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Autowired
     private FlavorWhiskeyRepository flavorWhiskeyRepository;
 
+    @Autowired
+    private FlavorTeaRepository flavorTeaRepository;
+
     // API
 
     @Override
@@ -70,6 +73,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         createFlavorsCoffeeIfNotFound();
         createFlavorsWineIfNotFound();
         createFlavorsWhiskeyIfNotFound();
+        createFlavorsTeaIfNotFound();
 
     }
 
@@ -574,7 +578,122 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         addFlavorWhiskeyIfNotFound("Walnuts", "#F4BFB3", 1385, 182);
         addFlavorWhiskeyIfNotFound("Hazel nuts", "#F4BFB3", 1386, 182);
         addFlavorWhiskeyIfNotFound("Walnuts", "#F4BFB3", 1387, 182);
+    }
 
+    public void createFlavorsTeaIfNotFound() {
+        addFlavorTeaIfNotFound("Plants / herbaceous", "#727F39", 22, 0);
+        addFlavorTeaIfNotFound("Grass", "#727F39", 183, 22);
+        addFlavorTeaIfNotFound("Fresh cut grass", "#727F39", 1388, 183);
+        addFlavorTeaIfNotFound("Hay", "#727F39", 1389, 183);
+        addFlavorTeaIfNotFound("Bamboo", "#727F39", 1390, 183);
+        addFlavorTeaIfNotFound("Vegetables", "#939D61", 184, 22);
+        addFlavorTeaIfNotFound("Butternut", "#939D61", 1391, 184);
+        addFlavorTeaIfNotFound("Spinach", "#939D61", 1392, 184);
+        addFlavorTeaIfNotFound("Bean sprouts", "#939D61", 1393, 184);
+        addFlavorTeaIfNotFound("Aspargus", "#939D61", 1394, 184);
+        addFlavorTeaIfNotFound("Peas", "#939D61", 1395, 184);
+        addFlavorTeaIfNotFound("Alfalfa", "#939D61", 1396, 184);
+        addFlavorTeaIfNotFound("Green beans", "#939D61", 1397, 184);
+        addFlavorTeaIfNotFound("Herbs", "#727F39", 185, 22);
+        addFlavorTeaIfNotFound("Basil", "#727F39", 1398, 185);
+        addFlavorTeaIfNotFound("Parsley", "#727F39", 1399, 185);
+        addFlavorTeaIfNotFound("Mint", "#727F39", 1400, 185);
+        addFlavorTeaIfNotFound("Lavender", "#727F39", 1401, 185);
+        addFlavorTeaIfNotFound("Sage", "#727F39", 1402, 185);
+        addFlavorTeaIfNotFound("Thyme", "#727F39", 1403, 185);
+        addFlavorTeaIfNotFound("Fennel", "#727F39", 1404, 185);
+        addFlavorTeaIfNotFound("Floral", "#E2B027", 23, 0);
+        addFlavorTeaIfNotFound("Summer meadow", "#E2B027", 186, 23);
+        addFlavorTeaIfNotFound("Osmanthus", "#E2B027", 1405, 186);
+        addFlavorTeaIfNotFound("Jasmine", "#E2B027", 1406, 186);
+        addFlavorTeaIfNotFound("Chrysantemum", "#E2B027", 1407, 186);
+        addFlavorTeaIfNotFound("Garden flowers", "#EFD051", 187, 23);
+        addFlavorTeaIfNotFound("Rose", "#EFD051", 1408, 187);
+        addFlavorTeaIfNotFound("Peony", "#EFD051", 1409, 187);
+        addFlavorTeaIfNotFound("Honeysuckle", "#EFD051", 1410, 187);
+        addFlavorTeaIfNotFound("Gardenia", "#EFD051", 1411, 187);
+        addFlavorTeaIfNotFound("Nutty / milky", "#977334", 24, 0);
+        addFlavorTeaIfNotFound("", "#977334", 188, 24);
+        addFlavorTeaIfNotFound("Creamy", "#977334", 1412, 188);
+        addFlavorTeaIfNotFound("Fresh butter", "#977334", 1413, 188);
+        addFlavorTeaIfNotFound("Almond", "#977334", 1414, 188);
+        addFlavorTeaIfNotFound("Chestnut", "#977334", 1415, 188);
+        addFlavorTeaIfNotFound("Roasted nuts", "#977334", 1416, 188);
+        addFlavorTeaIfNotFound("Sweet", "#7A74AC", 25, 0);
+        addFlavorTeaIfNotFound("", "#7A74AC", 189, 25);
+        addFlavorTeaIfNotFound("Malt", "#7A74AC", 1417, 189);
+        addFlavorTeaIfNotFound("Honey/beewax", "#7A74AC", 1418, 189);
+        addFlavorTeaIfNotFound("Caramel", "#7A74AC", 1419, 189);
+        addFlavorTeaIfNotFound("Syrup", "#7A74AC", 1420, 189);
+        addFlavorTeaIfNotFound("Toffee", "#7A74AC", 1421, 189);
+        addFlavorTeaIfNotFound("Brown sugar", "#7A74AC", 1422, 189);
+        addFlavorTeaIfNotFound("Vanilla", "#7A74AC", 1423, 189);
+        addFlavorTeaIfNotFound("Fire / animal", "#AA604A", 26, 0);
+        addFlavorTeaIfNotFound("", "#AA604A", 190, 26);
+        addFlavorTeaIfNotFound("Stable", "#AA604A", 1424, 190);
+        addFlavorTeaIfNotFound("Toast", "#AA604A", 1425, 190);
+        addFlavorTeaIfNotFound("Smoke", "#AA604A", 1426, 190);
+        addFlavorTeaIfNotFound("Tobacco", "#AA604A", 1427, 190);
+        addFlavorTeaIfNotFound("Leather", "#AA604A", 1428, 190);
+        addFlavorTeaIfNotFound("Spicy", "#D48E45", 27, 0);
+        addFlavorTeaIfNotFound("Hot / cooling", "#D48E45", 191, 27);
+        addFlavorTeaIfNotFound("Cinnamon", "#D48E45", 1429, 191);
+        addFlavorTeaIfNotFound("Nutmeg", "#D48E45", 1430, 191);
+        addFlavorTeaIfNotFound("Pepper", "#D48E45", 1431, 191);
+        addFlavorTeaIfNotFound("Clove", "#D48E45", 1432, 191);
+        addFlavorTeaIfNotFound("Cardamom", "#D48E45", 1333, 191);
+        addFlavorTeaIfNotFound("Licorice", "#D48E45", 1334, 191);
+        addFlavorTeaIfNotFound("Star anise", "#D48E45", 1335, 191);
+        addFlavorTeaIfNotFound("Ginger", "#D48E45", 1336, 191);
+        addFlavorTeaIfNotFound("Fresh / candied fruit","#8A5372", 28, 0);
+        addFlavorTeaIfNotFound("Tropical", "#8A5372", 192, 28);
+        addFlavorTeaIfNotFound("Pineapple", "#8A5372", 1337, 192);
+        addFlavorTeaIfNotFound("Banana", "#8A5372", 1338, 192);
+        addFlavorTeaIfNotFound("Melon", "#8A5372", 1339, 192);
+        addFlavorTeaIfNotFound("Mango", "#8A5372", 1340, 192);
+        addFlavorTeaIfNotFound("Stone and vine fruit", "#AB849D", 193, 28);
+        addFlavorTeaIfNotFound("Apple", "#AB849D", 1341, 193);
+        addFlavorTeaIfNotFound("Apricot", "#AB849D", 1342, 193);
+        addFlavorTeaIfNotFound("Pear", "#AB849D", 1343, 193);
+        addFlavorTeaIfNotFound("Peach", "#AB849D", 1344, 193);
+        addFlavorTeaIfNotFound("Grape", "#AB849D", 1345, 193);
+        addFlavorTeaIfNotFound("Muscatel", "#AB849D", 1346, 193);
+        addFlavorTeaIfNotFound("Citrus", "#8A5372", 194, 28);
+        addFlavorTeaIfNotFound("Mandarine", "#8A5372", 1347, 194);
+        addFlavorTeaIfNotFound("Orange", "#8A5372", 1348, 194);
+        addFlavorTeaIfNotFound("Lemon", "#8A5372", 1349, 194);
+        addFlavorTeaIfNotFound("Bergamot", "#8A5372", 1450, 194);
+        addFlavorTeaIfNotFound("Lime", "#8A5372", 1451, 194);
+        addFlavorTeaIfNotFound("Berry", "#AB849D", 195, 28);
+        addFlavorTeaIfNotFound("Blueberry", "#AB849D", 1452, 195);
+        addFlavorTeaIfNotFound("Raspberry", "#AB849D", 1453, 195);
+        addFlavorTeaIfNotFound("Strawberry", "#AB849D", 144, 195);
+        addFlavorTeaIfNotFound("Blackcurrant", "#AB849D", 1455, 195);
+        addFlavorTeaIfNotFound("", "#6D99CD", 29, 0);
+        addFlavorTeaIfNotFound("Marine", "#6D99CD", 196, 29);
+        addFlavorTeaIfNotFound("Seaweed / fish", "#6D99CD", 1456, 196);
+        addFlavorTeaIfNotFound("Oyster / shrimps", "#6D99CD", 1457, 196);
+        addFlavorTeaIfNotFound("Seasalt", "#6D99CD", 1458, 196);
+        addFlavorTeaIfNotFound("", "#878C8D", 30, 0);
+        addFlavorTeaIfNotFound("Mineral", "#878C8D", 197, 30);
+        addFlavorTeaIfNotFound("Volcanic", "#878C8D", 1459, 197);
+        addFlavorTeaIfNotFound("Chalk", "#878C8D", 1460, 197);
+        addFlavorTeaIfNotFound("Granite", "#878C8D", 1461, 197);
+        addFlavorTeaIfNotFound("Earthy", "#706456", 31, 0);
+        addFlavorTeaIfNotFound("Forest", "#706456", 198, 31);
+        addFlavorTeaIfNotFound("Forest floor", "#706456", 1462, 198);
+        addFlavorTeaIfNotFound("Musty / humus", "#706456", 1463, 198);
+        addFlavorTeaIfNotFound("Moss / care", "#706456", 1464, 198);
+        addFlavorTeaIfNotFound("Compost", "#706456", 1465, 198);
+        addFlavorTeaIfNotFound("Wet leaves", "#706456", 1466, 198);
+        addFlavorTeaIfNotFound("Wood", "#8E8477", 199, 31);
+        addFlavorTeaIfNotFound("Pine", "#8E8477", 1467, 199);
+        addFlavorTeaIfNotFound("Wet wood", "#8E8477", 1468, 199);
+        addFlavorTeaIfNotFound("Sawdust", "#8E8477", 1469, 199);
+        addFlavorTeaIfNotFound("Cedar", "#8E8477", 1470, 199);
+        addFlavorTeaIfNotFound("Oak", "#8E8477", 1471, 199);
+        addFlavorTeaIfNotFound("Mahogany", "#8E8477", 1472, 199);
+        addFlavorTeaIfNotFound("Eucalypt", "#8E8477", 1473, 199);
     }
 
 
@@ -602,6 +721,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         if (newFlavorWhiskey == null) {
             newFlavorWhiskey = new FlavorWhiskey(name, color, id, parentID);
             flavorWhiskeyRepository.save(newFlavorWhiskey);
+        }
+    }
+
+    @Transactional
+    public void addFlavorTeaIfNotFound(String name, String color, int id, int parentID) {
+        FlavorTea newFlavorTea = flavorTeaRepository.findFirstByID(id);
+        if (newFlavorTea == null) {
+            newFlavorTea = new FlavorTea(name, color, id, parentID);
+            flavorTeaRepository.save(newFlavorTea);
         }
     }
 

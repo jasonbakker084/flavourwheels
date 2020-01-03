@@ -102,7 +102,7 @@ var flavorList =
         {ring: 3, fromStep: 57, toStep: 58, color: "#B8E1DF", name: "Mint", id: 1131, parentID: 137},
         {ring: 3, fromStep: 58, toStep: 59, color: "#B8E1DF", name: "Thyme", id: 1132, parentID: 137},
         {ring: 1, fromStep: 74, toStep: 80, color: "#A3B4CA", name: "Secondary", id: 11, parentID: null},
-        {ring: 2, fromStep: 59, toStep: 67, color: "#218538", name: "Vegetable", id: 138, parentID: 1},
+        {ring: 2, fromStep: 59, toStep: 67, color: "#218538", name: "Vegetable", id: 138, parentID: 10},
         {ring: 3, fromStep: 59, toStep: 60, color: "#BFDFB6", name: "Grass", id: 1133, parentID: 138},
         {ring: 3, fromStep: 60, toStep: 61, color: "#BFDFB6", name: "Tomato Leaf", id: 1134, parentID: 138},
         {ring: 3, fromStep: 61, toStep: 62, color: "#BFDFB6", name: "Bell Pepper", id: 1135, parentID: 138},

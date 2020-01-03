@@ -12,7 +12,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.4.1/css/all.css}"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" th:href="@{css/WineWheel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{css/TeaWheel.css}">
     <link rel="apple-touch-icon" sizes="180x180" th:src="@{./images/apple-touch-icon.png}">
     <link rel="icon" type="image/png" sizes="32x32" th:src="@{./images/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:src="@{./images/favicon-16x16.png}">
@@ -133,37 +133,37 @@
                      style="background-color: #615d5c26;">
                     <div class="row">
                         <div class="col">
-                            <div th:if="${param.successwine}">
-                                <div class="alert alert-info">Wine saved!</div>
+                            <div th:if="${param.successtea}">
+                                <div class="alert alert-info">Tea saved!</div>
                             </div>
-                            <h2>Information about your wine:</h2>
+                            <h2>Information about your Tea:</h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form th:action="@{/addwine}" th:object="${wine}" method="POST"
+                            <form th:action="@{/addtea}" th:object="${tea}" method="POST"
                                   enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput">Wine Name:</label>
-                                    <input type="text" name="wineName" class="form-control" id="wineName">
-                                    <input type="hidden" id="flavorsWine" class="form-control" name="flavorsWine">
+                                    <label for="formGroupExampleInput">Tea Name:</label>
+                                    <input type="text" name="teaName" class="form-control" id="teaName">
+                                    <input type="hidden" id="flavorsTea" class="form-control" name="flavorsTea">
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">Wine House:</label>
-                                    <input type="text" name="wineHouse" class="form-control" id="wineHouse">
+                                    <label for="formGroupExampleInput2">Tea House:</label>
+                                    <input type="text" name="teaHouse" class="form-control" id="teaHouse">
                                 </div>
                                 <div class="row">
 
                                     <div class="col-md-6 form-group">
-                                        <label for="formGroupExampleInput2">Wine Year:</label>
-                                        <input type="date" name="wineYear" class="form-control"
+                                        <label for="formGroupExampleInput2">Tea date:</label>
+                                        <input type="date" name="teaDate" class="form-control"
                                                value="Pick year" placeholder="Choose year"
-                                               id="wineYear">
+                                               id="teaDate">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="exampleSelect1">Wine color:</label>
-                                        <select class="form-control" id="wineColor" name="wineColor">
-                                            <option value="" selected>Select wine color</option>
+                                        <label for="exampleSelect1">Tea color:</label>
+                                        <select class="form-control" id="teaColor" name="teaColor">
+                                            <option value="" selected>Select tea color</option>
                                             <option>Light</option>
                                             <option>Medium</option>
                                             <option>Omni Roast</option>
@@ -183,9 +183,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 form-group">
-                                        <label for="exampleSelect2">Grape type:</label>
-                                        <select class="form-control" name="grapeType" id="grapeType">
-                                            <option value="" selected>Select grape type</option>
+                                        <label for="exampleSelect2">Leave type:</label>
+                                        <select class="form-control" name="leaveType" id="leaveType">
+                                            <option value="" selected>Select leave type</option>
                                             <option>Arabica</option>
                                             <option>Robusta</option>
                                             <option>Arabica & Robusta</option>
@@ -283,7 +283,7 @@
         <!--        </div>-->
     </div>
 </div>
-<script th:src="@{./js/Winewheel.js}"></script>
+<script th:src="@{./js/TeaWheel.js}"></script>
 <script th:src="@{./js/html5-simple-date-input-polyfill.min.js}"></script>
 <script>
     $('#clearPage').click(function () {
