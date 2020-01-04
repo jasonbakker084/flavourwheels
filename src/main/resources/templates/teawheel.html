@@ -85,12 +85,6 @@
                         <!--                        <a class="dropdown-item" href="#">Something else here</a>-->
                     </div>
                 </li>
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" href="coffeewheel.html" th:href="@{/coffeewheel}">Coffee</a>-->
-                <!--                </li>-->
-                <!--                <li class="nav-item">-->
-                <!--                    <a class="nav-link" href="winewheel.html" th:href="@{/winewheel}">Wine</a>-->
-                <!--                </li>-->
                 <li class="nav-item">
                     <a class="nav-link" href="library.html" th:href="@{/library}">My library</a>
                 </li>
@@ -110,7 +104,6 @@
                         <defs>
                             <pattern id="center1" patternUnits="userSpaceOnUse" x="-23" y="-23" width="102"
                                      height="102">
-                                <!-- <image href="./images/coffeebeans.png" x="-55" y="-55" width="212" height="212" /> -->
                             </pattern>
                             <filter id="dropshadow" width="160%" height="160%">
                                 <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
@@ -224,63 +217,7 @@
             </div>
         </div>
         <br>
-        <!--        <div class="container-fluid">-->
-        <!--            <div class = "row justify-content-center">-->
-        <!--                <div class="col-12">-->
-        <!--                    <h2>My Wines</h2>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--            <div class="row">-->
-        <!--                <div class = "mh-80 col-sm-12">-->
-        <!--                    <div class="card">-->
-        <!--                        <div class="card-body">-->
-        <!--                            <table id = "wine_table" class="display compact dt-responsive nowrap" style="width:100%; display: none">-->
-        <!--                                <thead>-->
-        <!--                                <tr>-->
-        <!--                                    <th class="all" data-priority="1">Name</th>-->
-        <!--                                    <th>Date</th>-->
-        <!--                                    <th>House</th>-->
-        <!--                                    <th>Wine Year</th>-->
-        <!--                                    <th>Wine color</th>-->
-        <!--                                    <th>Grape type</th>-->
-        <!--                                    <th>Process method</th>-->
-        <!--                                    <th class="none">Taste method</th>-->
-        <!--                                    <th class="all" data-priority="1" id="deleteHeader">Delete</th>-->
-        <!--                                    <th class="none">Flavours</th>-->
-        <!--                                    <th class="none">Notes</th>-->
-        <!--                                    <th class="none"></th>-->
 
-        <!--                                </tr>-->
-        <!--                                </thead>-->
-        <!--                                <tbody>-->
-        <!--                                <tr th:each="wine : ${wines}">-->
-        <!--                                    &lt;!&ndash;/*@thymesVar id="date" type=""*/&ndash;&gt;-->
-        <!--                                    <td th:text="${wine.wineName}"></td>-->
-        <!--                                    <td th:text="${wine.date}"></td>-->
-        <!--                                    <td th:text="${wine.wineHouse}"></td>-->
-        <!--                                    <td th:text="${wine.wineYear}"></td>-->
-        <!--                                    <td th:text="${wine.wineColor}"></td>-->
-        <!--                                    <td th:text="${wine.grapeType}"></td>-->
-        <!--                                    <td th:text="${wine.processingMethod}"></td>-->
-        <!--                                    <td th:text="${wine.tastingMethod}"></td>-->
-        <!--                                    <td id="deleteButton"><a th:href="@{/winewheel/delete/{id}(id=${wine.id})}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>-->
-        <!--                                    &lt;!&ndash;TODO: details in nieuw scherm met edit mogelijkheden&ndash;&gt;-->
-
-        <!--                                    <td th:text="${wine.getFlavorString()}"></td>-->
-        <!--                                    <td th:text="${wine.userNotes}"></td>-->
-        <!--                                    <td><div class="coffeephotowrapper">-->
-        <!--                                        <img  th:src="${wine.getImageString()}"/>-->
-
-        <!--                                    </div>-->
-        <!--                                    </td>-->
-        <!--                                </tr>-->
-        <!--                                </tbody>-->
-        <!--                            </table>-->
-        <!--                        </div>-->
-        <!--                    </div>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
     </div>
 </div>
 <script th:src="@{./js/TeaWheel.js}"></script>
@@ -290,24 +227,6 @@
         location.reload();
     });
 </script>
-<!--<script>-->
-<!--    $(document).ready(function() {-->
-<!--        $('#wine_table').DataTable( {-->
-<!--            responsive: {-->
-<!--                details: {-->
-<!--                    display: $.fn.dataTable.Responsive.display.modal( {-->
-<!--                        header: function ( row ) {-->
-<!--                            var data = row.data();-->
-<!--                            return data[0];-->
-<!--                        }-->
-<!--                    } ),-->
-<!--                    renderer: $.fn.dataTable.Responsive.renderer.tableAll()-->
-<!--                }-->
-<!--            }-->
-<!--        } );-->
-<!--        $('#wine_table').show(); // laat de tabel pas zien als ie gerenderd is.-->
-<!--    } );-->
-<!--</script>-->
 </body>
 
 </html>

@@ -1,551 +1,1111 @@
-let selectedFlavors = [];
-var innerRadii = [50, 80, 145];
-var outerRadii = [80, 145, 200];
-var ringnr = 3;
-var steps = 86;
-var circlex = 230;
-var circley = 230;
-//gedraginstellingen
-var parentSliceAutoSelect = true;		//hogere smaak gaat mee omhoog
-var childSliceAutoDeselect = true;   //subsmaak gaat mee omlaag
-var slowness = 1; //traagheid bij animatie opbouw wiel
-
-var wheelSVG = document.getElementById("svgC");
-
-/*hier gaan we voor elke ring twee groepen maken
-even getallen voor onaangeklikten en oneven voor aangeklikten (met schaduw)
-bij klikken springt een stukje van de Ã©Ã©n naar de ander.
-door de volgorde van de groepen, valt schaduw alleen op een grotere ring	*/
-for (let i = (ringnr * 2); i > 0; i--) {
-    const id = "g" + (i);
-    const newGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-    newGroup.setAttribute("id", (id));
-    //alle oneven groepen krijgen schaduw en verschuiving.
-    if (i % 2 > 0) {
-        newGroup.setAttribute('transform', "scale(1.03), translate(-8,-8)");
-        newGroup.setAttribute("filter", "url(#dropshadow)");
-    }
-    wheelSVG.appendChild(newGroup);
-
-}
-var SVGBackup = wheelSVG.innerHTML; //backup maken om snel het wiel te wissen
-var flavorList =
-    [
-        { ring: 1, fromStep: 0, toStep: 17, color: "#727F39", name: "Plants / herbaceous", id: 22, parentID: 0 },
-
-        { ring: 2, fromStep: 0, toStep: 3, color: "#727F39", name: "Grass", id: 183, parentID: 22 },
-
-        { ring: 3, fromStep: 0, toStep: 1, color: "#727F39", name: "Fresh cut grass", id: 1388, parentID: 183 },
-        { ring: 3, fromStep: 1, toStep: 2, color: "#727F39", name: "Hay", id: 1389, parentID: 183 },
-        { ring: 3, fromStep: 2, toStep: 3, color: "#727F39", name: "Bamboo", id: 1390, parentID: 183 },
-
-        { ring: 2, fromStep: 3, toStep: 10, color: "#939D61", name: "Vegetables", id: 184, parentID: 22 },
-
-        { ring: 3, fromStep: 3, toStep: 4, color: "#939D61", name: "Butternut", id: 1391, parentID: 184 },
-        { ring: 3, fromStep: 4, toStep: 5, color: "#939D61", name: "Spinach", id: 1392, parentID: 184 },
-        { ring: 3, fromStep: 5, toStep: 6, color: "#939D61", name: "Bean sprouts", id: 1393, parentID: 184 },
-        { ring: 3, fromStep: 6, toStep: 7, color: "#939D61", name: "Aspargus", id: 1394, parentID: 184 },
-        { ring: 3, fromStep: 7, toStep: 8, color: "#939D61", name: "Peas", id: 1395, parentID: 184 },
-        { ring: 3, fromStep: 8, toStep: 9, color: "#939D61", name: "Alfalfa", id: 1396, parentID: 184 },
-        { ring: 3, fromStep: 9, toStep: 10, color: "#939D61", name: "Green beans", id: 1397, parentID: 184 },
-
-        { ring: 2, fromStep: 10, toStep: 17, color: "#727F39", name: "Herbs", id: 185, parentID: 22 },
-
-        { ring: 3, fromStep: 10, toStep: 11, color: "#727F39", name: "Basil", id: 1398, parentID: 185 },
-        { ring: 3, fromStep: 11, toStep: 12, color: "#727F39", name: "Parsley", id: 1399, parentID: 185 },
-        { ring: 3, fromStep: 12, toStep: 13, color: "#727F39", name: "Mint", id: 1400, parentID: 185 },
-        { ring: 3, fromStep: 13, toStep: 14, color: "#727F39", name: "Lavender", id: 1401, parentID: 185 },
-        { ring: 3, fromStep: 14, toStep: 15, color: "#727F39", name: "Sage", id: 1402, parentID: 185 },
-        { ring: 3, fromStep: 15, toStep: 16, color: "#727F39", name: "Thyme", id: 1403, parentID: 185 },
-        { ring: 3, fromStep: 16, toStep: 17, color: "#727F39", name: "Fennel", id: 1404, parentID: 185 },
-
-        { ring: 1, fromStep: 17, toStep: 24, color: "#E2B027", name: "Floral", id: 23, parentID: 0 },
-
-        { ring: 2, fromStep: 17, toStep: 20, color: "#E2B027", name: "Summer meadow", id: 186, parentID: 23 },
-
-
-        { ring: 3, fromStep: 17, toStep: 18, color: "#E2B027", name: "Osmanthus", id: 1405, parentID: 186 },
-        { ring: 3, fromStep: 18, toStep: 19, color: "#E2B027", name: "Jasmine", id: 1406, parentID: 186 },
-        { ring: 3, fromStep: 19, toStep: 20, color: "#E2B027", name: "Chrysantemum", id: 1407, parentID: 186 },
-
-        { ring: 2, fromStep: 20, toStep: 24, color: "#EFD051", name: "Garden flowers", id: 187, parentID: 23 },
-
-        { ring: 3, fromStep: 20, toStep: 21, color: "#EFD051", name: "Rose", id: 1408, parentID: 187 },
-        { ring: 3, fromStep: 21, toStep: 22, color: "#EFD051", name: "Peony", id: 1409, parentID: 187 },
-        { ring: 3, fromStep: 22, toStep: 23, color: "#EFD051", name: "Honeysuckle", id: 1410, parentID: 187 },
-        { ring: 3, fromStep: 23, toStep: 24, color: "#EFD051", name: "Gardenia", id: 1411, parentID: 187 },
-
-        { ring: 1, fromStep: 24, toStep: 29, color: "#977334", name: "Nutty / milky", id: 24, parentID: 0 },
-
-        { ring: 2, fromStep: 24, toStep: 29, color: "#977334", name: "", id: 188, parentID: 24 },
-
-        { ring: 3, fromStep: 24, toStep: 25, color: "#977334", name: "Creamy", id: 1412, parentID: 188 },
-        { ring: 3, fromStep: 25, toStep: 26, color: "#977334", name: "Fresh butter", id: 1413, parentID: 188 },
-        { ring: 3, fromStep: 26, toStep: 27, color: "#977334", name: "Almond", id: 1414, parentID: 188 },
-        { ring: 3, fromStep: 27, toStep: 28, color: "#977334", name: "Chestnut", id: 1415, parentID: 188 },
-        { ring: 3, fromStep: 28, toStep: 29, color: "#977334", name: "Roasted nuts", id: 1416, parentID: 188 },
-
-        { ring: 1, fromStep: 29, toStep: 36, color: "#7A74AC", name: "Sweet", id: 25, parentID: 0 },
-
-        { ring: 2, fromStep: 29, toStep: 36, color: "#7A74AC", name: "", id: 189, parentID: 25 },
-
-        { ring: 3, fromStep: 29, toStep: 30, color: "#7A74AC", name: "Malt", id: 1417, parentID: 189 },
-        { ring: 3, fromStep: 30, toStep: 31, color: "#7A74AC", name: "Honey/beewax", id: 1418, parentID: 189 },
-        { ring: 3, fromStep: 31, toStep: 32, color: "#7A74AC", name: "Caramel", id: 1419, parentID: 189 },
-        { ring: 3, fromStep: 32, toStep: 33, color: "#7A74AC", name: "Syrup", id: 1420, parentID: 189 },
-        { ring: 3, fromStep: 33, toStep: 34, color: "#7A74AC", name: "Toffee", id: 1421, parentID: 189 },
-        { ring: 3, fromStep: 34, toStep: 35, color: "#7A74AC", name: "Brown sugar", id: 1422, parentID: 189 },
-        { ring: 3, fromStep: 35, toStep: 36, color: "#7A74AC", name: "Vanilla", id: 1423, parentID: 189 },
-
-        { ring: 1, fromStep: 36, toStep: 41, color: "#AA604A", name: "Fire / animal", id: 26, parentID: 0 },
-
-        { ring: 2, fromStep: 36, toStep: 41, color: "#AA604A", name: "", id: 190, parentID: 26 },
-
-        { ring: 3, fromStep: 36, toStep: 37, color: "#AA604A", name: "Stable", id: 1424, parentID: 190 },
-        { ring: 3, fromStep: 37, toStep: 38, color: "#AA604A", name: "Toast", id: 1425, parentID: 190 },
-        { ring: 3, fromStep: 38, toStep: 39, color: "#AA604A", name: "Smoke", id: 1426, parentID: 190 },
-        { ring: 3, fromStep: 39, toStep: 40, color: "#AA604A", name: "Tobacco", id: 1427, parentID: 190 },
-        { ring: 3, fromStep: 40, toStep: 41, color: "#AA604A", name: "Leather", id: 1428, parentID: 190 },
-
-        { ring: 1, fromStep: 41, toStep: 49, color: "#D48E45", name: "Spicy", id: 27, parentID: 0 },
-
-        { ring: 2, fromStep: 41, toStep: 49, color: "#D48E45", name: "Hot / cooling", id: 191, parentID: 27 },
-
-        { ring: 3, fromStep: 41, toStep: 42, color: "#D48E45", name: "Cinnamon", id: 1429, parentID: 191 },
-        { ring: 3, fromStep: 42, toStep: 43, color: "#D48E45", name: "Nutmeg", id: 1430, parentID: 191 },
-        { ring: 3, fromStep: 43, toStep: 44, color: "#D48E45", name: "Pepper", id: 1431, parentID: 191 },
-        { ring: 3, fromStep: 44, toStep: 45, color: "#D48E45", name: "Clove", id: 1432, parentID: 191 },
-        { ring: 3, fromStep: 45, toStep: 46, color: "#D48E45", name: "Cardamom", id: 1333, parentID: 191 },
-        { ring: 3, fromStep: 46, toStep: 47, color: "#D48E45", name: "Licorice", id: 1334, parentID: 191 },
-        { ring: 3, fromStep: 47, toStep: 48, color: "#D48E45", name: "Star anise", id: 1335, parentID: 191 },
-        { ring: 3, fromStep: 48, toStep: 49, color: "#D48E45", name: "Ginger", id: 1336, parentID: 191 },
-
-        { ring: 1, fromStep: 49, toStep: 68, color: "#8A5372", name: "Fresh / candied fruit", id: 28, parentID: 0 },
-
-        { ring: 2, fromStep: 49, toStep: 53, color: "#8A5372", name: "Tropical", id: 192, parentID: 28 },
-
-        { ring: 3, fromStep: 49, toStep: 50, color: "#8A5372", name: "Pineapple", id: 1337, parentID: 192 },
-        { ring: 3, fromStep: 50, toStep: 51, color: "#8A5372", name: "Banana", id: 1338, parentID: 192 },
-        { ring: 3, fromStep: 51, toStep: 52, color: "#8A5372", name: "Melon", id: 1339, parentID: 192 },
-        { ring: 3, fromStep: 52, toStep: 53, color: "#8A5372", name: "Mango", id: 1340, parentID: 192 },
-
-        { ring: 2, fromStep: 53, toStep: 59, color: "#AB849D", name: "Stone and vine fruit", id: 193, parentID: 28 },
-
-        { ring: 3, fromStep: 53, toStep: 54, color: "#AB849D", name: "Apple", id: 1341, parentID: 193 },
-        { ring: 3, fromStep: 54, toStep: 55, color: "#AB849D", name: "Apricot", id: 1342, parentID: 193 },
-        { ring: 3, fromStep: 55, toStep: 56, color: "#AB849D", name: "Pear", id: 1343, parentID: 193 },
-        { ring: 3, fromStep: 56, toStep: 57, color: "#AB849D", name: "Peach", id: 1344, parentID: 193 },
-        { ring: 3, fromStep: 57, toStep: 58, color: "#AB849D", name: "Grape", id: 1345, parentID: 193 },
-        { ring: 3, fromStep: 58, toStep: 59, color: "#AB849D", name: "Muscatel", id: 1346, parentID: 193 },
-
-
-
-        { ring: 2, fromStep: 59, toStep: 64, color: "#8A5372", name: "Citrus", id: 194, parentID: 28 },
-
-        { ring: 3, fromStep: 59, toStep: 60, color: "#8A5372", name: "Mandarine", id: 1347, parentID: 194 },
-        { ring: 3, fromStep: 60, toStep: 61, color: "#8A5372", name: "Orange", id: 1348, parentID: 194 },
-        { ring: 3, fromStep: 61, toStep: 62, color: "#8A5372", name: "Lemon", id: 1349, parentID: 194 },
-        { ring: 3, fromStep: 62, toStep: 63, color: "#8A5372", name: "Bergamot", id: 1450, parentID: 194 },
-        { ring: 3, fromStep: 63, toStep: 64, color: "#8A5372", name: "Lime", id: 1451, parentID: 194 },
-
-        { ring: 2, fromStep: 64, toStep: 68, color: "#AB849D", name: "Berry", id: 195, parentID: 28 },
-
-        { ring: 3, fromStep: 64, toStep: 65, color: "#AB849D", name: "Blueberry", id: 1452, parentID: 195 },
-        { ring: 3, fromStep: 65, toStep: 66, color: "#AB849D", name: "Raspberry", id: 1453, parentID: 195 },
-        { ring: 3, fromStep: 66, toStep: 67, color: "#AB849D", name: "Strawberry", id: 144, parentID: 195 },
-        { ring: 3, fromStep: 67, toStep: 68, color: "#AB849D", name: "Blackcurrant", id: 1455, parentID: 195 },
-
-
-        { ring: 1, fromStep: 68, toStep: 71, color: "#6D99CD", name: "", id: 29, parentID: 0 },
-
-        { ring: 2, fromStep: 68, toStep: 71, color: "#6D99CD", name: "Marine", id: 196, parentID: 29 },
-
-        { ring: 3, fromStep: 68, toStep: 69, color: "#6D99CD", name: "Seaweed / fish", id: 1456, parentID: 196 },
-        { ring: 3, fromStep: 69, toStep: 70, color: "#6D99CD", name: "Oyster / shrimps", id: 1457, parentID: 196 },
-        { ring: 3, fromStep: 70, toStep: 71, color: "#6D99CD", name: "Seasalt", id: 1458, parentID: 196 },
-
-        { ring: 1, fromStep: 71, toStep: 74, color: "#878C8D", name: "", id: 30, parentID: 0 },
-
-        { ring: 2, fromStep: 71, toStep: 74, color: "#878C8D", name: "Mineral", id: 197, parentID: 30 },
-
-
-        { ring: 3, fromStep: 71, toStep: 72, color: "#878C8D", name: "Volcanic", id: 1459, parentID: 197 },
-        { ring: 3, fromStep: 72, toStep: 73, color: "#878C8D", name: "Chalk", id: 1460, parentID: 197 },
-        { ring: 3, fromStep: 73, toStep: 74, color: "#878C8D", name: "Granite", id: 1461, parentID: 197 },
-
-        { ring: 1, fromStep: 74, toStep: 86, color: "#706456", name: "Earthy", id: 31, parentID: 0 },
-
-
-        { ring: 2, fromStep: 74, toStep: 79, color: "#706456", name: "Forest", id: 198, parentID: 31 },
-
-        { ring: 3, fromStep: 74, toStep: 75, color: "#706456", name: "Forest floor", id: 1462, parentID: 198 },
-        { ring: 3, fromStep: 75, toStep: 76, color: "#706456", name: "Musty / humus", id: 1463, parentID: 198 },
-        { ring: 3, fromStep: 76, toStep: 77, color: "#706456", name: "Moss / care", id: 1464, parentID: 198 },
-        { ring: 3, fromStep: 77, toStep: 78, color: "#706456", name: "Compost", id: 1465, parentID: 198 },
-        { ring: 3, fromStep: 78, toStep: 79, color: "#706456", name: "Wet leaves", id: 1466, parentID: 198 },
-
-        { ring: 2, fromStep: 79, toStep: 86, color: "#8E8477", name: "Wood", id: 199, parentID: 31 },
-
-        { ring: 3, fromStep: 79, toStep: 80, color: "#8E8477", name: "Pine", id: 1467, parentID: 199 },
-        { ring: 3, fromStep: 80, toStep: 81, color: "#8E8477", name: "Wet wood", id: 1468, parentID: 199 },
-        { ring: 3, fromStep: 81, toStep: 82, color: "#8E8477", name: "Sawdust", id: 1469, parentID: 199 },
-        { ring: 3, fromStep: 82, toStep: 83, color: "#8E8477", name: "Cedar", id: 1470, parentID: 199 },
-        { ring: 3, fromStep: 83, toStep: 84, color: "#8E8477", name: "Oak", id: 1471, parentID: 199 },
-        { ring: 3, fromStep: 84, toStep: 85, color: "#8E8477", name: "Mahogany", id: 1472, parentID: 199 },
-        { ring: 3, fromStep: 85, toStep: 86, color: "#8E8477", name: "Eucalypt", id: 1473, parentID: 199 },
-
-
-        // { ring: 2, fromStep: 90, toStep: 92, color: "#D37228", name: "General Aging", id: 23, parentID: 3 },
-        // { ring: 3, fromStep: 86, toStep: 87, color: "#F1C192", name: "Dried Fruit", id: 125, parentID: 23 },
-        // { ring: 3, fromStep: 87, toStep: 88, color: "#F1C192", name: "Nuts", id: 126, parentID: 23 },
-        // { ring: 3, fromStep: 88, toStep: 89, color: "#F1C192", name: "Tobacco", id: 127, parentID: 23 },
-        // { ring: 3, fromStep: 89, toStep: 90, color: "#F1C192", name: "Coffee", id: 128, parentID: 23 },
-        // { ring: 3, fromStep: 90, toStep: 91, color: "#F1C192", name: "Cocoa", id: 129, parentID: 23 },
-        // { ring: 3, fromStep: 91, toStep: 92, color: "#F1C192", name: "Leather", id: 130, parentID: 23 },
-        // { ring: 2, fromStep: 92, toStep: 94, color: "#B36D5F", name: "TCA (Corked)", id: 24, parentID: 4 },
-        // { ring: 3, fromStep: 92, toStep: 93, color: "#E4BDB1", name: "Musty Cardboard", id: 131, parentID: 24 },
-        // { ring: 3, fromStep: 93, toStep: 94, color: "#E4BDB1", name: "Wet Dog", id: 132, parentID: 24 },
-        // { ring: 2, fromStep: 94, toStep: 101, color: "#BA5B33", name: "Sulfid & Mercaptans", id: 25, parentID: 4 },
-        // { ring: 3, fromStep: 94, toStep: 95, color: "#E6B396", name: "Cured Meat", id: 133, parentID: 25 },
-        // { ring: 3, fromStep: 95, toStep: 96, color: "#E6B396", name: "Boiled Eggs", id: 134, parentID: 25 },
-        // { ring: 3, fromStep: 96, toStep: 97, color: "#E6B396", name: "Burnt Rubber", id: 135, parentID: 25 },
-        // { ring: 3, fromStep: 97, toStep: 98, color: "#E6B396", name: "Match Box", id: 136, parentID: 25 },
-        // { ring: 3, fromStep: 98, toStep: 99, color: "#E6B396", name: "Garlic", id: 137, parentID: 25 },
-        // { ring: 3, fromStep: 99, toStep: 100, color: "#E6B396", name: "Onion", id: 138, parentID: 25 },
-        // { ring: 3, fromStep: 100, toStep: 101, color: "#E6B396", name: "Cat Pee", id: 139, parentID: 25 },
-        // { ring: 2, fromStep: 101, toStep: 105, color: "#A5383D", name: "Brettanomyces", id: 26, parentID: 4 },
-        // { ring: 3, fromStep: 101, toStep: 102, color: "#DEA39B", name: "Black Cardamon", id: 140, parentID: 26 },
-        // { ring: 3, fromStep: 102, toStep: 103, color: "#DEA39B", name: "Band-Aid", id: 141, parentID: 26 },
-        // { ring: 3, fromStep: 103, toStep: 104, color: "#DEA39B", name: "Sweaty Leather Saddle", id: 142, parentID: 26 },
-        // { ring: 3, fromStep: 104, toStep: 105, color: "#DEA39B", name: "Horse Manure", id: 143, parentID: 26 },
-        // { ring: 2, fromStep: 105, toStep: 107, color: "#A81D64", name: "Cooked", id: 27, parentID: 4 },
-        // { ring: 3, fromStep: 105, toStep: 106, color: "#D798AF", name: "Stewed Fruit", id: 144, parentID: 27 },
-        // { ring: 3, fromStep: 106, toStep: 107, color: "#D798AF", name: "Toffee", id: 145, parentID: 27 },
-        // { ring: 2, fromStep: 107, toStep: 109, color: "#87338C", name: "Volatile Acidity", id: 28, parentID: 4 },
-        // { ring: 3, fromStep: 107, toStep: 108, color: "#C99EC7", name: "Balsamic", id: 146, parentID: 28 },
-        // { ring: 3, fromStep: 108, toStep: 109, color: "#C99EC7", name: "Vinegar", id: 147, parentID: 28 },
-    ];
-
-//Teken het wiel, door voor elke flavor drawSlice() aan te roepen.
-const drawWheel = () => flavorList.map(flavor => drawSlice(flavor));
-
-// function drawWheel() {
-//     for (let i = 0; i < flavorList.length; i++) {
-//         if (slowness > 0) { //langzaam opbouwen
-//             var testa = setTimeout(function () {
-//                 drawSlice(flavorList[i].ring,
-//                     flavorList[i].fromStep, flavorList[i].toStep, flavorList[i].color,
-//                     flavorList[i].name, flavorList[i].id);
-//             }, (slowness * i));
-//         } else {
-//             drawSlice(flavorList[i].ring,
-//                 flavorList[i].fromStep, flavorList[i].toStep, flavorList[i].color,
-//                 flavorList[i].name, flavorList[i].id);
-//         }
-//     }
-// }
-
-//Teken de slice
-var drawSlice = ({ ring, fromStep, toStep, color, name, id }) => {
-    //benoem in Ã©Ã©n keer 6 variabelen, uit de flavor te halen
-    //name = name.toUpperCase();
-
-    //Straal en hoeken bepalen.
-    var innerRadius = innerRadii[ring - 1];			//straal van binnenste boog
-    var outerRadius = outerRadii[ring - 1];			//straal van buitenste boog
-    var Angle1 = (fromStep / steps) * 2 * Math.PI;	//hoek waar de slice begint
-    var Angle2 = (toStep / steps) * 2 * Math.PI;		//hoek waar de slice eindigt
-
-    //Elke slice heeft 4 punten/hoeken, dus 4 x,y coordinaten.
-    var x1 = (circlex + (Math.sin(Angle1) * innerRadius));
-    var y1 = (circley - (Math.cos(Angle1) * innerRadius));
-    var x2 = (circlex + (Math.sin(Angle1) * outerRadius));
-    var y2 = (circley - (Math.cos(Angle1) * outerRadius));
-    var x3 = (circlex + (Math.sin(Angle2) * outerRadius));
-    var y3 = (circley - (Math.cos(Angle2) * outerRadius));
-    var x4 = (circlex + (Math.sin(Angle2) * innerRadius));
-    var y4 = (circley - (Math.cos(Angle2) * innerRadius));
-
-    //DE SVGCODE VOOR HET TEKENEN
-    //1. ga naar punt 1 - M=move
-    //2. trek vanaf daar een rechte lijn naar punt 2 - L=line
-    //3. teken vanaf daar een grote boog naar punt 3 - A=arch
-    //4. teken vanaf daar een rechte lijn naar punt 4 - L
-    //5. teken vanaf daar een kleine boog terug naar punt 1 - A
-    var pathString =
-        "M" + x1 + " " + y1 +																						//1
-        "L " + x2 + " " + y2 +																								//2
-        "A" + outerRadius + " " + outerRadius + " 1 0 1 " + x3 + " " + y3 +	//3
-        "L" + x4 + " " + y4 +																									//4
-        "A" + innerRadius + " " + innerRadius + " 0 0 0 " + x1 + " " + y1;	//5
-
-    //hier wordt het tekeningetje van de slice in elkaar gezet
-    var newPath = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-    newPath.setAttribute("d", pathString);
-
-    //HET MAKEN EN PLAATSEN VAN DE TEKST VAN DE NAMEN.
-    //de tekst voor in de ringen word in verschillende stapppen gemaakt:
-    //1. maak een elemeent met de text van de flavor
-    var newText = document.createElementNS("http://www.w3.org/2000/svg", 'text');
-    //2. zet de x en de y eerst het in het midden van het wiel
-    newText.setAttribute("x", circlex);
-    newText.setAttribute("y", circley);
-
-    newText.setAttribute("alignment-baseline", "middle");
-
-    //3. bepaal de hoek van de tekst
-    //er wordt (ongeveer) 90 graden vanaf getrokken, omdat de tekst
-    //natuurlijk eerst horizontaal staat, dus al 90 graden gedraaid.
-    var angle = (((fromStep + toStep) / steps) * 180) - 90;
-    let textAngle = angle;
-    //4. kleine correctie voor de tekst die voorbij het onderste punt komt.
-    if (angle > 90) {
-        textAngle = angle - (0.2);
-    }
-
-    //5. Bepaal hoever de teks van het midden moet staan.
-
-    //6. maak een string waarin de transformaties uit de vorige stappen staan
-    var transformString = "rotate(" + textAngle + " " + circlex + " " + circley + "),";
-    //transformString += "translate("+textX+")";
-    //7. in de binnenste ring moet de tekst dwars staan, dus meer berekenigen
-    if (ring == 1) {
-        //8. verder van het midden af
-        let textX = ((innerRadius + outerRadius) / 1.82)
-        let textXCorrection = 0;
-        transformString += "translate(" + textX + ")";
-
-        //9. in de onderste helft moet alles een kwartslag terug
-        if (angle > 0 && angle < 180) {
-            transformString += "rotate(-90 " + circlex + " " + circley + ")";
-            textXCorrection = -5.5
+var _0x48cf = ['sqrt', 'flavorsTea', 'value', 'push', 'parentNode', 'replace', 'find', 'parentID', 'filter', 'name', 'includes', 'svgC', 'createElementNS', 'http://www.w3.org/2000/svg', 'setAttribute', 'transform', 'scale(1.03),\x20translate(-8,-8)', 'url(#dropshadow)', 'appendChild', 'innerHTML', '#727F39', 'Plants\x20/\x20herbaceous', 'Grass', 'Fresh\x20cut\x20grass', 'Bamboo', '#939D61', 'Vegetables', 'Butternut', 'Spinach', 'Bean\x20sprouts', 'Aspargus', 'Peas', 'Alfalfa', 'Green\x20beans', 'Basil', 'Parsley', 'Lavender', 'Sage', 'Thyme', '#E2B027', 'Summer\x20meadow', 'Osmanthus', 'Jasmine', 'Chrysantemum', '#EFD051', 'Garden\x20flowers', 'Rose', 'Peony', 'Honeysuckle', 'Gardenia', '#977334', 'Nutty\x20/\x20milky', 'Creamy', 'Fresh\x20butter', 'Almond', 'Chestnut', '#7A74AC', 'Sweet', 'Honey/beewax', 'Caramel', 'Syrup', 'Toffee', 'Brown\x20sugar', 'Vanilla', '#AA604A', 'Fire\x20/\x20animal', 'Stable', 'Toast', 'Smoke', 'Tobacco', 'Leather', '#D48E45', 'Spicy', 'Hot\x20/\x20cooling', 'Cinnamon', 'Nutmeg', 'Clove', 'Cardamom', 'Star\x20anise', 'Ginger', 'Fresh\x20/\x20candied\x20fruit', 'Tropical', '#8A5372', 'Pineapple', 'Melon', 'Mango', '#AB849D', 'Stone\x20and\x20vine\x20fruit', 'Apple', 'Apricot', 'Pear', 'Peach', 'Grape', 'Citrus', 'Mandarine', 'Orange', 'Lemon', 'Bergamot', 'Lime', 'Berry', 'Blueberry', 'Raspberry', 'Strawberry', 'Blackcurrant', '#6D99CD', 'Oyster\x20/\x20shrimps', 'Seasalt', '#878C8D', 'Volcanic', 'Chalk', 'Granite', '#706456', 'Earthy', 'Forest', 'Musty\x20/\x20humus', 'Moss\x20/\x20care', 'Compost', 'Wood', 'Pine', '#8E8477', 'Wet\x20wood', 'Sawdust', 'Cedar', 'Oak', 'Mahogany', 'Eucalypt', 'map', 'sin', 'cos', '\x201\x200\x201\x20', '\x200\x200\x200\x20', 'path', 'text', 'middle', 'rotate(', 'translate(', 'rotate(90\x20', 'text-anchor', 'indexOf', 'substring', 'lengt', 'tspan', 'rotate(180\x20', 'end', 'style', 'strokeWidth', 'white', 'black', '0.3px', 'fill', 'stroke', 'onclick', 'clickAction(this)', '0.5px', 'getElementById'];
+(function (_0x4ffcf6, _0x1c0a95) {
+    var _0x47a348 = function (_0x294907) {
+        while (--_0x294907) {
+            _0x4ffcf6['push'](_0x4ffcf6['shift']());
         }
-        //10. in de bovenste helft moet alles een kwartslag verder
-        if (angle > 180 || angle < 0) {
-            transformString += "rotate(90 " + circlex + " " + circley + ")";
-            //	transformString += "translate(1)";
-        }
-        //11. de tekst moet in het midden worden uitgelijnd.
-        newText.setAttribute("text-anchor", "middle");
-        //12. Kijk of er een "/" in de naam staat.
-        let division = name.indexOf("/");
-        if (division == -1) {
-            newText.innerHTML = name;
-        }
-        //13. Zo ja, breek hem af.
-        else {
-            let namepart1 = name.substring(0, division + 1);
-            let namepart2 = name.substring(division + 1, name.lengt);
-            //14. Zet eerst het eerste deel neer
-            let newSpan1 = document.createElementNS("http://www.w3.org/2000/svg", 'tspan');
-            newSpan1.innerHTML = namepart1;
-            newSpan1.setAttribute("x", circlex);
-            newSpan1.setAttribute("dy", textXCorrection);
-            newText.appendChild(newSpan1);
-            //newText.innerHTML = namepart1;
-            //15. maak dan een apart vakje onder het eerste deel voor het tweede.
-            let newSpan2 = document.createElementNS("http://www.w3.org/2000/svg", 'tspan');
-            newSpan2.innerHTML = namepart2;
-            newSpan2.setAttribute("x", circlex);
-            newSpan2.setAttribute("dy", "6");
-            newText.appendChild(newSpan2);
-        }
-    }
-    //15. in andere ringen moet sommige tekst ook rechtopgedraaid worden
-    else {
-        let textX = outerRadius - 3
-        transformString += "translate(" + textX + ")";
-        //16. voorbij het onderste punt? dan op zijn kop zetten en
-        //rechts uitlijnen in plaat van links
-        if (angle > 90) {
-            //newText.setAttribute("text-anchor", "start");
-            let textX = outerRadius - 5
-
-            transformString += "rotate(180 " + circlex + " " + circley + ")";
-        }
-        else {
-            newText.setAttribute("text-anchor", "end");
-
-        }
-        newText.innerHTML = name;
-    }
-
-    //17. de transformatie toepassen. Lijndikte en kleur bepalen.
-    newText.setAttribute('transform', transformString);
-
-    newText.style.strokeWidth = "0px"; // geen lijn om tekst
-    let lineAndTextColor = "white";
-    if (isColorLight(color)) {
-        lineAndTextColor = "black";
-        newText.style.strokeWidth = "0.3px";
-    }
-    newText.style.fill = lineAndTextColor;
-    newText.style.stroke = lineAndTextColor;
-
-    //18. de Slice maken: maak de nieuwe groep aan met de id van de flavor
-    var newGroup = document.createElementNS("http://www.w3.org/2000/svg", 'g');
-    newGroup.setAttribute("id", ("" + id));
-    newGroup.setAttribute("class", "slice");
-    newGroup.setAttribute("onclick", "clickAction(this)");
-    newGroup.style.stroke = "white";
-    newGroup.style.fill = color;
-    newPath.style.strokeWidth = "0.5px";
-    //19. zet de tekening en de tekst in deze groep
-    newGroup.appendChild(newPath);
-    newGroup.appendChild(newText);
-
-    //20. Zet die groep vervolgens in de juiste ringgroep.
-    var parentGroupID = ("g" + (ring * 2));
-    document.getElementById(parentGroupID).appendChild(newGroup);
-}
-
-//Bepaal of een kleur licht is (zodat witte letters er niet op te lezen zijn)
-//naar voorbeeld: https://awik.io/determine-color-bright-dark-using-javascript/
-const isColorLight = (color) => {
-    let r = parseInt(color.substring(1, 3), 16);
-    let g = parseInt(color.substring(3, 5), 16);
-    let b = parseInt(color.substring(5, 7), 16);
-    hsp = Math.sqrt(
-        0.299 * (r * r) +
-        0.587 * (g * g) +
-        0.114 * (b * b)
-    );
-    return (hsp > 210);
-}
-
-//Klikactie voor een slice: moet ie geselecteerd worden of geDEselecteerd?
-const clickAction = (slice) => {
-    (isSelected(slice)) ? deselectSlice(slice) : selectSlice(slice);
-    //document.getElementById("userNotes").innerText = getSelectedFlavorString();
-    document.getElementById("flavorsTea").value = (getSelectedFlavorIds());
-}
-
-//selecteren van een slice = in een group plaatsen met hoger nummer
-const selectSlice = (slice) => {
-    if (!isSelected(slice)) {
-        document.getElementById(getHigherGroupId(slice)).appendChild(slice);
-        selectedFlavors.push(getFlavor(slice));
-        //Heeft ie een parent? en staat de optie op true, dan ook selecteren:
-        if (getGroupNumber(slice) > 2 && parentSliceAutoSelect) {
-            selectSlice(getParentSlice(slice));
-        }
-    }
-}
-
-//Deselecteren van een slice = in een group plaatsen met lager nummer
-const deselectSlice = (slice) => {
-    document.getElementById(getLowerGroupId(slice)).appendChild(slice);
-    deselectFlavor(getFlavor(slice));
-    //staat de optie aan om children ook te Deselecteren, doe die dan ook.
-    if (childSliceAutoDeselect) {
-        getSelectedChildrenSlices(slice).map((ChildSlice) => deselectSlice(ChildSlice));
-    }
-}
-
-//backup HTML in SVG terugzetten = leegmaken en dan opnieuw tekenen
-const resetWheel = () => {
-    wheelSVG.innerHTML = SVGBackup;
-    drawWheel();
-}
-
-//het nummer van de groep. Ze heten "g1", "g2", etc, dus hak de "g" eraf.
-const getGroupNumber = (slice) => parseInt((slice.parentNode.id).replace("g", ""));
-
-//Het id van een groep hoger. g2=g1, etc
-const getHigherGroupId = (slice) => `g${getGroupNumber(slice) - 1}`;
-
-//Het id van een groep lager. g1=g2, etc
-const getLowerGroupId = (slice) => `g${getGroupNumber(slice) + 1}`;
-
-//is deze geselecteerd? dat ziet ie door een oneven groepnummer
-const isSelected = (slice) => getGroupNumber(slice) % 2 > 0;
-
-//zoekt in flavorList naar ID van de parentSlice
-const getParentSliceID = (sliceID) => {
-    return (flavorList.find((listpart) =>
-        listpart.id == sliceID
-    ).parentID);
-}
-
-//Zoek het daadwerkelijke element van de parent.
-const getParentSlice = (slice) => document.getElementById(getParentSliceID(slice.id));
-
-//haal flavor uit lijst met geselecteerde flavors
-const deselectFlavor = (deselectedFlavor) => {
-    selectedFlavors = selectedFlavors.filter((flavor) => flavor != deselectedFlavor);
-}
-
-//geef flavor van een slice
-const getFlavor = (slice) => {
-    return (flavorList.find((flavor) => flavor.id == slice.id));
-}
-
-//geef de ID-nummers van de geselecteerde flavors
-const getSelectedFlavorIds = () => {
-    return (selectedFlavors.map((flavor) => flavor.id));
-}
-
-//geef de parentID-nummers van de geselecteerde flavors
-const getSelectedFlavorParentIds = () => {
-    return (selectedFlavors.map((flavor) => flavor.parentID));
-}
-
-//geef de namen van de geselecteerde flavors
-const getSelectedFlavorNames = () => {
-    return (selectedFlavors.map((flavor) => flavor.name));
-}
-
-//Geef de parentflavor
-const getParentFlavor = (childFlavor) => {
-    return flavorList.find((flavor) => flavor.id == childFlavor.parentID);
-}
-
-//geef geselecteerde "babies" = flavors met op dit moment geen geselecteerde children
-const getSelectedFlavorBabies = () => {
-    return (selectedFlavors.filter((flavor) => !(getSelectedFlavorParentIds().includes(flavor.id))));
-}
-
-//geef een string met alle namen van geselecteerde flavors
-//wordt misschein later gebruikt om ergens in het formulier te laten zien.
-const getSelectedFlavorString = () => {
-    let result = "";
-    getSelectedFlavorBabies().map((flavor) => {
-        (result == "") ? result += flavor.name : result += ", " + flavor.name;
-    });
-    return result;
-}
-
-//Geeft voor een gegeven flavor een string met zijn voorouders
-//in "familieopmaak", bijvoorbeeld voor berry 'Fruity->Berry'
-const getFlavorFamily = (flavor) => {
-    let result = flavor.name;
-    if (flavor.parentID != '0') {
-        let temp = result;
-        result = getFlavorFamily(getParentFlavor(flavor)) + "->" + temp;
-    }
-    return result;
-}
-
-//geef een string met alle namen van geselecteerde flavors in "familieopmaak"
-//wordt misschein later gebruikt om ergens in het formulier te laten zien.
-const getSelectedFlavorStringLong = () => {
-    return getSelectedFlavorBabies().map((flavor) => getFlavorFamily(flavor));
-}
-
-//Onderstaande functie krijgt een slice mee en geeft een lijst terug met
-//de children van deze slice die geselecteerd zijn. Dat gaat zo:
-//1. neem de flavorList en filter daar alleen de flavors uit die
-//onder deze vallen (ParentID == sliceid).
-//2. neem daarvan niet de hele flavor, maar de id
-//3. zoek de daadwerkelijke elementen met die id.
-//4. filter alleen de elementen die geselecteerd zijn.
-const getSelectedChildrenSlices = (slice) => {
-    return flavorList.filter((flavor) => flavor.parentID == slice.id) 	//1
-        .map((flavor) => flavor.id)										//2
-        .map((id) => document.getElementById(id))					//3
-        .filter((element) => isSelected(element));				//4
+    };
+    _0x47a348(++_0x1c0a95);
+}(_0x48cf, 0x141));
+var _0x771e = function (_0x4ffcf6, _0x1c0a95) {
+    _0x4ffcf6 = _0x4ffcf6 - 0x0;
+    var _0x47a348 = _0x48cf[_0x4ffcf6];
+    return _0x47a348;
 };
-
+let selectedFlavors = [];
+var innerRadii = [0x32, 0x50, 0x91];
+var outerRadii = [0x50, 0x91, 0xc8];
+var ringnr = 0x3;
+var steps = 0x56;
+var circlex = 0xe6;
+var circley = 0xe6;
+var parentSliceAutoSelect = !![];
+var childSliceAutoDeselect = !![];
+var slowness = 0x1;
+var wheelSVG = document['getElementById'](_0x771e('0x0'));
+for (let i = ringnr * 0x2; i > 0x0; i--) {
+    const _0x263cc5 = 'g' + i;
+    const _0x4c6611 = document[_0x771e('0x1')](_0x771e('0x2'), 'g');
+    _0x4c6611[_0x771e('0x3')]('id', _0x263cc5);
+    if (i % 0x2 > 0x0) {
+        _0x4c6611[_0x771e('0x3')](_0x771e('0x4'), _0x771e('0x5'));
+        _0x4c6611[_0x771e('0x3')]('filter', _0x771e('0x6'));
+    }
+    wheelSVG[_0x771e('0x7')](_0x4c6611);
+}
+var SVGBackup = wheelSVG[_0x771e('0x8')];
+var flavorList = [{
+    'ring': 0x1,
+    'fromStep': 0x0,
+    'toStep': 0x11,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0xa'),
+    'id': 0x16,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x0,
+    'toStep': 0x3,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0xb'),
+    'id': 0xb7,
+    'parentID': 0x16
+}, {
+    'ring': 0x3,
+    'fromStep': 0x0,
+    'toStep': 0x1,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0xc'),
+    'id': 0x56c,
+    'parentID': 0xb7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1,
+    'toStep': 0x2,
+    'color': _0x771e('0x9'),
+    'name': 'Hay',
+    'id': 0x56d,
+    'parentID': 0xb7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2,
+    'toStep': 0x3,
+    'color': '#727F39',
+    'name': _0x771e('0xd'),
+    'id': 0x56e,
+    'parentID': 0xb7
+}, {
+    'ring': 0x2,
+    'fromStep': 0x3,
+    'toStep': 0xa,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0xf'),
+    'id': 0xb8,
+    'parentID': 0x16
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3,
+    'toStep': 0x4,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x10'),
+    'id': 0x56f,
+    'parentID': 0xb8
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4,
+    'toStep': 0x5,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x11'),
+    'id': 0x570,
+    'parentID': 0xb8
+}, {
+    'ring': 0x3,
+    'fromStep': 0x5,
+    'toStep': 0x6,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x12'),
+    'id': 0x571,
+    'parentID': 0xb8
+}, {
+    'ring': 0x3,
+    'fromStep': 0x6,
+    'toStep': 0x7,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x13'),
+    'id': 0x572,
+    'parentID': 0xb8
+}, {
+    'ring': 0x3,
+    'fromStep': 0x7,
+    'toStep': 0x8,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x14'),
+    'id': 0x573,
+    'parentID': 0xb8
+}, {
+    'ring': 0x3,
+    'fromStep': 0x8,
+    'toStep': 0x9,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x15'),
+    'id': 0x574,
+    'parentID': 0xb8
+}, {
+    'ring': 0x3,
+    'fromStep': 0x9,
+    'toStep': 0xa,
+    'color': _0x771e('0xe'),
+    'name': _0x771e('0x16'),
+    'id': 0x575,
+    'parentID': 0xb8
+}, {
+    'ring': 0x2,
+    'fromStep': 0xa,
+    'toStep': 0x11,
+    'color': '#727F39',
+    'name': 'Herbs',
+    'id': 0xb9,
+    'parentID': 0x16
+}, {
+    'ring': 0x3,
+    'fromStep': 0xa,
+    'toStep': 0xb,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0x17'),
+    'id': 0x576,
+    'parentID': 0xb9
+}, {
+    'ring': 0x3,
+    'fromStep': 0xb,
+    'toStep': 0xc,
+    'color': '#727F39',
+    'name': _0x771e('0x18'),
+    'id': 0x577,
+    'parentID': 0xb9
+}, {
+    'ring': 0x3,
+    'fromStep': 0xc,
+    'toStep': 0xd,
+    'color': _0x771e('0x9'),
+    'name': 'Mint',
+    'id': 0x578,
+    'parentID': 0xb9
+}, {
+    'ring': 0x3,
+    'fromStep': 0xd,
+    'toStep': 0xe,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0x19'),
+    'id': 0x579,
+    'parentID': 0xb9
+}, {
+    'ring': 0x3,
+    'fromStep': 0xe,
+    'toStep': 0xf,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0x1a'),
+    'id': 0x57a,
+    'parentID': 0xb9
+}, {
+    'ring': 0x3,
+    'fromStep': 0xf,
+    'toStep': 0x10,
+    'color': _0x771e('0x9'),
+    'name': _0x771e('0x1b'),
+    'id': 0x57b,
+    'parentID': 0xb9
+}, {
+    'ring': 0x3,
+    'fromStep': 0x10,
+    'toStep': 0x11,
+    'color': '#727F39',
+    'name': 'Fennel',
+    'id': 0x57c,
+    'parentID': 0xb9
+}, {
+    'ring': 0x1,
+    'fromStep': 0x11,
+    'toStep': 0x18,
+    'color': _0x771e('0x1c'),
+    'name': 'Floral',
+    'id': 0x17,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x11,
+    'toStep': 0x14,
+    'color': _0x771e('0x1c'),
+    'name': _0x771e('0x1d'),
+    'id': 0xba,
+    'parentID': 0x17
+}, {
+    'ring': 0x3,
+    'fromStep': 0x11,
+    'toStep': 0x12,
+    'color': _0x771e('0x1c'),
+    'name': _0x771e('0x1e'),
+    'id': 0x57d,
+    'parentID': 0xba
+}, {
+    'ring': 0x3,
+    'fromStep': 0x12,
+    'toStep': 0x13,
+    'color': _0x771e('0x1c'),
+    'name': _0x771e('0x1f'),
+    'id': 0x57e,
+    'parentID': 0xba
+}, {
+    'ring': 0x3,
+    'fromStep': 0x13,
+    'toStep': 0x14,
+    'color': '#E2B027',
+    'name': _0x771e('0x20'),
+    'id': 0x57f,
+    'parentID': 0xba
+}, {
+    'ring': 0x2,
+    'fromStep': 0x14,
+    'toStep': 0x18,
+    'color': _0x771e('0x21'),
+    'name': _0x771e('0x22'),
+    'id': 0xbb,
+    'parentID': 0x17
+}, {
+    'ring': 0x3,
+    'fromStep': 0x14,
+    'toStep': 0x15,
+    'color': '#EFD051',
+    'name': _0x771e('0x23'),
+    'id': 0x580,
+    'parentID': 0xbb
+}, {
+    'ring': 0x3,
+    'fromStep': 0x15,
+    'toStep': 0x16,
+    'color': '#EFD051',
+    'name': _0x771e('0x24'),
+    'id': 0x581,
+    'parentID': 0xbb
+}, {
+    'ring': 0x3,
+    'fromStep': 0x16,
+    'toStep': 0x17,
+    'color': _0x771e('0x21'),
+    'name': _0x771e('0x25'),
+    'id': 0x582,
+    'parentID': 0xbb
+}, {
+    'ring': 0x3,
+    'fromStep': 0x17,
+    'toStep': 0x18,
+    'color': _0x771e('0x21'),
+    'name': _0x771e('0x26'),
+    'id': 0x583,
+    'parentID': 0xbb
+}, {
+    'ring': 0x1,
+    'fromStep': 0x18,
+    'toStep': 0x1d,
+    'color': _0x771e('0x27'),
+    'name': _0x771e('0x28'),
+    'id': 0x18,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x18,
+    'toStep': 0x1d,
+    'color': _0x771e('0x27'),
+    'name': '',
+    'id': 0xbc,
+    'parentID': 0x18
+}, {
+    'ring': 0x3,
+    'fromStep': 0x18,
+    'toStep': 0x19,
+    'color': _0x771e('0x27'),
+    'name': _0x771e('0x29'),
+    'id': 0x584,
+    'parentID': 0xbc
+}, {
+    'ring': 0x3,
+    'fromStep': 0x19,
+    'toStep': 0x1a,
+    'color': _0x771e('0x27'),
+    'name': _0x771e('0x2a'),
+    'id': 0x585,
+    'parentID': 0xbc
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1a,
+    'toStep': 0x1b,
+    'color': _0x771e('0x27'),
+    'name': _0x771e('0x2b'),
+    'id': 0x586,
+    'parentID': 0xbc
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1b,
+    'toStep': 0x1c,
+    'color': '#977334',
+    'name': _0x771e('0x2c'),
+    'id': 0x587,
+    'parentID': 0xbc
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1c,
+    'toStep': 0x1d,
+    'color': _0x771e('0x27'),
+    'name': 'Roasted\x20nuts',
+    'id': 0x588,
+    'parentID': 0xbc
+}, {
+    'ring': 0x1,
+    'fromStep': 0x1d,
+    'toStep': 0x24,
+    'color': _0x771e('0x2d'),
+    'name': _0x771e('0x2e'),
+    'id': 0x19,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x1d,
+    'toStep': 0x24,
+    'color': _0x771e('0x2d'),
+    'name': '',
+    'id': 0xbd,
+    'parentID': 0x19
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1d,
+    'toStep': 0x1e,
+    'color': _0x771e('0x2d'),
+    'name': 'Malt',
+    'id': 0x589,
+    'parentID': 0xbd
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1e,
+    'toStep': 0x1f,
+    'color': _0x771e('0x2d'),
+    'name': _0x771e('0x2f'),
+    'id': 0x58a,
+    'parentID': 0xbd
+}, {
+    'ring': 0x3,
+    'fromStep': 0x1f,
+    'toStep': 0x20,
+    'color': _0x771e('0x2d'),
+    'name': _0x771e('0x30'),
+    'id': 0x58b,
+    'parentID': 0xbd
+}, {
+    'ring': 0x3,
+    'fromStep': 0x20,
+    'toStep': 0x21,
+    'color': '#7A74AC',
+    'name': _0x771e('0x31'),
+    'id': 0x58c,
+    'parentID': 0xbd
+}, {
+    'ring': 0x3,
+    'fromStep': 0x21,
+    'toStep': 0x22,
+    'color': _0x771e('0x2d'),
+    'name': _0x771e('0x32'),
+    'id': 0x58d,
+    'parentID': 0xbd
+}, {
+    'ring': 0x3,
+    'fromStep': 0x22,
+    'toStep': 0x23,
+    'color': _0x771e('0x2d'),
+    'name': _0x771e('0x33'),
+    'id': 0x58e,
+    'parentID': 0xbd
+}, {
+    'ring': 0x3,
+    'fromStep': 0x23,
+    'toStep': 0x24,
+    'color': _0x771e('0x2d'),
+    'name': _0x771e('0x34'),
+    'id': 0x58f,
+    'parentID': 0xbd
+}, {
+    'ring': 0x1,
+    'fromStep': 0x24,
+    'toStep': 0x29,
+    'color': _0x771e('0x35'),
+    'name': _0x771e('0x36'),
+    'id': 0x1a,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x24,
+    'toStep': 0x29,
+    'color': _0x771e('0x35'),
+    'name': '',
+    'id': 0xbe,
+    'parentID': 0x1a
+}, {
+    'ring': 0x3,
+    'fromStep': 0x24,
+    'toStep': 0x25,
+    'color': _0x771e('0x35'),
+    'name': _0x771e('0x37'),
+    'id': 0x590,
+    'parentID': 0xbe
+}, {
+    'ring': 0x3,
+    'fromStep': 0x25,
+    'toStep': 0x26,
+    'color': _0x771e('0x35'),
+    'name': _0x771e('0x38'),
+    'id': 0x591,
+    'parentID': 0xbe
+}, {
+    'ring': 0x3,
+    'fromStep': 0x26,
+    'toStep': 0x27,
+    'color': _0x771e('0x35'),
+    'name': _0x771e('0x39'),
+    'id': 0x592,
+    'parentID': 0xbe
+}, {
+    'ring': 0x3,
+    'fromStep': 0x27,
+    'toStep': 0x28,
+    'color': _0x771e('0x35'),
+    'name': _0x771e('0x3a'),
+    'id': 0x593,
+    'parentID': 0xbe
+}, {
+    'ring': 0x3,
+    'fromStep': 0x28,
+    'toStep': 0x29,
+    'color': _0x771e('0x35'),
+    'name': _0x771e('0x3b'),
+    'id': 0x594,
+    'parentID': 0xbe
+}, {
+    'ring': 0x1,
+    'fromStep': 0x29,
+    'toStep': 0x31,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x3d'),
+    'id': 0x1b,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x29,
+    'toStep': 0x31,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x3e'),
+    'id': 0xbf,
+    'parentID': 0x1b
+}, {
+    'ring': 0x3,
+    'fromStep': 0x29,
+    'toStep': 0x2a,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x3f'),
+    'id': 0x595,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2a,
+    'toStep': 0x2b,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x40'),
+    'id': 0x596,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2b,
+    'toStep': 0x2c,
+    'color': '#D48E45',
+    'name': 'Pepper',
+    'id': 0x597,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2c,
+    'toStep': 0x2d,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x41'),
+    'id': 0x598,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2d,
+    'toStep': 0x2e,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x42'),
+    'id': 0x535,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2e,
+    'toStep': 0x2f,
+    'color': _0x771e('0x3c'),
+    'name': 'Licorice',
+    'id': 0x536,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x2f,
+    'toStep': 0x30,
+    'color': '#D48E45',
+    'name': _0x771e('0x43'),
+    'id': 0x537,
+    'parentID': 0xbf
+}, {
+    'ring': 0x3,
+    'fromStep': 0x30,
+    'toStep': 0x31,
+    'color': _0x771e('0x3c'),
+    'name': _0x771e('0x44'),
+    'id': 0x538,
+    'parentID': 0xbf
+}, {
+    'ring': 0x1,
+    'fromStep': 0x31,
+    'toStep': 0x44,
+    'color': '#8A5372',
+    'name': _0x771e('0x45'),
+    'id': 0x1c,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x31,
+    'toStep': 0x35,
+    'color': '#8A5372',
+    'name': _0x771e('0x46'),
+    'id': 0xc0,
+    'parentID': 0x1c
+}, {
+    'ring': 0x3,
+    'fromStep': 0x31,
+    'toStep': 0x32,
+    'color': _0x771e('0x47'),
+    'name': _0x771e('0x48'),
+    'id': 0x539,
+    'parentID': 0xc0
+}, {
+    'ring': 0x3,
+    'fromStep': 0x32,
+    'toStep': 0x33,
+    'color': '#8A5372',
+    'name': 'Banana',
+    'id': 0x53a,
+    'parentID': 0xc0
+}, {
+    'ring': 0x3,
+    'fromStep': 0x33,
+    'toStep': 0x34,
+    'color': _0x771e('0x47'),
+    'name': _0x771e('0x49'),
+    'id': 0x53b,
+    'parentID': 0xc0
+}, {
+    'ring': 0x3,
+    'fromStep': 0x34,
+    'toStep': 0x35,
+    'color': _0x771e('0x47'),
+    'name': _0x771e('0x4a'),
+    'id': 0x53c,
+    'parentID': 0xc0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x35,
+    'toStep': 0x3b,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x4c'),
+    'id': 0xc1,
+    'parentID': 0x1c
+}, {
+    'ring': 0x3,
+    'fromStep': 0x35,
+    'toStep': 0x36,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x4d'),
+    'id': 0x53d,
+    'parentID': 0xc1
+}, {
+    'ring': 0x3,
+    'fromStep': 0x36,
+    'toStep': 0x37,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x4e'),
+    'id': 0x53e,
+    'parentID': 0xc1
+}, {
+    'ring': 0x3,
+    'fromStep': 0x37,
+    'toStep': 0x38,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x4f'),
+    'id': 0x53f,
+    'parentID': 0xc1
+}, {
+    'ring': 0x3,
+    'fromStep': 0x38,
+    'toStep': 0x39,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x50'),
+    'id': 0x540,
+    'parentID': 0xc1
+}, {
+    'ring': 0x3,
+    'fromStep': 0x39,
+    'toStep': 0x3a,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x51'),
+    'id': 0x541,
+    'parentID': 0xc1
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3a,
+    'toStep': 0x3b,
+    'color': '#AB849D',
+    'name': 'Muscatel',
+    'id': 0x542,
+    'parentID': 0xc1
+}, {
+    'ring': 0x2,
+    'fromStep': 0x3b,
+    'toStep': 0x40,
+    'color': '#8A5372',
+    'name': _0x771e('0x52'),
+    'id': 0xc2,
+    'parentID': 0x1c
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3b,
+    'toStep': 0x3c,
+    'color': '#8A5372',
+    'name': _0x771e('0x53'),
+    'id': 0x543,
+    'parentID': 0xc2
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3c,
+    'toStep': 0x3d,
+    'color': _0x771e('0x47'),
+    'name': _0x771e('0x54'),
+    'id': 0x544,
+    'parentID': 0xc2
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3d,
+    'toStep': 0x3e,
+    'color': '#8A5372',
+    'name': _0x771e('0x55'),
+    'id': 0x545,
+    'parentID': 0xc2
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3e,
+    'toStep': 0x3f,
+    'color': '#8A5372',
+    'name': _0x771e('0x56'),
+    'id': 0x5aa,
+    'parentID': 0xc2
+}, {
+    'ring': 0x3,
+    'fromStep': 0x3f,
+    'toStep': 0x40,
+    'color': '#8A5372',
+    'name': _0x771e('0x57'),
+    'id': 0x5ab,
+    'parentID': 0xc2
+}, {
+    'ring': 0x2,
+    'fromStep': 0x40,
+    'toStep': 0x44,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x58'),
+    'id': 0xc3,
+    'parentID': 0x1c
+}, {
+    'ring': 0x3,
+    'fromStep': 0x40,
+    'toStep': 0x41,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x59'),
+    'id': 0x5ac,
+    'parentID': 0xc3
+}, {
+    'ring': 0x3,
+    'fromStep': 0x41,
+    'toStep': 0x42,
+    'color': '#AB849D',
+    'name': _0x771e('0x5a'),
+    'id': 0x5ad,
+    'parentID': 0xc3
+}, {
+    'ring': 0x3,
+    'fromStep': 0x42,
+    'toStep': 0x43,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x5b'),
+    'id': 0x90,
+    'parentID': 0xc3
+}, {
+    'ring': 0x3,
+    'fromStep': 0x43,
+    'toStep': 0x44,
+    'color': _0x771e('0x4b'),
+    'name': _0x771e('0x5c'),
+    'id': 0x5af,
+    'parentID': 0xc3
+}, {
+    'ring': 0x1,
+    'fromStep': 0x44,
+    'toStep': 0x47,
+    'color': _0x771e('0x5d'),
+    'name': '',
+    'id': 0x1d,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x44,
+    'toStep': 0x47,
+    'color': _0x771e('0x5d'),
+    'name': 'Marine',
+    'id': 0xc4,
+    'parentID': 0x1d
+}, {
+    'ring': 0x3,
+    'fromStep': 0x44,
+    'toStep': 0x45,
+    'color': _0x771e('0x5d'),
+    'name': 'Seaweed\x20/\x20fish',
+    'id': 0x5b0,
+    'parentID': 0xc4
+}, {
+    'ring': 0x3,
+    'fromStep': 0x45,
+    'toStep': 0x46,
+    'color': _0x771e('0x5d'),
+    'name': _0x771e('0x5e'),
+    'id': 0x5b1,
+    'parentID': 0xc4
+}, {
+    'ring': 0x3,
+    'fromStep': 0x46,
+    'toStep': 0x47,
+    'color': _0x771e('0x5d'),
+    'name': _0x771e('0x5f'),
+    'id': 0x5b2,
+    'parentID': 0xc4
+}, {
+    'ring': 0x1,
+    'fromStep': 0x47,
+    'toStep': 0x4a,
+    'color': _0x771e('0x60'),
+    'name': '',
+    'id': 0x1e,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x47,
+    'toStep': 0x4a,
+    'color': _0x771e('0x60'),
+    'name': 'Mineral',
+    'id': 0xc5,
+    'parentID': 0x1e
+}, {
+    'ring': 0x3,
+    'fromStep': 0x47,
+    'toStep': 0x48,
+    'color': _0x771e('0x60'),
+    'name': _0x771e('0x61'),
+    'id': 0x5b3,
+    'parentID': 0xc5
+}, {
+    'ring': 0x3,
+    'fromStep': 0x48,
+    'toStep': 0x49,
+    'color': _0x771e('0x60'),
+    'name': _0x771e('0x62'),
+    'id': 0x5b4,
+    'parentID': 0xc5
+}, {
+    'ring': 0x3,
+    'fromStep': 0x49,
+    'toStep': 0x4a,
+    'color': _0x771e('0x60'),
+    'name': _0x771e('0x63'),
+    'id': 0x5b5,
+    'parentID': 0xc5
+}, {
+    'ring': 0x1,
+    'fromStep': 0x4a,
+    'toStep': 0x56,
+    'color': _0x771e('0x64'),
+    'name': _0x771e('0x65'),
+    'id': 0x1f,
+    'parentID': 0x0
+}, {
+    'ring': 0x2,
+    'fromStep': 0x4a,
+    'toStep': 0x4f,
+    'color': '#706456',
+    'name': _0x771e('0x66'),
+    'id': 0xc6,
+    'parentID': 0x1f
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4a,
+    'toStep': 0x4b,
+    'color': _0x771e('0x64'),
+    'name': 'Forest\x20floor',
+    'id': 0x5b6,
+    'parentID': 0xc6
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4b,
+    'toStep': 0x4c,
+    'color': _0x771e('0x64'),
+    'name': _0x771e('0x67'),
+    'id': 0x5b7,
+    'parentID': 0xc6
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4c,
+    'toStep': 0x4d,
+    'color': _0x771e('0x64'),
+    'name': _0x771e('0x68'),
+    'id': 0x5b8,
+    'parentID': 0xc6
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4d,
+    'toStep': 0x4e,
+    'color': _0x771e('0x64'),
+    'name': _0x771e('0x69'),
+    'id': 0x5b9,
+    'parentID': 0xc6
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4e,
+    'toStep': 0x4f,
+    'color': _0x771e('0x64'),
+    'name': 'Wet\x20leaves',
+    'id': 0x5ba,
+    'parentID': 0xc6
+}, {
+    'ring': 0x2,
+    'fromStep': 0x4f,
+    'toStep': 0x56,
+    'color': '#8E8477',
+    'name': _0x771e('0x6a'),
+    'id': 0xc7,
+    'parentID': 0x1f
+}, {
+    'ring': 0x3,
+    'fromStep': 0x4f,
+    'toStep': 0x50,
+    'color': '#8E8477',
+    'name': _0x771e('0x6b'),
+    'id': 0x5bb,
+    'parentID': 0xc7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x50,
+    'toStep': 0x51,
+    'color': _0x771e('0x6c'),
+    'name': _0x771e('0x6d'),
+    'id': 0x5bc,
+    'parentID': 0xc7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x51,
+    'toStep': 0x52,
+    'color': _0x771e('0x6c'),
+    'name': _0x771e('0x6e'),
+    'id': 0x5bd,
+    'parentID': 0xc7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x52,
+    'toStep': 0x53,
+    'color': _0x771e('0x6c'),
+    'name': _0x771e('0x6f'),
+    'id': 0x5be,
+    'parentID': 0xc7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x53,
+    'toStep': 0x54,
+    'color': '#8E8477',
+    'name': _0x771e('0x70'),
+    'id': 0x5bf,
+    'parentID': 0xc7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x54,
+    'toStep': 0x55,
+    'color': _0x771e('0x6c'),
+    'name': _0x771e('0x71'),
+    'id': 0x5c0,
+    'parentID': 0xc7
+}, {
+    'ring': 0x3,
+    'fromStep': 0x55,
+    'toStep': 0x56,
+    'color': _0x771e('0x6c'),
+    'name': _0x771e('0x72'),
+    'id': 0x5c1,
+    'parentID': 0xc7
+}];
+const drawWheel = () => flavorList[_0x771e('0x73')](_0x3e27d5 => drawSlice(_0x3e27d5));
+var drawSlice = ({ring, fromStep, toStep, color, name, id}) => {
+    var _0x26cd39 = innerRadii[ring - 0x1];
+    var _0x1508e1 = outerRadii[ring - 0x1];
+    var _0x3f9a09 = fromStep / steps * 0x2 * Math['PI'];
+    var _0x20a663 = toStep / steps * 0x2 * Math['PI'];
+    var _0x4bff4b = circlex + Math[_0x771e('0x74')](_0x3f9a09) * _0x26cd39;
+    var _0x232ee3 = circley - Math[_0x771e('0x75')](_0x3f9a09) * _0x26cd39;
+    var _0x567959 = circlex + Math['sin'](_0x3f9a09) * _0x1508e1;
+    var _0x1e06db = circley - Math[_0x771e('0x75')](_0x3f9a09) * _0x1508e1;
+    var _0x46eb8d = circlex + Math[_0x771e('0x74')](_0x20a663) * _0x1508e1;
+    var _0x8cacdd = circley - Math['cos'](_0x20a663) * _0x1508e1;
+    var _0x12b294 = circlex + Math[_0x771e('0x74')](_0x20a663) * _0x26cd39;
+    var _0x29f25b = circley - Math[_0x771e('0x75')](_0x20a663) * _0x26cd39;
+    var _0x3b79f1 = 'M' + _0x4bff4b + '\x20' + _0x232ee3 + 'L\x20' + _0x567959 + '\x20' + _0x1e06db + 'A' + _0x1508e1 + '\x20' + _0x1508e1 + _0x771e('0x76') + _0x46eb8d + '\x20' + _0x8cacdd + 'L' + _0x12b294 + '\x20' + _0x29f25b + 'A' + _0x26cd39 + '\x20' + _0x26cd39 + _0x771e('0x77') + _0x4bff4b + '\x20' + _0x232ee3;
+    var _0x5cae23 = document[_0x771e('0x1')]('http://www.w3.org/2000/svg', _0x771e('0x78'));
+    _0x5cae23[_0x771e('0x3')]('d', _0x3b79f1);
+    var _0x44c9ca = document[_0x771e('0x1')](_0x771e('0x2'), _0x771e('0x79'));
+    _0x44c9ca[_0x771e('0x3')]('x', circlex);
+    _0x44c9ca[_0x771e('0x3')]('y', circley);
+    _0x44c9ca[_0x771e('0x3')]('alignment-baseline', _0x771e('0x7a'));
+    var _0x4614a5 = (fromStep + toStep) / steps * 0xb4 - 0x5a;
+    let _0x5c9037 = _0x4614a5;
+    if (_0x4614a5 > 0x5a) {
+        _0x5c9037 = _0x4614a5 - 0.2;
+    }
+    var _0x34b1ae = _0x771e('0x7b') + _0x5c9037 + '\x20' + circlex + '\x20' + circley + '),';
+    if (ring == 0x1) {
+        let _0x462d1e = (_0x26cd39 + _0x1508e1) / 1.82;
+        let _0xfde1fe = 0x0;
+        _0x34b1ae += _0x771e('0x7c') + _0x462d1e + ')';
+        if (_0x4614a5 > 0x0 && _0x4614a5 < 0xb4) {
+            _0x34b1ae += 'rotate(-90\x20' + circlex + '\x20' + circley + ')';
+            _0xfde1fe = -5.5;
+        }
+        if (_0x4614a5 > 0xb4 || _0x4614a5 < 0x0) {
+            _0x34b1ae += _0x771e('0x7d') + circlex + '\x20' + circley + ')';
+        }
+        _0x44c9ca[_0x771e('0x3')](_0x771e('0x7e'), _0x771e('0x7a'));
+        let _0x3c9fc8 = name[_0x771e('0x7f')]('/');
+        if (_0x3c9fc8 == -0x1) {
+            _0x44c9ca[_0x771e('0x8')] = name;
+        } else {
+            let _0x11b374 = name['substring'](0x0, _0x3c9fc8 + 0x1);
+            let _0x27ee46 = name[_0x771e('0x80')](_0x3c9fc8 + 0x1, name[_0x771e('0x81')]);
+            let _0x1a93d2 = document[_0x771e('0x1')](_0x771e('0x2'), _0x771e('0x82'));
+            _0x1a93d2[_0x771e('0x8')] = _0x11b374;
+            _0x1a93d2[_0x771e('0x3')]('x', circlex);
+            _0x1a93d2[_0x771e('0x3')]('dy', _0xfde1fe);
+            _0x44c9ca[_0x771e('0x7')](_0x1a93d2);
+            let _0x534fa0 = document[_0x771e('0x1')](_0x771e('0x2'), _0x771e('0x82'));
+            _0x534fa0[_0x771e('0x8')] = _0x27ee46;
+            _0x534fa0[_0x771e('0x3')]('x', circlex);
+            _0x534fa0[_0x771e('0x3')]('dy', '6');
+            _0x44c9ca[_0x771e('0x7')](_0x534fa0);
+        }
+    } else {
+        let _0x501e93 = _0x1508e1 - 0x3;
+        _0x34b1ae += _0x771e('0x7c') + _0x501e93 + ')';
+        if (_0x4614a5 > 0x5a) {
+            let _0x501e93 = _0x1508e1 - 0x5;
+            _0x34b1ae += _0x771e('0x83') + circlex + '\x20' + circley + ')';
+        } else {
+            _0x44c9ca[_0x771e('0x3')]('text-anchor', _0x771e('0x84'));
+        }
+        _0x44c9ca[_0x771e('0x8')] = name;
+    }
+    _0x44c9ca[_0x771e('0x3')](_0x771e('0x4'), _0x34b1ae);
+    _0x44c9ca[_0x771e('0x85')][_0x771e('0x86')] = '0px';
+    let _0x11f2c2 = _0x771e('0x87');
+    if (isColorLight(color)) {
+        _0x11f2c2 = _0x771e('0x88');
+        _0x44c9ca[_0x771e('0x85')][_0x771e('0x86')] = _0x771e('0x89');
+    }
+    _0x44c9ca[_0x771e('0x85')][_0x771e('0x8a')] = _0x11f2c2;
+    _0x44c9ca['style'][_0x771e('0x8b')] = _0x11f2c2;
+    var _0x513406 = document[_0x771e('0x1')]('http://www.w3.org/2000/svg', 'g');
+    _0x513406['setAttribute']('id', '' + id);
+    _0x513406[_0x771e('0x3')]('class', 'slice');
+    _0x513406['setAttribute'](_0x771e('0x8c'), _0x771e('0x8d'));
+    _0x513406[_0x771e('0x85')][_0x771e('0x8b')] = 'white';
+    _0x513406['style'][_0x771e('0x8a')] = color;
+    _0x5cae23[_0x771e('0x85')][_0x771e('0x86')] = _0x771e('0x8e');
+    _0x513406[_0x771e('0x7')](_0x5cae23);
+    _0x513406[_0x771e('0x7')](_0x44c9ca);
+    var _0x36a67d = 'g' + ring * 0x2;
+    document[_0x771e('0x8f')](_0x36a67d)[_0x771e('0x7')](_0x513406);
+};
+const isColorLight = _0x19f58c => {
+    let _0x377a45 = parseInt(_0x19f58c[_0x771e('0x80')](0x1, 0x3), 0x10);
+    let _0x177acf = parseInt(_0x19f58c[_0x771e('0x80')](0x3, 0x5), 0x10);
+    let _0xee32b = parseInt(_0x19f58c[_0x771e('0x80')](0x5, 0x7), 0x10);
+    hsp = Math[_0x771e('0x90')](0.299 * (_0x377a45 * _0x377a45) + 0.587 * (_0x177acf * _0x177acf) + 0.114 * (_0xee32b * _0xee32b));
+    return hsp > 0xd2;
+};
+const clickAction = _0x177486 => {
+    isSelected(_0x177486) ? deselectSlice(_0x177486) : selectSlice(_0x177486);
+    document[_0x771e('0x8f')](_0x771e('0x91'))[_0x771e('0x92')] = getSelectedFlavorIds();
+};
+const selectSlice = _0xd0b4a4 => {
+    if (!isSelected(_0xd0b4a4)) {
+        document[_0x771e('0x8f')](getHigherGroupId(_0xd0b4a4))[_0x771e('0x7')](_0xd0b4a4);
+        selectedFlavors[_0x771e('0x93')](getFlavor(_0xd0b4a4));
+        if (getGroupNumber(_0xd0b4a4) > 0x2 && parentSliceAutoSelect) {
+            selectSlice(getParentSlice(_0xd0b4a4));
+        }
+    }
+};
+const deselectSlice = _0x5e0b90 => {
+    document[_0x771e('0x8f')](getLowerGroupId(_0x5e0b90))[_0x771e('0x7')](_0x5e0b90);
+    deselectFlavor(getFlavor(_0x5e0b90));
+    if (childSliceAutoDeselect) {
+        getSelectedChildrenSlices(_0x5e0b90)[_0x771e('0x73')](_0x1c98a5 => deselectSlice(_0x1c98a5));
+    }
+};
+const resetWheel = () => {
+    wheelSVG[_0x771e('0x8')] = SVGBackup;
+    drawWheel();
+};
+const getGroupNumber = _0x33b2f5 => parseInt(_0x33b2f5[_0x771e('0x94')]['id'][_0x771e('0x95')]('g', ''));
+const getHigherGroupId = _0x15ac31 => 'g' + (getGroupNumber(_0x15ac31) - 0x1);
+const getLowerGroupId = _0x3acd1b => 'g' + (getGroupNumber(_0x3acd1b) + 0x1);
+const isSelected = _0x2c1406 => getGroupNumber(_0x2c1406) % 0x2 > 0x0;
+const getParentSliceID = _0x52e4a3 => {
+    return flavorList[_0x771e('0x96')](_0x40fd85 => _0x40fd85['id'] == _0x52e4a3)[_0x771e('0x97')];
+};
+const getParentSlice = _0x22ca2b => document[_0x771e('0x8f')](getParentSliceID(_0x22ca2b['id']));
+const deselectFlavor = _0x55d29f => {
+    selectedFlavors = selectedFlavors[_0x771e('0x98')](_0xcadac6 => _0xcadac6 != _0x55d29f);
+};
+const getFlavor = _0x5d6f0d => {
+    return flavorList[_0x771e('0x96')](_0x321fd6 => _0x321fd6['id'] == _0x5d6f0d['id']);
+};
+const getSelectedFlavorIds = () => {
+    return selectedFlavors[_0x771e('0x73')](_0x322bdc => _0x322bdc['id']);
+};
+const getSelectedFlavorParentIds = () => {
+    return selectedFlavors[_0x771e('0x73')](_0x4539b0 => _0x4539b0[_0x771e('0x97')]);
+};
+const getSelectedFlavorNames = () => {
+    return selectedFlavors[_0x771e('0x73')](_0x245a49 => _0x245a49[_0x771e('0x99')]);
+};
+const getParentFlavor = _0x16397a => {
+    return flavorList[_0x771e('0x96')](_0x347880 => _0x347880['id'] == _0x16397a[_0x771e('0x97')]);
+};
+const getSelectedFlavorBabies = () => {
+    return selectedFlavors[_0x771e('0x98')](_0x513a48 => !getSelectedFlavorParentIds()[_0x771e('0x9a')](_0x513a48['id']));
+};
+const getSelectedFlavorString = () => {
+    let _0x69d58e = '';
+    getSelectedFlavorBabies()[_0x771e('0x73')](_0x331f53 => {
+        _0x69d58e == '' ? _0x69d58e += _0x331f53['name'] : _0x69d58e += ',\x20' + _0x331f53[_0x771e('0x99')];
+    });
+    return _0x69d58e;
+};
+const getFlavorFamily = _0x4ec111 => {
+    let _0x21cfff = _0x4ec111[_0x771e('0x99')];
+    if (_0x4ec111[_0x771e('0x97')] != '0') {
+        let _0x24113b = _0x21cfff;
+        _0x21cfff = getFlavorFamily(getParentFlavor(_0x4ec111)) + '->' + _0x24113b;
+    }
+    return _0x21cfff;
+};
+const getSelectedFlavorStringLong = () => {
+    return getSelectedFlavorBabies()[_0x771e('0x73')](_0x456997 => getFlavorFamily(_0x456997));
+};
+const getSelectedChildrenSlices = _0x1eb306 => {
+    return flavorList['filter'](_0x3535e3 => _0x3535e3['parentID'] == _0x1eb306['id'])[_0x771e('0x73')](_0x5d4d7a => _0x5d4d7a['id'])[_0x771e('0x73')](_0x2bbd69 => document[_0x771e('0x8f')](_0x2bbd69))[_0x771e('0x98')](_0x5b23dc => isSelected(_0x5b23dc));
+};
 drawWheel();
-
-// resetWheel();
