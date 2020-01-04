@@ -1,13 +1,10 @@
 package com.teamflavour.flavourwheels.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
+@Table(name = "Privilege")
 public class Privilege {
 
     @Id
