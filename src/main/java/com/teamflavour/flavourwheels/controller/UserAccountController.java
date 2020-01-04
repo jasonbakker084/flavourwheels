@@ -7,6 +7,7 @@ import com.teamflavour.flavourwheels.model.User;
 import com.teamflavour.flavourwheels.repository.ConfirmationTokenRepository;
 import com.teamflavour.flavourwheels.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -178,10 +179,10 @@ public class UserAccountController {
     public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
         this.confirmationTokenRepository = confirmationTokenRepository;
     }
-
-//    public EmailSenderService getEmailSenderService() {
-//        return emailSenderService;
-//    }
+    @Bean
+    public EmailSenderService getEmailSenderService() {
+        return emailSenderService;
+    }
 //
 //    public void setEmailSenderService(EmailSenderService emailSenderService) {
 //        this.emailSenderService = emailSenderService;
