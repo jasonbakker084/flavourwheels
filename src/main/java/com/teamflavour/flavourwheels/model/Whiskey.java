@@ -60,7 +60,7 @@ public class Whiskey {
             joinColumns = @JoinColumn(
                     name = "whiskey_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
-                    name = "flavorWhiskey_id", referencedColumnName = "id"))
+                    name = "flavor_id", referencedColumnName = "id"))
     private Collection<FlavorWhiskey> flavorWhiskeys;
 
     public Whiskey() {
