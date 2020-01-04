@@ -179,11 +179,11 @@ public class UserAccountController {
         this.confirmationTokenRepository = confirmationTokenRepository;
     }
 
-    public EmailSenderService getEmailSenderService() {
-        return emailSenderService;
-    }
-
-    public void setEmailSenderService(EmailSenderService emailSenderService) {
-        this.emailSenderService = emailSenderService;
-    }
+//    public EmailSenderService getEmailSenderService() {
+//        return emailSenderService;
+//    }
+//
+//    public void setEmailSenderService(EmailSenderService emailSenderService) {
+//        this.emailSenderService = emailSenderService;
+//    }
 }

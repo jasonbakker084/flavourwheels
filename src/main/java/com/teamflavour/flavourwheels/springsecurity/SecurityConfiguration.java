@@ -47,14 +47,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN");
     }
 
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("user").password("{noop}pass").roles("USER")
-//                .and()
-//                .withUser("admin").password("{noop}pass").roles("ADMIN");
-//    }
 
 // Here’s a security configuration that ensures that only authenticated users can see the assigned webpages.
 
