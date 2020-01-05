@@ -12,7 +12,7 @@
           integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" th:href="@{https://use.fontawesome.com/releases/v5.4.1/css/all.css}"
           integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" th:href="@{css/WhiskeyWheel.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{css/BeerWheel.css}">
     <link rel="apple-touch-icon" sizes="180x180" th:src="@{./images/apple-touch-icon.png}">
     <link rel="icon" type="image/png" sizes="32x32" th:src="@{./images/favicon-32x32.png}">
     <link rel="icon" type="image/png" sizes="16x16" th:src="@{./images/favicon-16x16.png}">
@@ -53,7 +53,7 @@
         gtag('config', 'UA-152601123-1');
     </script>
 
-    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Flavour Wheels App</title>
+    <title layout:title-pattern="$DECORATOR_TITLE - $CONTENT_TITLE">Coffee Flavour Wheel App</title>
 </head>
 
 <body>
@@ -134,37 +134,37 @@
                      style="background-color: #615d5c26;">
                     <div class="row">
                         <div class="col">
-                            <div th:if="${param.successwhiskey}">
-                                <div class="alert alert-info">Whiskey saved!</div>
+                            <div th:if="${param.successbeer}">
+                                <div class="alert alert-info">Wine saved!</div>
                             </div>
-                            <h2>Information about your whiskey:</h2>
+                            <h2>Information about your beer:</h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form th:action="@{/addwhiskey}" th:object="${whiskey}" method="POST"
+                            <form th:action="@{/addwine}" th:object="${wine}" method="POST"
                                   enctype="multipart/form-data">
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput">Whiskey Name:</label>
-                                    <input type="text" name="whiskeyName" class="form-control" id="whiskeyName">
-                                    <input type="hidden" id="flavorsWhiskey" class="form-control" name="flavorsWhiskey">
+                                    <label for="formGroupExampleInput">Beer Name:</label>
+                                    <input type="text" name="wineName" class="form-control" id="wineName">
+                                    <input type="hidden" id="flavorsWine" class="form-control" name="flavorsWine">
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">Whiskey House:</label>
-                                    <input type="text" name="whiskeyHouse" class="form-control" id="whiskeyHouse">
+                                    <label for="formGroupExampleInput2">Brewery:</label>
+                                    <input type="text" name="wineHouse" class="form-control" id="wineHouse">
                                 </div>
                                 <div class="row">
 
                                     <div class="col-md-6 form-group">
-                                        <label for="formGroupExampleInput2">Whiskey Year:</label>
-                                        <input type="date" name="whiskeyYear" class="form-control"
+                                        <label for="formGroupExampleInput2">Production Date:</label>
+                                        <input type="date" name="wineYear" class="form-control"
                                                value="Pick year" placeholder="Choose year"
-                                               id="whiskeyYear">
+                                               id="wineYear">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="exampleSelect1">Wine color:</label>
-                                        <select class="form-control" id="whiskeyColor" name="whiskeyColor">
-                                            <option value="" selected>Select whiskey color</option>
+                                        <label for="exampleSelect1">Beer color:</label>
+                                        <select class="form-control" id="wineColor" name="wineColor">
+                                            <option value="" selected>Select beer color</option>
                                             <option>Light</option>
                                             <option>Medium</option>
                                             <option>Omni Roast</option>
@@ -220,6 +220,7 @@
                             </form>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -227,14 +228,13 @@
 
     </div>
 </div>
-<script th:src="@{./js/whiskeywheel.js}"></script>
+<script th:src="@{./js/Beerwheel.js}"></script>
 <script th:src="@{./js/html5-simple-date-input-polyfill.min.js}"></script>
 <script>
     $('#clearPage').click(function () {
         location.reload();
     });
 </script>
-
 </body>
 
 </html>
