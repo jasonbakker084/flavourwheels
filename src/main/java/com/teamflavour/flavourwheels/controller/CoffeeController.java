@@ -80,7 +80,7 @@ public class CoffeeController {
         List<Whiskey> whiskeys = whiskeyRepository.findByIdAndUserEmail(id, getCurrentUserName());
         List<Tea> teas = teaRepository.findByIdAndUserEmail(id, getCurrentUserName());
         List<Beer> beers = beerRepository.findByIdAndUserEmail(id, getCurrentUserName());
-        if (coffees.size() > 0) {
+        if (coffees.size() > 0 ) {
             Blob blob = coffees.get(0).getFile();
             if (blob != null) {
                 String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
@@ -117,10 +117,10 @@ public class CoffeeController {
             }
         }
         if (beers.size() > 0) {
-            Blob blob = teas.get(0).getFile();
+            Blob blob = beers.get(0).getFile();
             if (blob != null) {
                 String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
-                String fileType = teas.get(0).getFileType();
+                String fileType = beers.get(0).getFileType();
                 model.addAttribute("image", image);
                 model.addAttribute("filetype", fileType);
             }

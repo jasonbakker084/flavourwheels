@@ -61,21 +61,21 @@ public class WhiskeyController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping(path = {"/whiskeywheel/{id}"})
-    public String showById(@PathVariable long id, Model model) throws SQLException {
-        List<Whiskey> whiskeys = repository.findByIdAndUserEmail(id, getCurrentUserName());
-        if (whiskeys.size() > 0) {
-            Blob blob = whiskeys.get(0).getFile();
-            if (blob != null) {
-                String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
-                String fileType = whiskeys.get(0).getFileType();
-                model.addAttribute("image", image);
-                model.addAttribute("filetype", fileType);
-            }
-        }
-        model.addAttribute("whiskeys", whiskeys);
-        return "whiskeywheel";
-    }
+//    @GetMapping(path = {"/whiskeywheel/{id}"})
+//    public String showById(@PathVariable long id, Model model) throws SQLException {
+//        List<Whiskey> whiskeys = repository.findByIdAndUserEmail(id, getCurrentUserName());
+//        if (whiskeys.size() > 0) {
+//            Blob blob = whiskeys.get(0).getFile();
+//            if (blob != null) {
+//                String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
+//                String fileType = whiskeys.get(0).getFileType();
+//                model.addAttribute("image", image);
+//                model.addAttribute("filetype", fileType);
+//            }
+//        }
+//        model.addAttribute("whiskeys", whiskeys);
+//        return "whiskeywheel";
+//    }
 
 //    @GetMapping("/winewheel")
 //    public String showUpdateForm(Model model) {

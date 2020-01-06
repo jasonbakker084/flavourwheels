@@ -64,21 +64,21 @@ public class WineController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    @GetMapping(path = {"/winewheel/{id}"})
-    public String showById(@PathVariable long id, Model model) throws SQLException {
-        List<Wine> wines = repository.findByIdAndUserEmail(id, getCurrentUserName());
-        if (wines.size() > 0) {
-            Blob blob = wines.get(0).getFile();
-            if (blob != null) {
-                String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
-                String fileType = wines.get(0).getFileType();
-                model.addAttribute("image", image);
-                model.addAttribute("filetype", fileType);
-            }
-        }
-        model.addAttribute("wines", wines);
-        return "winewheel";
-    }
+//    @GetMapping(path = {"/winewheel/{id}"})
+//    public String showById(@PathVariable long id, Model model) throws SQLException {
+//        List<Wine> wines = repository.findByIdAndUserEmail(id, getCurrentUserName());
+//        if (wines.size() > 0) {
+//            Blob blob = wines.get(0).getFile();
+//            if (blob != null) {
+//                String image = Base64.encodeBase64String(blob.getBytes(1, (int) blob.length()));
+//                String fileType = wines.get(0).getFileType();
+//                model.addAttribute("image", image);
+//                model.addAttribute("filetype", fileType);
+//            }
+//        }
+//        model.addAttribute("wines", wines);
+//        return "winewheel";
+//    }
 
 //    @GetMapping("/winewheel")
 //    public String showUpdateForm(Model model) {
