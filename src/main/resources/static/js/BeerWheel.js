@@ -378,7 +378,7 @@ const isColorLight = (color) => {
 const clickAction = (slice) => {
     (isSelected(slice)) ? deselectSlice(slice) : selectSlice(slice);
     //document.getElementById("userNotes").innerText = getSelectedFlavorString();
-    document.getElementById("flavors").value = (getSelectedFlavorIds());
+    document.getElementById("flavorsBeer").value = (getSelectedFlavorIds());
 }
 
 //selecteren van een slice = in een group plaatsen met hoger nummer

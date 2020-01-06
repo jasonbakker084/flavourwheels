@@ -44,6 +44,9 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
     @Autowired
     private FlavorTeaRepository flavorTeaRepository;
 
+    @Autowired
+    private FlavorBeerRepository flavorBeerRepository;
+
     // API
 
     @Override
@@ -74,6 +77,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         createFlavorsWineIfNotFound();
         createFlavorsWhiskeyIfNotFound();
         createFlavorsTeaIfNotFound();
+        createFlavorsBeerIfNotFound();
 
     }
 
@@ -645,7 +649,7 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         addFlavorTeaIfNotFound("Licorice", "#D48E45", 1334, 191);
         addFlavorTeaIfNotFound("Star anise", "#D48E45", 1335, 191);
         addFlavorTeaIfNotFound("Ginger", "#D48E45", 1336, 191);
-        addFlavorTeaIfNotFound("Fresh / candied fruit","#8A5372", 28, 0);
+        addFlavorTeaIfNotFound("Fresh / candied fruit", "#8A5372", 28, 0);
         addFlavorTeaIfNotFound("Tropical", "#8A5372", 192, 28);
         addFlavorTeaIfNotFound("Pineapple", "#8A5372", 1337, 192);
         addFlavorTeaIfNotFound("Banana", "#8A5372", 1338, 192);
@@ -696,6 +700,164 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         addFlavorTeaIfNotFound("Eucalypt", "#8E8477", 1473, 199);
     }
 
+    public void createFlavorsBeerIfNotFound() {
+        addFlavorBeerIfNotFound("Resinous", "#BDFF6D", 200, 32);
+        addFlavorBeerIfNotFound("Nutty", "#A4FF6D", 201, 32);
+        addFlavorBeerIfNotFound("Grassy", "#8CFF6D", 202, 32);
+        addFlavorBeerIfNotFound("Vegetal", "#57FF07", 32, 0);
+        addFlavorBeerIfNotFound("Piney", "#DFFFB2", 1474, 200);
+        addFlavorBeerIfNotFound("Woody", "#DBFFB2", 1475, 200);
+        addFlavorBeerIfNotFound("Walnut", "#D6FFB2", 1476, 201);
+        addFlavorBeerIfNotFound("Coconut", "#D2FFB2", 1477, 201);
+        addFlavorBeerIfNotFound("Beany", "#CEFFB2", 1478, 201);
+        addFlavorBeerIfNotFound("Almond", "#C9FFB2", 1479, 201);
+        addFlavorBeerIfNotFound("Freshly cut grass", "#C5FFB2", 1480, 202);
+        addFlavorBeerIfNotFound("Straw-like", "#C0FFB2", 1481, 202);
+        addFlavorBeerIfNotFound("Grainy", "#78FF6D", 203, 33);
+        addFlavorBeerIfNotFound("", "#73FF75", 0, 0);
+        addFlavorBeerIfNotFound("", "#73FF7E", 0, 0);
+        addFlavorBeerIfNotFound("Cereal", "#23FF09", 33, 0);
+        addFlavorBeerIfNotFound("Husky", "#BCFFB2", 1485, 203);
+        addFlavorBeerIfNotFound("Corn grits", "#B7FFB2", 1486, 203);
+        addFlavorBeerIfNotFound("Mealy", "#B4FFB3", 1482, 203);
+        addFlavorBeerIfNotFound("Malty", "#73FF75", 1483, 33);
+        addFlavorBeerIfNotFound("Worty", "#73FF7E", 1484, 33);
+        addFlavorBeerIfNotFound("Caramel", "#73FF89", 204, 34);
+        addFlavorBeerIfNotFound("Burnt", "#73FFA0", 205, 34);
+        addFlavorBeerIfNotFound("Maillard", "#22FF3F", 34, 0);
+        addFlavorBeerIfNotFound("Molasses", "#B4FFBF", 1487, 204);
+        addFlavorBeerIfNotFound("Licorice", "#B4FFC5", 1488, 204);
+        addFlavorBeerIfNotFound("Bread crust", "#B4FFC9", 1489, 205);
+        addFlavorBeerIfNotFound("Roast barley", "#B4FFCD", 1490, 205);
+        addFlavorBeerIfNotFound("Smoky", "#B4FFD3", 1491, 205);
+        addFlavorBeerIfNotFound("Phenolic", "#22FF89", 206, 35);
+        addFlavorBeerIfNotFound("", "#22FF89", 35, 206);
+        addFlavorBeerIfNotFound("Tarry", "#73FFB1", 1492, 206);
+        addFlavorBeerIfNotFound("Bakelite", "#9BFFBA", 1493, 206);
+        addFlavorBeerIfNotFound("Carbolic", "#73FFC1", 1494, 206);
+        addFlavorBeerIfNotFound("Chlorophenol", "#73FFCB", 1495, 206);
+        addFlavorBeerIfNotFound("Isodoform", "#73FFD5", 1496, 206);
+        addFlavorBeerIfNotFound("Fatty acid", "#73FFEC", 207, 36);
+        addFlavorBeerIfNotFound("Fatty", "#21FFFF", 36, 24);
+        addFlavorBeerIfNotFound("Caprylic", "#B4FFEF", 1497, 207);
+        addFlavorBeerIfNotFound("Cheesy", "#B4FFF4", 1498, 207);
+        addFlavorBeerIfNotFound("Isovaleric", "#B4FFF7", 1499, 207);
+        addFlavorBeerIfNotFound("Butyric", "#B4FFFD", 1500, 207);
+        addFlavorBeerIfNotFound("Diacetyl", "#72FBFF", 1501, 36);
+        addFlavorBeerIfNotFound("Rancid", "#72F2FF", 1502, 36);
+        addFlavorBeerIfNotFound("", "#72FBFF", 0, 0);
+        addFlavorBeerIfNotFound("", "#72F2FF", 0, 0);
+        addFlavorBeerIfNotFound("Oily", "#71E4FF", 208, 36);
+        addFlavorBeerIfNotFound("Vegetable oil", "#B3F5FF", 1503, 208);
+        addFlavorBeerIfNotFound("Mineral oil", "#B3EFFF", 1504, 208);
+        addFlavorBeerIfNotFound("Sulfidic", "#70D0FF", 209, 37);
+        addFlavorBeerIfNotFound("Sulfidic", "#6EA4FF", 210, 37);
+        addFlavorBeerIfNotFound("Cooked vegetable", "#6C6AFF", 211, 37);
+        addFlavorBeerIfNotFound("", "8264FF", 0, 0);
+        addFlavorBeerIfNotFound("Sulfury", "#0525FF", 37, 25);
+        addFlavorBeerIfNotFound("Striking match", "#B3EAFF", 1505, 209);
+        addFlavorBeerIfNotFound("Meaty", "#B3E5FF", 1506, 209);
+        addFlavorBeerIfNotFound("Hydrogen Sulfide", "#B3DFFF", 1507, 210);
+        addFlavorBeerIfNotFound("Mercaptan", "#B3DBFF", 1508, 210);
+        addFlavorBeerIfNotFound("Garlic", "#B3D6FF", 1509, 210);
+        addFlavorBeerIfNotFound("Lightstruck", "#B3D2FF", 1510, 210);
+        addFlavorBeerIfNotFound("Autolysed", "#B2CCFF", 1511, 210);
+        addFlavorBeerIfNotFound("Burnt rubber", "#B2C7FF", 1512, 210);
+        addFlavorBeerIfNotFound("Shrimp-like", "#B2C3FF", 1513, 210);
+        addFlavorBeerIfNotFound("Parsnip / Celery", "#B2BDFF", 1514, 211);
+        addFlavorBeerIfNotFound("Dimethyl sulfide", "#B2BAFF", 1515, 211);
+        addFlavorBeerIfNotFound("Cooked cabbage", "#B2B4FF", 1516, 211);
+        addFlavorBeerIfNotFound("Cooked sweet corn", "#B2B0FF", 1517, 211);
+        addFlavorBeerIfNotFound("Cooked tomato", "#B5AEFF", 1518, 211);
+        addFlavorBeerIfNotFound("Cooked onion", "#B9AEFF", 1519, 211);
+        addFlavorBeerIfNotFound("Yeasy", "#8264FF", 1520, 37);
+        addFlavorBeerIfNotFound("", "#8A64FF", 0, 0);
+        addFlavorBeerIfNotFound("", "#9264FF", 0, 0);
+        addFlavorBeerIfNotFound("", "#9A64FF", 0, 0);
+        addFlavorBeerIfNotFound("Moldy", "#A864FF", 212, 38);
+        addFlavorBeerIfNotFound("Stale", "#4500FF", 38, 28);
+        addFlavorBeerIfNotFound("Catty", "#8A64FF", 1521, 38);
+        addFlavorBeerIfNotFound("Papery", "#9264FF", 1522, 38);
+        addFlavorBeerIfNotFound("Leathery", "#9A64FF", 1523, 38);
+        addFlavorBeerIfNotFound("Earthy", "#CFA3FA", 1524, 212);
+        addFlavorBeerIfNotFound("Musty", "#D4AEFF", 1525, 212);
+        addFlavorBeerIfNotFound("Acidic", "#A864FF", 213, 0);
+        addFlavorBeerIfNotFound("", "#A864FF", 39, 213);
+        addFlavorBeerIfNotFound("Acetic", "#B463FF", 1526, 39);
+        addFlavorBeerIfNotFound("Sour", "#BE63FF", 1527, 39);
+        addFlavorBeerIfNotFound("Sweet", "#BE00FF", 214, 0);
+        addFlavorBeerIfNotFound("", "#BE00FF", 40, 214);
+        addFlavorBeerIfNotFound("Honey", "#C663FF", 1528, 40);
+        addFlavorBeerIfNotFound("Jam-like", "#CF62FF", 1529, 40);
+        addFlavorBeerIfNotFound("Vanilla", "#D962FF", 1530, 40);
+        addFlavorBeerIfNotFound("Primings", "#E162FF", 1531, 40);
+        addFlavorBeerIfNotFound("Syrupy", "#EB61FF", 1532, 40);
+        addFlavorBeerIfNotFound("Oversweet", "#F561FF", 1533, 40);
+        addFlavorBeerIfNotFound("", "#FB00FD", 0, 0);
+        addFlavorBeerIfNotFound("", "#FB00E8", 0, 0);
+        addFlavorBeerIfNotFound("", "#FB00FD", 41, 28);
+        addFlavorBeerIfNotFound("", "#FB00E8", 42, 28);
+        addFlavorBeerIfNotFound("Salty", "#FB00FD", 1534, 41);
+        addFlavorBeerIfNotFound("Bitter", "#FB00E8", 1535, 42);
+        addFlavorBeerIfNotFound("", "#FC62EB", 0, 0);
+        addFlavorBeerIfNotFound("", "#FC63E1", 0, 0);
+        addFlavorBeerIfNotFound("", "#FC63D7", 0, 0);
+        addFlavorBeerIfNotFound("Astringent", "#FC65C6", 215, 43);
+        addFlavorBeerIfNotFound("Mouthfeel", "#FB007F", 43, 28);
+        addFlavorBeerIfNotFound("Alkaline", "#FC62EB", 1536, 43);
+        addFlavorBeerIfNotFound("Mouthcoating", "#FC63E1", 1537, 43);
+        addFlavorBeerIfNotFound("Metallic", "#FC63D7", 1538, 43);
+        addFlavorBeerIfNotFound("Drying", "#FDAEE6", 1539, 215);
+        addFlavorBeerIfNotFound("Tart", "#FDAEE3", 1540, 215);
+        addFlavorBeerIfNotFound("Puckering", "#FDAEDD", 1541, 215);
+        addFlavorBeerIfNotFound("", "#FC65B4", 0, 0);
+        addFlavorBeerIfNotFound("Carbonation", "#FC65A6", 216, 43);
+        addFlavorBeerIfNotFound("Warming", "#FC6695", 217, 43);
+        addFlavorBeerIfNotFound("Powdery", "#FC65B4", 1542, 43);
+        addFlavorBeerIfNotFound("Flat", "#FDAFD4", 1543, 216);
+        addFlavorBeerIfNotFound("Gassy", "#FDAFCE", 1544, 216);
+        addFlavorBeerIfNotFound("Alcoholic", "#FDAFCA", 1545, 217);
+        addFlavorBeerIfNotFound("Piquant", "#FDAFC7", 1546, 217);
+        addFlavorBeerIfNotFound("Body", "#FC677D", 218, 44);
+        addFlavorBeerIfNotFound("Fullness", "#FB0019", 44, 31);
+        addFlavorBeerIfNotFound("Watery", "#FDAFC2", 1547, 218);
+        addFlavorBeerIfNotFound("Characterless", "#FDB0BD", 1548, 218);
+        addFlavorBeerIfNotFound("Satiating", "#FDB0B8", 1549, 218);
+        addFlavorBeerIfNotFound("Thick", "#FDB0B4", 1550, 218);
+        addFlavorBeerIfNotFound("Aromatic, Fragrant, Fruity, Floral", "#FDA109", 45, 31);
+        addFlavorBeerIfNotFound("Alcoholic", "#FC706D", 219, 45);
+        addFlavorBeerIfNotFound("Spicy", "#FDB2B2", 1551, 219);
+        addFlavorBeerIfNotFound("Vinous", "#FDB7B2", 1552, 219);
+        addFlavorBeerIfNotFound("Solvent-like", "#FC866D", 220, 45);
+        addFlavorBeerIfNotFound("Plastics", "#FDBCB2", 1553, 220);
+        addFlavorBeerIfNotFound("Can-liner", "#FDC1B2", 1554, 220);
+        addFlavorBeerIfNotFound("Laquer-like", "#FEC5B2", 1555, 220);
+        addFlavorBeerIfNotFound("Estery", "#FDA06D", 221, 45);
+        addFlavorBeerIfNotFound("Isoamyl acetate", "#FECABB", 1556, 221);
+        addFlavorBeerIfNotFound("Ethyl hexanoate", "#FECEB2", 1557, 221);
+        addFlavorBeerIfNotFound("Etyl acetate", "#FED4B2", 1558, 221);
+        addFlavorBeerIfNotFound("Fruity", "#FED46E", 222, 45);
+        addFlavorBeerIfNotFound("Citrus", "#FED9B2", 1559, 222);
+        addFlavorBeerIfNotFound("Apple", "#FEDEB2", 1560, 222);
+        addFlavorBeerIfNotFound("Banana", "#FEE3B2", 1561, 222);
+        addFlavorBeerIfNotFound("Black currant", "#FEE7B2", 1562, 222);
+        addFlavorBeerIfNotFound("Melony", "#FEECB2", 1563, 222);
+        addFlavorBeerIfNotFound("Pear", "#FFF2B2", 1564, 222);
+        addFlavorBeerIfNotFound("Raspberry", "#FFF6B2", 1565, 222);
+        addFlavorBeerIfNotFound("Strawberry", "#FFFCB2", 1566, 222);
+        addFlavorBeerIfNotFound("", "#FFFF6E", 0, 0);
+        addFlavorBeerIfNotFound("Acetaldehyde", "#FFFF6E", 1567, 45);
+        addFlavorBeerIfNotFound("Floral", "#EEFF6E", 223, 45);
+        addFlavorBeerIfNotFound("2-Phenylethanol", "#FCFFB2", 1568, 223);
+        addFlavorBeerIfNotFound("Geraniol", "#F6FFB2", 1569, 223);
+        addFlavorBeerIfNotFound("Perfumy", "#F1FFB2", 1570, 223);
+        addFlavorBeerIfNotFound("Hoppy", "#D3FF6E", 224, 45);
+        addFlavorBeerIfNotFound("Kettle-hop", "#EEFFB2", 1571, 224);
+        addFlavorBeerIfNotFound("Dry-hop", "#E9FFB2", 1572, 224);
+        addFlavorBeerIfNotFound("Hop oil", "#E5FFB2", 1573, 224);
+
+    }
+
 
     @Transactional
     public void addFlavorCoffeeIfNotFound(String name, String color, int id, int parentID) {
@@ -730,6 +892,15 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
         if (newFlavorTea == null) {
             newFlavorTea = new FlavorTea(name, color, id, parentID);
             flavorTeaRepository.save(newFlavorTea);
+        }
+    }
+
+    @Transactional
+    public void addFlavorBeerIfNotFound(String name, String color, int id, int parentID) {
+        FlavorBeer newFlavorBeer = flavorBeerRepository.findFirstByID(id);
+        if (newFlavorBeer == null) {
+            newFlavorBeer = new FlavorBeer(name, color, id, parentID);
+            flavorBeerRepository.save(newFlavorBeer);
         }
     }
 

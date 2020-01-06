@@ -135,7 +135,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form th:action="@{/addtea}" th:object="${tea}" method="POST"
+                            <form th:action="@{/addtea}" th:object="${teas}" method="POST"
                                   enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Tea Name:</label>
@@ -143,7 +143,7 @@
                                     <input type="hidden" id="flavorsTea" class="form-control" name="flavorsTea">
                                 </div>
                                 <div class="form-group">
-                                    <label for="formGroupExampleInput2">Tea House:</label>
+                                    <label for="formGroupExampleInput2">Tea House / origin:</label>
                                     <input type="text" name="teaHouse" class="form-control" id="teaHouse">
                                 </div>
                                 <div class="row">
@@ -151,26 +151,28 @@
                                     <div class="col-md-6 form-group">
                                         <label for="formGroupExampleInput2">Tea date:</label>
                                         <input type="date" name="teaDate" class="form-control"
-                                               value="Pick year" placeholder="Choose year"
+                                               value="Pick date" placeholder="Choose date"
                                                id="teaDate">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="exampleSelect1">Tea color:</label>
+                                        <label for="exampleSelect1">Tea classes:</label>
                                         <select class="form-control" id="teaColor" name="teaColor">
-                                            <option value="" selected>Select tea color</option>
-                                            <option>Light</option>
-                                            <option>Medium</option>
-                                            <option>Omni Roast</option>
-                                            <option>Medium-dark</option>
-                                            <option>Dark</option>
+                                            <option value="" selected>Select tea class</option>
+                                            <option>White tea</option>
+                                            <option>Yellow tea</option>
+                                            <option>Green tea</option>
+                                            <option>Black tea</option>
+                                            <option>Oolong</option>
+                                            <option>Pu Ehr</option>
+                                            <option>Rooibos</option>
+                                            <option>Herbs</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="exampleSelect2">Tasting method:</label>
                                         <select class="form-control" name="tastingMethod" id="tastingMethod">
                                             <option value="" selected>Select tasting method</option>
-                                            <option>Espresso</option>
-                                            <option>Filter</option>
+                                            <option>Tasting</option>
                                             <option>Cupping</option>
                                         </select>
                                     </div>
@@ -180,19 +182,19 @@
                                         <label for="exampleSelect2">Leave type:</label>
                                         <select class="form-control" name="leaveType" id="leaveType">
                                             <option value="" selected>Select leave type</option>
-                                            <option>Arabica</option>
-                                            <option>Robusta</option>
-                                            <option>Arabica & Robusta</option>
+                                            <option>Camellia sinensis</option>
+                                            <option>Camellia sinensis assamica</option>
+                                            <option>Blend</option>
                                         </select>
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="exampleSelect2">Processing method:</label>
                                         <select class="form-control" name="processingMethod" id="processingMethod">
                                             <option value="" selected>Select method</option>
-                                            <option>Natural</option>
-                                            <option>Pulp Natural</option>
-                                            <option>Washed</option>
-                                            <option>Semi-washed</option>
+                                            <option>Steamed</option>
+                                            <option>Pan fired</option>
+                                            <option>Smoked</option>
+                                            <option>Oxidised</option>
                                             <option>Honey</option>
                                         </select>
                                     </div>

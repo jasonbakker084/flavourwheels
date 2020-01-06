@@ -135,35 +135,35 @@
                     <div class="row">
                         <div class="col">
                             <div th:if="${param.successbeer}">
-                                <div class="alert alert-info">Wine saved!</div>
+                                <div class="alert alert-info">Beer saved!</div>
                             </div>
                             <h2>Information about your beer:</h2>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form th:action="@{/addwine}" th:object="${wine}" method="POST"
+                            <form th:action="@{/addbeer}" th:object="${beers}" method="POST"
                                   enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Beer Name:</label>
-                                    <input type="text" name="wineName" class="form-control" id="wineName">
-                                    <input type="hidden" id="flavorsWine" class="form-control" name="flavorsWine">
+                                    <input type="text" name="beerName" class="form-control" id="beerName">
+                                    <input type="hidden" id="flavorsBeer" class="form-control" name="flavorsBeer">
                                 </div>
                                 <div class="form-group">
                                     <label for="formGroupExampleInput2">Brewery:</label>
-                                    <input type="text" name="wineHouse" class="form-control" id="wineHouse">
+                                    <input type="text" name="brewery" class="form-control" id="brewery">
                                 </div>
                                 <div class="row">
 
                                     <div class="col-md-6 form-group">
                                         <label for="formGroupExampleInput2">Production Date:</label>
-                                        <input type="date" name="wineYear" class="form-control"
+                                        <input type="date" name="productionDate" class="form-control"
                                                value="Pick year" placeholder="Choose year"
-                                               id="wineYear">
+                                               id="productionDate">
                                     </div>
                                     <div class="col-md-6 form-group">
                                         <label for="exampleSelect1">Beer color:</label>
-                                        <select class="form-control" id="wineColor" name="wineColor">
+                                        <select class="form-control" id="beerColor" name="beerColor">
                                             <option value="" selected>Select beer color</option>
                                             <option>Light</option>
                                             <option>Medium</option>

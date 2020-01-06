@@ -142,7 +142,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form th:action="@{/addwhiskey}" th:object="${whiskey}" method="POST"
+                            <form th:action="@{/addwhiskey}" th:object="${whiskeys}" method="POST"
                                   enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="formGroupExampleInput">Whiskey Name:</label>
@@ -162,7 +162,7 @@
                                                id="whiskeyYear">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <label for="exampleSelect1">Wine color:</label>
+                                        <label for="exampleSelect1">Whiskey color:</label>
                                         <select class="form-control" id="whiskeyColor" name="whiskeyColor">
                                             <option value="" selected>Select whiskey color</option>
                                             <option>Light</option>
