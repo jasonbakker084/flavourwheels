@@ -88,6 +88,30 @@ public class UserAccountController {
         return modelAndView;
     }
 
+    public UserRepository getUserRepository() {
+        return userRepository;
+    }
+
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public ConfirmationTokenRepository getConfirmationTokenRepository() {
+        return confirmationTokenRepository;
+    }
+
+    public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
+        this.confirmationTokenRepository = confirmationTokenRepository;
+    }
+
+    public EmailSenderService getEmailSenderService() {
+        return emailSenderService;
+    }
+
+    public void setEmailSenderService(EmailSenderService emailSenderService) {
+        this.emailSenderService = emailSenderService;
+    }
+
     // Display the form
     @RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
     public ModelAndView displayResetPassword(ModelAndView modelAndView, User user) {
@@ -148,7 +172,6 @@ public class UserAccountController {
     }
 
     // Endpoint to update a user's password
-    @Bean
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     public ModelAndView resetUserPassword(ModelAndView modelAndView, User user) {
         if (user.getEmail() != null) {
@@ -164,28 +187,4 @@ public class UserAccountController {
         }
         return modelAndView;
     }
-
-    public UserRepository getUserRepository() {
-        return userRepository;
-    }
-
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public ConfirmationTokenRepository getConfirmationTokenRepository() {
-        return confirmationTokenRepository;
-    }
-
-    public void setConfirmationTokenRepository(ConfirmationTokenRepository confirmationTokenRepository) {
-        this.confirmationTokenRepository = confirmationTokenRepository;
-    }
-    @Bean
-    public EmailSenderService getEmailSenderService() {
-        return emailSenderService;
-    }
-//
-//    public void setEmailSenderService(EmailSenderService emailSenderService) {
-//        this.emailSenderService = emailSenderService;
-//    }
 }
