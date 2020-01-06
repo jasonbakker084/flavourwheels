@@ -82,6 +82,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/api/**",
                         "/coffeewheel/**",
                         "/winewheel/**",
+                        "/teawheel/**",
+                        "/beerwheel/**",
                         "/whiskeywheel/**",
                         "/library/**").hasAnyRole("ADMIN", "USER")
 
