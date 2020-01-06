@@ -148,6 +148,7 @@ public class UserAccountController {
     }
 
     // Endpoint to update a user's password
+    @Bean
     @RequestMapping(value = "/reset-password", method = RequestMethod.POST)
     public ModelAndView resetUserPassword(ModelAndView modelAndView, User user) {
         if (user.getEmail() != null) {
