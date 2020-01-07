@@ -1,7 +1,5 @@
 package com.teamflavour.flavourwheels.service;
 
-import org.springframework.context.annotation.Bean;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
