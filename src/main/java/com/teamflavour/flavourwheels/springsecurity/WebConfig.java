@@ -64,14 +64,6 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("forward:/coffeewheel");
-//        registry.addViewController("/winewheel").setViewName("forward:/winewheel");
-//        registry.addViewController("/whiskeywheel").setViewName("forward:/whiskeywheel");
-//        registry.addViewController("/add").setViewName("coffeewheel");
-//        registry.addViewController("/winewheel/?successwine").setViewName("winewheel");
-//        registry.addViewController("/coffeewheel").setViewName("forward:/coffeewheel");
-//        registry.addViewController("/winewheel/?successwine").setViewName("forward:/winewheel/?successwine");
-//        registry.addViewController("/winewheel").setViewName("/winewheel/?successwine");
-//        registry.addViewController("/coffeewheel").setViewName("/coffeewheel/?successcoffee");
         registry.addViewController("/resetPassword").setViewName("resetPassword");
         registry.addViewController("/coffeewheel").setViewName("coffeewheel");
         registry.addViewController("/beerwheel").setViewName("beerwheel");
@@ -89,11 +81,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addViewController("/registration2").setViewName("registration2");
         registry.addViewController("/success").setViewName("success");
         registry.addViewController("/library").setViewName("library");
-//        registry.addViewController("/home/coffeelib/posts").setViewName("coffeewheel");
         registry.addViewController("/upload5").setViewName("upload5");
         registry.addViewController("/error").setViewName("error");
         registry.addViewController("/success").setViewName("register");
-//        registry.addViewController("/add-user").setViewName("add-user");
         registry.addViewController("/update-user").setViewName("update-user");
         registry.addViewController("/resetPassword").setViewName("resetpassword");
         registry.addViewController("/successForgotPassword").setViewName("successForgotPassword");
